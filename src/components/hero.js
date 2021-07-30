@@ -1,35 +1,33 @@
+// Styles
 import heroStyles from '../styles/hero.module.scss';
-import { useStore } from '../store/store';
 
-const updateThing = () => {
-
-	let store = useStore();
-	store.dispatch({
-		type:'UPDATE_WORK_SELECTED_PAGE',
-		workPageSelected: true
-		
-	})
-}
+// Components
+import Nav from './nav';
+import Link from 'next/link';
 
 export default function Hero(props) {
+		return (
+			<section className={ heroStyles.wrapper }>
 
-	const test = props.test;
-	console.log(test);
-	updateThing();
-	console.log(test);
+				<Nav />
 
-	return test ? (
-		<section className={ heroStyles.wrapper }>
-			<div className={ heroStyles.videoWrap }>
-				<video className={ heroStyles.videoWrap} src="/mov/bg-video.m4v" loop autoPlay muted/>
-			</div>
-		</section>
-	) : (
-		<section className={ heroStyles.wrapper }>
+				<div className={ heroStyles.videoWrap }>
+					<video className={ heroStyles.videoWrap} src="/mov/bg-video.m4v" loop autoPlay muted/>
+				</div>
 
-			<p>{ test }</p>
+				<div className={ heroStyles.heroTitleWrap }>
 
-		</section>
-	)
+					<h1>Justin Minyard</h1>
+					<div className={ heroStyles.titleAccentWrap }>
+
+					</div>
+					<h2>full-stack web developer</h2>
+
+					<a className={ heroStyles.btn } href="#work">View work</a>
+
+				</div>
+
+			</section>
+		)
 
 }

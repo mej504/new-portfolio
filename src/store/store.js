@@ -14,7 +14,7 @@ const reducer = ( state = initialState, action ) => {
 		case 'UPDATE_WORK_PAGE_STATUS':
 			return {
 				...state,
-				workPageSelected: payload.workPageSelected 
+				workPageSelected: action.workPageSelected 
 			}
 
 		default:

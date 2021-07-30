@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Hero from '../components/hero';
+import About from '../components/about';
 
 import { useStore } from '../store/store';
 
@@ -27,7 +28,9 @@ export default function Home({ selected }) {
 		<Head>
 			<title>Justin Minyard | Full-Stack Developer</title>
 		</Head>
-		<Hero test={ selected } />
+		<Hero/>
+		<About />
+
 
 		</>
 

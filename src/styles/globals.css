@@ -1,3 +1,9 @@
+:root {
+	--turquoise:hsl(187, 94%, 59%);
+	--purple: hsl(257, 74%, 55%);
+	--richBlack: hsl(240, 93%, 5%);
+}
+
 * {
 	margin:0;
 	padding:0;
