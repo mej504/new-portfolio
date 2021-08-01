@@ -1,4 +1,4 @@
-import aboutStyles from '../styles/about.module.scss';
+import aboutStyles from '../../styles/about.module.scss';
 
 import Image from 'next/image';
 

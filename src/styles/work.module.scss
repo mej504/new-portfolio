@@ -1,0 +1,50 @@
+.workContainer {
+	position:relative;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	margin-top:15em;
+	min-height:800px;
+}
+
+.header {
+
+	position:relative;
+	text-align:center;
+	font-size:var(--sectionHeaderSize);
+	font-weight:var(--sectionHeaderWeight);
+	color:white;
+
+	&:after {
+		content:'';
+		position:absolute;
+		bottom:0;
+		left:50%;
+		height:var(--underlineHeight);
+		width:var(--underlineWidth);
+		background:var(--purple);
+		border-radius:60px;
+		transform-origin:center;
+		transform:translateX(-50%) translateY(10px);
+	}
+
+}
+
+.workCardsContainer {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	width:100%;
+	margin-top:5em;
+	flex-wrap:wrap;
+}
+
+.bg {
+	position:absolute;
+	width:100%;
+	height:100%;
+	background:var(--richBlack);
+	transform:skewY(-10deg);
+	height:100%;
+	z-index:-1;
+}

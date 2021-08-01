@@ -2,6 +2,14 @@
 	--turquoise:hsl(187, 94%, 59%);
 	--purple: hsl(257, 74%, 55%);
 	--richBlack: hsl(240, 93%, 5%);
+	--purpleBoxShadow: hsl(257, 59%, 40%);
+	
+	/* Header */
+	--sectionHeaderSize:2rem;
+	--sectionHeaderWeight:300;
+	--underlineHeight:6px;
+	--underlineWidth:80px;
+
 }
 
 * {

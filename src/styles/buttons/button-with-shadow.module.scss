@@ -1,0 +1,17 @@
+.btn {
+
+	padding:1.2em 4em;
+	background:white;
+	border:3px solid var(--purple);
+	box-shadow:8px 8px 0 0 var(--purpleBoxShadow);
+	text-decoration:none;
+	color:var(--richBlack);
+	transition:box-shadow 200ms ease, transform 200ms ease;
+	transform-origin:center;
+
+	&:hover {
+		box-shadow:16px 16px 0 0 var(--purpleBoxShadow);
+		transform:translate(-6px, -6px);
+	}
+
+}

@@ -1,11 +1,12 @@
 // Styles
-import heroStyles from '../styles/hero.module.scss';
+import heroStyles from '../../styles/hero.module.scss';
 
 // Components
 import Nav from './nav';
 import Link from 'next/link';
 
 export default function Hero(props) {
+
 		return (
 			<section className={ heroStyles.wrapper }>
 

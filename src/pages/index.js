@@ -1,26 +1,10 @@
 import Head from 'next/head'
-import Hero from '../components/hero';
-import About from '../components/about';
+import Hero from '../components/sections/hero';
+import About from '../components/sections/about';
+import Skills from '../components/sections/skills';
+import Work from '../components/sections/work';
 
-import { useStore } from '../store/store';
-
-export async function getStaticProps() {
-
-	const store = useStore();
-	const state = store.getState();
-
-	const selected = state.workPageSelected;
-
-	return {
-		props: {
-			selected
-		}
-	}
-
-
-}
-
-export default function Home({ selected }) {
+export default function Home() {
 
 	return (
 		<>
@@ -30,7 +14,8 @@ export default function Home({ selected }) {
 		</Head>
 		<Hero/>
 		<About />
-
+		<Skills />
+		<Work />
 
 		</>
 
