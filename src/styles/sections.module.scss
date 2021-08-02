@@ -1,0 +1,23 @@
+.section2 {
+	position:relative;
+	padding:5em 0;
+	overflow:hidden;
+}
+
+.honeycomb1, .honeycomb2 {
+	z-index:-100;
+}
+
+.honeycomb1 {
+	position:absolute;
+	top:0;
+	left:-125px;
+	opacity:0.5;
+}
+
+.honeycomb2 {
+	position:absolute;
+	right:-125px;
+	bottom:0;
+	opacity:0.8;
+}

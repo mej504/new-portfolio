@@ -19,6 +19,7 @@
 	position:relative;
 	width:100%;
 	height:100%;
+	z-index:100;
 	overflow:hidden;
 }
 
@@ -55,3 +56,79 @@
 	}
 
 }
+
+.scrollArrowWrap {
+	position:absolute;
+	display:flex;
+	align-items:center;
+	bottom:0;
+	left:50%;
+	transform: translateX(-50%);
+	z-index:10;
+
+	img {
+		animation:position-pulse 1s ease-in-out infinite alternate;
+	}
+
+}
+
+@keyframes position-pulse {
+
+	from {
+		transform:translateY(0);
+	}
+
+	to {
+		transform:translateY(-10px);
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
