@@ -3,13 +3,13 @@
 	display:flex;
 	flex-direction:column;
 	align-items:center;
-	margin-top:15em;
-	min-height:1200px;
+	margin-top:10em;
+	min-height:1050px;
 }
 
 .header {
-
 	position:relative;
+	margin-top:2em;
 	text-align:center;
 	font-size:var(--sectionHeaderSize);
 	font-weight:var(--sectionHeaderWeight);
@@ -31,12 +31,9 @@
 }
 
 .workCardsContainer {
-	display:flex;
-	align-items:center;
-	justify-content:center;
-	width:100%;
+	display:grid;
+	grid: auto-flow / repeat(2, minmax(200px, 600px));
 	margin-top:5em;
-	flex-wrap:wrap;
 }
 
 .bg {
@@ -47,4 +44,5 @@
 	transform:skewY(-10deg);
 	height:100%;
 	z-index:-1;
+	backface-visibility: hidden;
 }

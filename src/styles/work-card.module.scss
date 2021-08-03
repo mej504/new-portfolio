@@ -1,3 +1,40 @@
-.workCardContainer {
-	width:45%;
+.overlayContainer {
+	position:absolute;
+	visibility:hidden;
+	left:0;
+	width:100%;
+	height:100%;
+	padding:2em;
+	background:var(--purpleBoxShadow);
+}
+
+.cardAnimateIn {
+	visibility:visible;
+	animation: animate-in 300ms ease-in-out forwards;
+}
+
+.cardAnimateOut {
+	visibility:visible;
+	animation: animate-out 300ms ease-in-out forwards;
+}
+
+@keyframes animate-in {
+
+	from {
+		top:100%;
+	}
+
+	to { 
+		top:0;
+	}
+
+}
+
+@keyframes animate-out {
+	from {
+		top:0;
+	}
+	to {
+		top:100%;
+	}
 }

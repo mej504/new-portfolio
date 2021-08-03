@@ -7,7 +7,7 @@ export default function ButtonWithDropShadow( props ) {
 	return (
 
 		<Link href="/work">
-			<a className={ styles.btn }>{ props.btnText }</a>
+			<a style={ props.style } className={ styles.btn }>{ props.btnText }</a>
 		</Link>
 
 	)

@@ -14,8 +14,7 @@ export default function Work() {
 
 		<section className={ styles.workContainer }>
 
-			<div className={ styles.bg }>
-			</div>
+			<div className={ styles.bg } />
 
 			<h2 className={ styles.header }>Selected Works</h2>
 
@@ -23,13 +22,13 @@ export default function Work() {
 
 				{workDetails.map( work => {
 					return (
-						<WorkCard title={ work.name } builtWith={ work.builtWith } category={ work.category } imgPath= { work.bgImagePath } key={ work.name }/>
+						<WorkCard title={ work.name } url={ work.url } builtWith={ work.builtWith } category={ work.category } imgPath= { work.bgImagePath } key={ work.name }/>
 					)
 				})}
 
 			</div>
 
-			<ButtonWithDropShadow btnText={ btnText } />
+			<ButtonWithDropShadow style={{ marginTop: '5em' }} btnText={ btnText } />
 
 		</section>
 
