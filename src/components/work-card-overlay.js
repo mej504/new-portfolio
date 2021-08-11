@@ -1,63 +1,22 @@
 import workCardStyles from '../styles/work-card.module.scss';
 import { useState } from 'react';
 
-export default function WorkCardOverlay( { cardPos, hovered, data } ) {
+export default function WorkCardOverlay( { hovered, data } ) {
 
-	let { overlayContainer, cardAnimateIn, cardAnimateOut } = workCardStyles;
+	let { category, title, overlayContainer, cardAnimateIn, cardAnimateOut } = workCardStyles;
 
 	return (
 
-		<div className={ `overlay-container ${ hovered ? 'card-animate-in' : '' }` }>
-			<p>{ data.title }</p>
+		<div className={`${overlayContainer} ${hovered ? cardAnimateIn : cardAnimateOut }`}>
 
-			<style jsx>{`
+			<p className={ category }>{ data.category }</p>
 
-				.overlay-container {
-					color:white;
-					position:absolute;
-					top:0;
-					left:0;
-					width:100%;
-					height:100%;
-					padding:2em;
-					transform:translateY(100%);
-					background:var(--purpleBoxShadow);
-				}
+			<div className={ workCardStyles.detailsContainer }>
+				<h3>{ data.title }</h3>
+				<p>{ data.builtWith }</p>
+			</div>
 
-				.card-animate-in {
-					visibility:visible;
-					animation: animate-in 1s ease-in-out forwards;
-				}
-
-				.card-animate-out {
-					visibility:visible;
-					animation: animate-out 1s ease-in-out forwards;
-				}
-
-				@keyframes animate-in {
-
-					from {
-						transform:translateY(100%);
-					}
-
-					to {
-						transform:translateY(0);
-					}
-
-				}
-
-				@keyframes animate-out {
-
-					from {
-						transform:translateY(${cardPos}px);
-					}
-
-					to {
-						transform:translateY(100%);
-					}
-				}
-
-			`}</style>
+			<a className={ workCardStyles.link } target='_blank' href={ data.url } rel='external'>{ data.category === 'Personal' ? 'Try app' : 'Preview unavailable' }</a>
 
 		</div>
 

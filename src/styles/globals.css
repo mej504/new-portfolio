@@ -1,14 +1,20 @@
 :root {
 	--turquoise:hsl(187, 94%, 59%);
 	--purple: hsl(257, 74%, 55%);
+	--purpleTransparent: hsla(257, 74%, 55%, 0.8);
 	--richBlack: hsl(240, 93%, 5%);
 	--purpleBoxShadow: hsl(257, 59%, 40%);
+	--purpleBoxShadowTransparent: hsla(257, 59%, 40%, 0.9);
 	
 	/* Header */
 	--sectionHeaderSize:2rem;
 	--sectionHeaderWeight:300;
 	--underlineHeight:6px;
 	--underlineWidth:80px;
+
+	/* Work card */
+	--workCategoryUnderlineHeight:4px;
+	--workCategoryUnderlineWidth:50px;
 
 }
 

@@ -7,31 +7,16 @@ export default function WorkCard( props ) {
 
 	const { imgPath } = props;
 	const [containerHovered, setContainerHovered] = useState(false);
-	const [cardPosition, updateCardPosition] = useState(0);
 
 	const handleMouseExit = (e) => {
 		setContainerHovered(false);
-
-		let a = e.target.firstElementChild;
-		let offset = a.offsetTop;
-		let size = a.clientHeight;
-		let test = normalizeCardPosition( size, offset );
-
-		console.log(a.getBoundingClientRect());
-
-		updateCardPosition( test );
-
-	}
-
-	const normalizeCardPosition = ( size, offset ) => {
-		return Math.floor( (offset/size) * 100 );
 	}
 
 	return (
 
-		<div onMouseEnter={() => setContainerHovered(true)} onMouseLeave={ handleMouseExit }  className='workCardContainer'>
+		<div onMouseEnter={() => setContainerHovered(true)} onMouseLeave={() => setContainerHovered(false)}  className='workCardContainer'>
 
-			<WorkCardOverlay hovered={ containerHovered } cardPos={ cardPosition } data={ props } />
+			<WorkCardOverlay hovered={ containerHovered } data={ props } />
 
 			<style jsx>{`
 
