@@ -8,21 +8,50 @@ export default function WorkCard( props ) {
 	const { imgPath } = props;
 	const [containerHovered, setContainerHovered] = useState(false);
 
-	const handleMouseExit = (e) => {
-		setContainerHovered(false);
+	/* STATE */
+	const [overlayY, updateOverlayY] = useState(0);
+	const [targetedOverlay, updateTargetedOverlay] = useState(undefined);
+
+	/* Return percentage-based offset of targeted overlay from top of container */
+	const normalizeYPos = ( elementHeight, yPosition ) => {
+		return Math.floor( ( yPosition / elementHeight ) * 100 );
+	}
+
+	const handleHoverOut = ( overlay ) => {
+		let offset = overlay.offsetTop;
+		let startingYPos = normalizeYPos( overlay.getBoundingClientRect().height, offset );
+		updateOverlayY( startingYPos );
 	}
 
 	return (
 
-		<div onMouseEnter={() => setContainerHovered(true)} onMouseLeave={() => setContainerHovered(false)}  className='workCardContainer'>
+		<div
+		
+		onMouseEnter={(e) => {
+			updateTargetedOverlay( e.target.firstElementChild );
+			setContainerHovered(true)
+		}}
+		
+		onMouseLeave={() => {
+			handleHoverOut( targetedOverlay );
+			setContainerHovered(false)
+			updateTargetedOverlay(null);
+		}}
+		
+		className='workCardContainer'>
 
-			<WorkCardOverlay hovered={ containerHovered } data={ props } />
+			<WorkCardOverlay
+				overlayY={ overlayY }
+				hovered={ containerHovered }
+				data={ props }
+			/>
 
 			<style jsx>{`
 
 				.workCardContainer {
 					position:relative;
-					flex:1 1 500px;
+					flex:1 1 575px;
+					max-width:575px;
 					padding:2em;
 					background-image:url(${imgPath});
 					background-position:top;

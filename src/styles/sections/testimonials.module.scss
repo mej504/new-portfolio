@@ -1,0 +1,35 @@
+.testimonialsSectionContainer {
+
+	margin-top:10em;
+	background:var(--lightGray);
+	padding:5em 1em;
+
+}
+
+.testimonialsContainer {
+	display:flex;
+	justify-content:center;
+	margin-top:4em;
+}
+
+.header {
+	position:relative;
+	color:var(--richBlack);
+	font-size:var(--sectionHeaderSize);
+	font-weight:var(--sectionHeaderWeight);
+	text-align:center;
+
+	&:after {
+		content:'';
+		position:absolute;
+		bottom:0;
+		left:50%;
+		height:var(--underlineHeight);
+		width:var(--underlineWidth);
+		background:var(--purple);
+		border-radius:60px;
+		transform-origin:center;
+		transform:translateX(-50%) translateY(10px);
+	}
+
+}

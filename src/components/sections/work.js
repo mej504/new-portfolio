@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import styles from '../../styles/work.module.scss';
+import styles from '../../styles/sections/work.module.scss';
 
 import WorkCard from '../work-card';
 import ButtonWithDropShadow from '../buttons/button-with-shadow';

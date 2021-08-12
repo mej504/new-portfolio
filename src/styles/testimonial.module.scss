@@ -1,0 +1,35 @@
+.testimonialContainer {
+	max-width:450px;
+}
+
+.testimonialText {
+
+	text-align:center;
+	font-family:upgrade-lights;
+	font-weight:200;
+	letter-spacing:1px;
+	font-size:1rem;
+
+}
+
+.testimonialClient {
+	position:relative;
+	text-align:center;
+	margin-top:1em;
+	padding:1em;
+
+	p {
+		font-weight:500;
+	}
+
+	&:before {
+		content:'';
+		position:absolute;
+		top:0;
+		left:0;
+		height:4px;
+		width:100%;
+		border-radius:100px;
+		background:var(--purple);
+	}
+}

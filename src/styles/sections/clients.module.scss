@@ -1,0 +1,38 @@
+.clientsSectionContainer {
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	margin-top:12em;
+}
+
+.clientCardsContainer {
+
+	display:flex;
+	justify-content:center;
+	flex-wrap:wrap;
+	width:100%;
+	margin-top:5em;
+
+}
+
+.clientsHeader {
+
+	position:relative;
+	text-align:center;
+	font-size:var(--sectionHeaderSize);
+	font-weight:var(--sectionHeaderWeight);
+
+	&:after {
+		content:'';
+		position:absolute;
+		bottom:0;
+		left:50%;
+		height:6px;
+		width:var(--underlineWidth);
+		background:var(--purple);
+		border-radius:60px;
+		transform-origin:center;
+		transform:translateX(-50%) translateY(10px);
+	}
+
+}

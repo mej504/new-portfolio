@@ -1,6 +1,6 @@
 import SkillCard from '../skill-card';
 import skills from '../../../lib/skills';
-import styles from '../../styles/skills.module.scss';
+import styles from '../../styles/sections/skills.module.scss';
 
 export default function Skills() {
 

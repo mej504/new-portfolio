@@ -1,5 +1,5 @@
 // Styles
-import heroStyles from '../../styles/hero.module.scss';
+import heroStyles from '../../styles/sections/hero.module.scss';
 
 // Components
 import Nav from './nav';
