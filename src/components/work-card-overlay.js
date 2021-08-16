@@ -1,4 +1,4 @@
-import workCardStyles from '../styles/work-card.module.scss';
+import workCardStyles from '../styles/components/work-card.module.scss';
 import { useState, useRef } from 'react';
 
 export default function WorkCardOverlay( { overlayY, hovered, data } ) {

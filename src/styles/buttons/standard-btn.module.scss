@@ -1,0 +1,20 @@
+.btn {
+	padding:1.25em 4em;
+	margin-top:3em;
+	border:1px solid var(--purple);
+	color:var(--richBlack);
+	text-decoration:none;
+	font-family:upgrade-lights;
+	transition:all 150ms ease;
+	outline:none;
+
+	&:hover, &:focus {
+		background:white;
+	}
+}
+
+.btn[disabled] {
+
+	background:var(--disabledGray);
+
+}

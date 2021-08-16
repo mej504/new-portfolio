@@ -1,0 +1,58 @@
+.formField {
+
+	position:relative;
+	margin:1em 0;
+
+	input, textarea {
+		font-size:1.1rem;
+		width:100%;
+		max-width:100%;
+		border:1px solid var(--purple);
+		outline:none;
+		color:var(--richBlack);
+		font-family:upgrade-lights;
+
+		&:focus {
+			outline:2px solid var(--purple);
+		}
+
+	}
+
+	label {
+		position:absolute;
+		left:20px;
+		top:10px;
+		color:var(--midGray);
+		font-weight:300;
+		font-size:0.7rem;
+		user-select:none;
+
+		.required {
+			display:inline-block;
+			color:red;
+			font-size:0.5rem;
+			margin-right:0.25em;
+			transform:translateY(-5px);
+		}
+
+	}
+
+	textarea {
+		padding:1.5em;
+		min-width:100%;
+		min-height:200px;
+
+		&::placeholder {
+			color:var(--midGray);
+			font-weight:300;
+			font-size:0.7rem;
+			user-select:none;
+		}
+
+	}
+
+	input {
+		padding:1.5em;
+	}
+
+}

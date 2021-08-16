@@ -1,4 +1,4 @@
-import cardStyles from '../styles/skill-card.module.scss';
+import cardStyles from '../styles/components/skill-card.module.scss';
 
 import Image from 'next/image';
 

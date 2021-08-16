@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import styles from '../styles/work-card.module.scss';
+import styles from '../styles/components/work-card.module.scss';
 import WorkCardOverlay from './work-card-overlay';
 import { useState } from 'react';
 

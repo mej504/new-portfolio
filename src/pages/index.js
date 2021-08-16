@@ -1,5 +1,5 @@
 // Styles
-import sectionStyles from '../styles/sections.module.scss';
+import sectionStyles from '../styles/components/sections.module.scss';
 
 // Components
 import Head from 'next/head'
@@ -10,6 +10,9 @@ import Skills from '../components/sections/skills';
 import Work from '../components/sections/work';
 import Clients from '../components/sections/clients';
 import Testimonials from '../components/sections/testimonials';
+import Contact from '../components/sections/contact';
+import Footer from '../components/sections/footer';
+import BackToTopArrow from '../components/back-to-top';
 
 export default function Home() {
 
@@ -38,6 +41,12 @@ export default function Home() {
 			<Clients />
 
 			<Testimonials />
+
+			<Contact />
+
+			<Footer />
+
+			<BackToTopArrow />
 
 		</>
 

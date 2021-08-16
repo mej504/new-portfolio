@@ -1,4 +1,4 @@
-import styles from '../styles/testimonial.module.scss';
+import styles from '../styles/components/testimonial.module.scss';
 
 export default function Testimonial( props ) {
 

@@ -1,4 +1,4 @@
-import styles from '../styles/client-card.module.scss';
+import styles from '../styles/components/client-card.module.scss';
 
 import Image from 'next/image';
 

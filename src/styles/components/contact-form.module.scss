@@ -1,0 +1,12 @@
+.contactForm {
+	display:flex;
+	flex-direction:column;
+	margin-top:3em;
+	width:40%;
+	max-width:775px;
+	
+	button {
+		align-self:center;
+	}
+
+}
