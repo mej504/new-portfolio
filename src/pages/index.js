@@ -1,3 +1,6 @@
+// Modules
+import { useRef, useState, useEffect } from 'react';
+
 // Styles
 import sectionStyles from '../styles/components/sections.module.scss';
 
@@ -15,6 +18,8 @@ import Footer from '../components/sections/footer';
 import BackToTopArrow from '../components/back-to-top';
 
 export default function Home() {
+
+	const bottomLimit = useRef(0);
 
 	return (
 		<>
@@ -42,11 +47,11 @@ export default function Home() {
 
 			<Testimonials />
 
-			<Contact />
+			<Contact bottomLimit={ bottomLimit } />
 
 			<Footer />
 
-			<BackToTopArrow />
+			<BackToTopArrow bottomLimit={ bottomLimit } />
 
 		</>
 

@@ -7,7 +7,7 @@
 	--midGray: hsl(217, 0%, 54%);
 	--purpleBoxShadow: hsl(257, 59%, 40%);
 	--purpleBoxShadowTransparent: hsla(257, 59%, 40%, 0.9);
-	--disabledGray: hsl(0, 0%, 78%);
+	--disabledGray: hsl(0, 0%, 74%);
 
 	/* Header */
 	--sectionHeaderSize:2rem;

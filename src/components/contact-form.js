@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import styles from '../styles/components/contact-form.module.scss';
 
@@ -7,7 +7,8 @@ import StandardBtn from './buttons/standard-btn';
 
 export default function ContactForm( props ) {
 
-	const [ btnDisabled, updateBtnStatus ] = useState( false );
+	const [ btnDisabled, updateBtnStatus ] = useState( true );
+	const { bottomLimit } = props;
 
 	const handleSubmit = ( e ) => {
 		e.preventDefault();
@@ -25,7 +26,7 @@ export default function ContactForm( props ) {
 			<InputField label='Email' type='text' name='email' />
 			<InputField label='Organization' type='text' name='organization' />
 			<InputField textarea={ true } label='How can I help?' type='textarea' name='organization' />
-			<StandardBtn text='Send message' isForm={ true } isDisabled={ btnDisabled } />
+			<StandardBtn bottomLimit={ bottomLimit } text='Send message' isForm={ true } isDisabled={ btnDisabled } />
 
 		</form>
 

@@ -7,8 +7,6 @@ import ClientCard from '../client-card';
 
 export default function Clients() {
 
-	console.log(clients);
-
 	return (
 
 		<section className={ styles.clientsSectionContainer }>
