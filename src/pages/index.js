@@ -20,6 +20,11 @@ import BackToTopArrow from '../components/back-to-top';
 export default function Home() {
 
 	const bottomLimit = useRef(0);
+	const formBtnPosition = useRef(null);
+	const heroSection = useRef(null);
+
+	useEffect(() => {
+	}, [heroSection, formBtnPosition] );
 
 	return (
 		<>
@@ -27,7 +32,8 @@ export default function Home() {
 			<Head>
 				<title>Justin Minyard | Full-Stack Developer</title>
 			</Head>
-			<Hero/>
+
+			<Hero innerRef={ heroSection } />
 
 			<section className={ sectionStyles.section2 }>
 				<div className={ sectionStyles.honeycomb1 }>
@@ -47,11 +53,11 @@ export default function Home() {
 
 			<Testimonials />
 
-			<Contact bottomLimit={ bottomLimit } />
+			<Contact bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
 
 			<Footer />
 
-			<BackToTopArrow bottomLimit={ bottomLimit } />
+			<BackToTopArrow heroSectionRef={ heroSection } bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
 
 		</>
 

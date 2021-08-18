@@ -2,7 +2,7 @@ import styles from '../../styles/sections/contact.module.scss';
 
 import ContactForm from '../contact-form';
 
-export default function Contact({ bottomLimit }) {
+export default function Contact({ bottomLimit, formBtnPosition }) {
 
 	return (
 
@@ -13,7 +13,7 @@ export default function Contact({ bottomLimit }) {
 				<p>Holler at me! I'm available for freelance work, and I'll gladly<br />answer any questions you have!</p>
 			</div>
 
-			<ContactForm bottomLimit={ bottomLimit } />
+			<ContactForm bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition }/>
 
 		</section>
 

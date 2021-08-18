@@ -8,8 +8,10 @@ import Image from 'next/image';
 
 export default function Hero(props) {
 
+
+
 		return (
-			<section className={ heroStyles.wrapper }>
+			<section ref={ props.innerRef } className={ heroStyles.wrapper }>
 
 				<Nav />
 
