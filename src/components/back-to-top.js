@@ -16,7 +16,7 @@ export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSecti
 	const scrollYPos = useRef(null);
 	const thisBtn = useRef(null);
 	const thisBtnPos = useRef(null);
-	const visibility = useRef('');
+	const isVisible = useRef(null);
 
 	// Update current y scroll position once mounted
 	useEffect(() => {
@@ -28,9 +28,9 @@ export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSecti
 
 		// Sets visibility of button based off initial scrollY value
 		if( window.scrollY >= (heroSectionRef.current.clientHeight / 2) ) {
-			visibility.current = 'visible';
+			isVisible.current = true;
 		} else {
-			visibility.current = 'hidden';
+			isVisible.current = false;
 		}
 
 		// Check whether scroll limit is reached given the current scroll position on page load
@@ -58,9 +58,9 @@ export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSecti
 		window.addEventListener('scroll', (e) => {
 
 			if( window.scrollY >= (heroSectionRef.current.clientHeight / 2) ) {
-				visibility.current = 'visible';
+				isVisible.current = true;
 			} else {
-				visibility.current = 'hidden';
+				isVisible.current = false;
 			}
 
 
@@ -98,7 +98,10 @@ export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSecti
 
 	return (
 		<>
-			<div onClick={ () => window.scrollTo({top:0}) } ref={thisBtn} className='button-wrap'>
+			<div
+				onClick={ () => window.scrollTo({top:0}) }
+				ref={thisBtn}
+				className={`button-wrap ${ isVisible.current ? 'animate-in' : 'animate-out' }` }>
 
 				<svg className={ styles.backToTopArrow } viewBox="0 0 75.04 75.04">
 					<circle className={ styles.buttonEllipse } cx="37.52" cy="37.52" r="37.52"/>
@@ -111,14 +114,51 @@ export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSecti
 			<style jsx>{`
 
 				.button-wrap {
-					visibility:${visibility.current};
 					position:${ elPosition };
 					right:${position.x}px;
 					${elPositionProp.current}:${position.y}px;
 					margin:3em;
+					border-radius:50%;
 					max-height:75px;
 					max-width:75px;
+					cursor:pointer;
+					overflow:hidden;
 					z-index:100;
+					transform:scale(1);
+					transform-origin:center;
+				}
+
+				.animate-in {
+					animation:0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards pop-in;
+				}
+
+				.animate-out {
+					animation:0.3s cubic-bezier(0.600, -0.280, 0.735, 0.045) forwards pop-out;
+				}
+
+
+				@keyframes pop-in {
+
+					from {
+						transform:scale(0);
+					}
+
+					to {
+						transform:scale(1);
+					}
+
+				}
+
+				@keyframes pop-out {
+
+					from {
+						transform:scale(1);
+					}
+
+					to {
+						transform:scale(0);
+					}
+
 				}
 
 			`}</style>
