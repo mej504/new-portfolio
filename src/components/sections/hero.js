@@ -12,18 +12,22 @@ import Image from 'next/image';
 export default function Hero(props) {
 
 	const heroTitle = useRef( null );
-	// const scroll = useRef(0);
+	const video = useRef( null );
 
 	useEffect(() => {
 
 		let { current } = heroTitle;
-		let scroll = null;
+		let vid = video.current;
+		let heroScroll = 0;
+		let vidScroll = 0;
 
-		window.addEventListener('scroll', () => {
+		window.addEventListener('scroll', (e) => {
 
-			scroll = window.scrollY * 0.95;
-			current.style.transform = `translateY(-${ scroll }px)`;
-			current.style.opacity = 1 - ( scroll * 0.0025 );
+			heroScroll = window.scrollY * 0.85;
+			vidScroll = heroScroll;
+			current.style.transform = `translateY(-${ heroScroll }px)`;
+			current.style.opacity = 1 - ( heroScroll * 0.0025 );
+			vid.style.transform = `translateY(${ vidScroll }px)`;
 
 		})
 
@@ -35,7 +39,7 @@ export default function Hero(props) {
 			<Nav />
 
 			<div className={ heroStyles.videoWrap }>
-				<video className={ heroStyles.videoWrap} src="/mov/bg-video.m4v" loop autoPlay muted/>
+				<video ref={ video } className={ heroStyles.videoWrap} src="/mov/bg-video.m4v" loop autoPlay muted/>
 			</div>
 
 			<div ref={ heroTitle } className={ heroStyles.heroTitleWrap }>

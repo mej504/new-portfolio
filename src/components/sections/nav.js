@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
+
 import navStyles from '../../styles/components/nav.module.scss';
 
-export default function Nav() {
+export default function Nav({ test }) {
 
 	return (
 
