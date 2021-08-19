@@ -21,10 +21,10 @@ export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSecti
 	// Update current y scroll position once mounted
 	useEffect(() => {
 
-		if( !window ) return;
-
 		// Immediately updates scrollYPos ref
 		scrollYPos.current = window.scrollY + window.innerHeight;
+
+		if( !heroSectionRef ) return;
 
 		// Sets visibility of button based off initial scrollY value
 		if( window.scrollY >= (heroSectionRef.current.clientHeight / 2) ) {

@@ -10,7 +10,8 @@
 		border:1px solid var(--purple);
 		outline:none;
 		color:var(--richBlack);
-		font-family:upgrade-lights;
+		font-family:var(--lightFont);
+		font-weight:var(--light500);
 
 		&:focus {
 			outline:2px solid var(--purple);
@@ -23,7 +24,8 @@
 		left:20px;
 		top:10px;
 		color:var(--midGray);
-		font-weight:300;
+		font-family:var(--mainFont);
+		font-weight:var(--main300);
 		font-size:0.7rem;
 		user-select:none;
 
@@ -44,7 +46,8 @@
 
 		&::placeholder {
 			color:var(--midGray);
-			font-weight:300;
+			font-family:var(--mainFont);
+			font-weight:var(--main300);
 			font-size:0.7rem;
 			user-select:none;
 		}

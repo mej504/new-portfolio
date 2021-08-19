@@ -6,7 +6,7 @@ export default function About() {
 
 	return (
 
-		<section className={ aboutStyles.aboutContainer }>
+		<section id='about' className={ aboutStyles.aboutContainer }>
 
 			<div className={ aboutStyles.aboutContentContainer }>
 

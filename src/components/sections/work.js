@@ -12,7 +12,7 @@ export default function Work() {
 
 	return (
 
-		<section className={ styles.workContainer }>
+		<section id="work" className={ styles.workContainer }>
 
 			<div className={ styles.bg } />
 

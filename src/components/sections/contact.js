@@ -6,7 +6,7 @@ export default function Contact({ bottomLimit, formBtnPosition }) {
 
 	return (
 
-		<section className={ styles.contactSectionWrap }>
+		<section id="contact" className={ styles.contactSectionWrap }>
 
 			<div className={ styles.header }>
 				<h2>Contact</h2>

@@ -72,3 +72,38 @@
 	}
 
 }
+
+.fixed {
+	position:fixed;
+	background:var(--richBlack);
+	padding:0.5em 4em;
+}
+
+.hideNav {
+	animation:1s ease-out forwards hide-nav !important;
+}
+.revealNav {
+	animation:1s ease-in forwards reveal-nav !important;
+}
+
+@keyframes hide-nav {
+
+	from {
+		transform:translateY(0);
+	}
+
+	to {
+		transform:translateY(100%);
+	}
+
+}
+
+@keyframes reveal-nav {
+	from {
+		transform:translateY(100%);
+	}
+
+	to {
+		transform:translateY(0);
+	}
+}

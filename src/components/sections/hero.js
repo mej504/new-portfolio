@@ -12,6 +12,8 @@ import Image from 'next/image';
 export default function Hero(props) {
 
 	const heroTitle = useRef( null );
+	const heroPosition = useRef( null );
+
 	const video = useRef( null );
 
 	useEffect(() => {
@@ -21,13 +23,23 @@ export default function Hero(props) {
 		let heroScroll = 0;
 		let vidScroll = 0;
 
+		console.dir(video.current);
+
+		// Update heroPosition
+		let heroRect = heroTitle.current.getBoundingClientRect();
+		heroPosition.current = heroRect;
+
 		window.addEventListener('scroll', (e) => {
 
-			heroScroll = window.scrollY * 0.85;
-			vidScroll = heroScroll;
-			current.style.transform = `translateY(-${ heroScroll }px)`;
-			current.style.opacity = 1 - ( heroScroll * 0.0025 );
-			vid.style.transform = `translateY(${ vidScroll }px)`;
+			if( window.scrollY >= heroPosition.current.height ) {
+				return;
+			} else {
+				heroScroll = window.scrollY * 0.5;
+				vidScroll = window.scrollY;
+				current.style.transform = `translateY(-${ heroScroll }px)`;
+				current.style.opacity = 1 - ( heroScroll * 0.005 );
+				vid.style.transform = `translateY(${ vidScroll }px)`;
+			}
 
 		})
 
@@ -54,7 +66,7 @@ export default function Hero(props) {
 
 			</div>
 
-			<div className={ heroStyles.scrollArrowWrap }>
+			<div onClick={ () => window.location = '#about' }  className={ heroStyles.scrollArrowWrap }>
 
 				<Image src='/img/scroll-arrow.svg' width={ 10 } height={ 71 } />
 

@@ -6,7 +6,8 @@
 	box-shadow:8px 8px 0 0 var(--purpleBoxShadow);
 	text-decoration:none;
 	color:var(--richBlack);
-	font-weight:300;
+	font-family:var(--lightFont);
+	font-weight:var(--lightFont500);
 	transition:box-shadow 200ms ease, transform 200ms ease;
 	transform-origin:center;
 

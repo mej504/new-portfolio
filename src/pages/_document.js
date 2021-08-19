@@ -7,7 +7,7 @@ class MyDocument extends Document {
 		return (
 			<Html lang="en">
 				<Head>
-					<link rel="stylesheet" href="https://use.typekit.net/mdg4ivp.css" />
+					<title>Justin Minyard | Full-Stack Developer</title>
 				</Head>
 				<body>
 					<Main />

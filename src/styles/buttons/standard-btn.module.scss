@@ -2,11 +2,12 @@
 	padding:1.25em 4em;
 	margin-top:3em;
 	border:1px solid var(--purple);
-	color:var(--richBlack);
-	text-decoration:none;
-	font-family:upgrade-lights;
-	transition:all 150ms ease;
 	outline:none;
+	color:var(--richBlack);
+	font-family:var(--lightFont);
+	font-weight:var(--light500);
+	text-decoration:none;
+	transition:all 150ms ease;
 
 	&:hover, &:focus {
 		background:white;

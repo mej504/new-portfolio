@@ -23,8 +23,6 @@ export default function Home() {
 	const formBtnPosition = useRef(null);
 	const heroSection = useRef(null);
 
-	useEffect(() => {
-	}, [heroSection, formBtnPosition] );
 
 	return (
 		<>
