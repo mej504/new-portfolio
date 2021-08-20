@@ -43,6 +43,7 @@ export default function Nav({ test }) {
 
 			if( thresholdReached ) {
 
+
 				if( scrollY >= prevScrollY ) scrollDirection.current = 1;
 				if( scrollY <= prevScrollY ) scrollDirection.current = -1;
 
@@ -66,7 +67,7 @@ export default function Nav({ test }) {
 
 	return (
 
-		<nav ref={ navBar } className={ `${navStyles.navWrapper} ${thresholdReached ? navStyles.fixed : 'test' }` }>
+		<nav ref={ navBar } className={ `${navStyles.navWrapper} ${thresholdReached ? navStyles.fixed : '' }` }>
 
 			<p>JM</p>
 
