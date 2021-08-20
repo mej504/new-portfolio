@@ -22,6 +22,7 @@ export default function Hero(props) {
 		let vid = video.current;
 		let heroScroll = 0;
 		let vidScroll = 0;
+		let body = document.querySelector('body');
 
 		console.dir(video.current);
 
@@ -40,6 +41,7 @@ export default function Hero(props) {
 				current.style.opacity = 1 - ( heroScroll * 0.005 );
 				vid.style.transform = `translateY(${ vidScroll }px)`;
 			}
+
 
 		})
 

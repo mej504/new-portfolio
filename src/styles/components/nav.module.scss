@@ -12,6 +12,7 @@
 	display:flex;
 	justify-content:space-between;
 	width:100%;
+	z-index:200;
 
 	p {
 		color:white;
@@ -77,13 +78,14 @@
 	position:fixed;
 	background:var(--richBlack);
 	padding:0.5em 4em;
+	z-index:100;
 }
 
 .hideNav {
-	animation:1s ease-out forwards hide-nav !important;
+	animation:1s ease-out forwards hide-nav;
 }
 .revealNav {
-	animation:1s ease-in forwards reveal-nav !important;
+	animation:1s ease-in forwards reveal-nav;
 }
 
 @keyframes hide-nav {

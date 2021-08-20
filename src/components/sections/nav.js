@@ -4,7 +4,7 @@ import navStyles from '../../styles/components/nav.module.scss';
 
 export default function Nav({ test }) {
 
-	const [ thresholdReached, updateThresholdReached ] = useState(false);
+	const [ thresholdReached, updateThresholdReached ] = useState( false );
 	const scrollDirection = useRef(0);
 	const navBar = useRef(null);
 	const navHidden = useRef(false);
@@ -33,44 +33,44 @@ export default function Nav({ test }) {
 
 		window.addEventListener('scroll', (e) => {
 
-			if( window.scrollY > window.innerHeight ) {
+			let { scrollY, innerHeight } = window;
+
+			if( scrollY > innerHeight && !thresholdReached ) {
 				updateThresholdReached(true);
-			} else if( window.scrollY < window.innerHeight && thresholdReached ){
+			} else if( scrollY < innerHeight && thresholdReached ){
 				updateThresholdReached(false)
 			}
 
+			if( thresholdReached ) {
 
-			if( window.scrollY >= prevScrollY ) scrollDirection.current = 1;
-			if( window.scrollY <= prevScrollY ) scrollDirection.current = -1;
+				if( scrollY >= prevScrollY ) scrollDirection.current = 1;
+				if( scrollY <= prevScrollY ) scrollDirection.current = -1;
 
-			if( scrollDirection.current === -1 && navHidden.current ) {
-				animateNavBar('in', navBar.current );
-				navHidden.current = false;
-			} else if( scrollDirection.current === 1 && !navHidden.current ) {
-				animateNavBar('out', navBar.current );
-				navHidden.current = true;
+				if( scrollDirection.current === -1 && navHidden.current ) {
+					animateNavBar('in', navBar.current );
+					navHidden.current = false;
+				} else if( scrollDirection.current === 1 && !navHidden.current ) {
+					animateNavBar('out', navBar.current );
+					navHidden.current = true;
+				}
+
+				prevScrollY = scrollY;
+				scrollDirection.current = 0;
+
 			}
 
-			prevScrollY = window.scrollY;
-			scrollDirection.current = 0;
 
 		})
 
-		return () => {
-			window.removeEventListener('scroll', () => {
-				console.log('removed');
-			});
-		}
-
-	}, []);
+	}, [ thresholdReached ]);
 
 	return (
 
-		<nav ref={ navBar } className={ `${navStyles.navWrapper} ${thresholdReached ? navStyles.fixed : '' }` }>
+		<nav ref={ navBar } className={ `${navStyles.navWrapper} ${thresholdReached ? navStyles.fixed : 'test' }` }>
 
 			<p>JM</p>
 
-			<ul className={ navStyles.nav}>
+			<ul className={ navStyles.nav }>
 
 				<li><a href="#about">About</a></li>
 				<li><a href="#work">Work</a></li>

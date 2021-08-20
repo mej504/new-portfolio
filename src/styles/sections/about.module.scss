@@ -1,14 +1,15 @@
 .aboutContainer {
 	display:flex;
 	justify-content:center;
-	padding:2em;
+	padding:10em 2em;
 	width:100%;
 }
 
 .aboutContentContainer {
-	max-width:50%;
 	display:flex;
 	align-items:center;
+	justify-content:center;
+	width:100%;
 }
 
 .picContainer {
@@ -18,11 +19,13 @@
 	border-radius:50%;
 	border:5px solid var(--purple);
 	overflow:hidden;
+	max-width:300px;
 }
 
 .aboutCopyContainer {
 
 	margin-left:2em;
+	max-width:700px;
 
 	h2 {
 		font-weight:300;
