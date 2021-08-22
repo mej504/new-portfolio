@@ -15,6 +15,7 @@
 	transform-origin:center;
 	transform:translate(0, 100px);
 	opacity:0;
+	will-change: transform;
 
 	&:hover {
 		box-shadow:20px 20px 0 0 var(--purpleBoxShadow);

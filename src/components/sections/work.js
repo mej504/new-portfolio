@@ -1,3 +1,5 @@
+import { useRef, useState, useEffect } from 'react';
+
 import Image from 'next/image';
 import styles from '../../styles/sections/work.module.scss';
 
@@ -28,7 +30,7 @@ export default function Work() {
 
 			</div>
 
-			<ButtonWithDropShadow style={{ marginTop: '5em' }} btnText={ btnText } />
+			<ButtonWithDropShadow onClick={ () => window.location = '/work' } style={{ marginTop: '5em' }} btnText={ btnText } />
 
 		</section>
 

@@ -8,66 +8,77 @@ export default function Nav({ test }) {
 	const scrollDirection = useRef(0);
 	const navBar = useRef(null);
 	const navHidden = useRef(false);
+	const currentPage = useRef('');
 
 	useEffect(() => {
 
-		let prevScrollY = window.scrollY;
+		currentPage.current = window.location.pathname;
 
-		const animateNavBar = ( direction, element ) => {
 
-			let yStart = direction === 'out' ? 'translateY(0)' : 'translateY(-100%)';
-			let yShift = direction === 'out' ? 'translateY(-100%)' : 'translateY(0)';
+		if( currentPage.current === '/' ) {
 
-			element.animate([
-				{ transform: yStart },
-				{ transform: yShift }
-			], {
-				duration:300,
-				iterations:1,
-				fill:'forwards'
-			})
+			let prevScrollY = window.scrollY;
 
-			return;
+			const animateNavBar = ( direction, element ) => {
 
-		}
+				let yStart = direction === 'out' ? 'translateY(0)' : 'translateY(-100%)';
+				let yShift = direction === 'out' ? 'translateY(-100%)' : 'translateY(0)';
 
-		window.addEventListener('scroll', (e) => {
+				element.animate([
+					{ transform: yStart },
+					{ transform: yShift }
+				], {
+					duration:300,
+					iterations:1,
+					fill:'forwards'
+				})
 
-			let { scrollY, innerHeight } = window;
+				return;
 
-			if( scrollY > innerHeight && !thresholdReached ) {
-				updateThresholdReached(true);
-			} else if( scrollY < innerHeight && thresholdReached ){
-				updateThresholdReached(false)
 			}
 
-			if( thresholdReached ) {
+			window.addEventListener('scroll', (e) => {
 
+				let { scrollY, innerHeight } = window;
 
-				if( scrollY >= prevScrollY ) scrollDirection.current = 1;
-				if( scrollY <= prevScrollY ) scrollDirection.current = -1;
-
-				if( scrollDirection.current === -1 && navHidden.current ) {
-					animateNavBar('in', navBar.current );
-					navHidden.current = false;
-				} else if( scrollDirection.current === 1 && !navHidden.current ) {
-					animateNavBar('out', navBar.current );
-					navHidden.current = true;
+				if( scrollY > innerHeight && !thresholdReached ) {
+					updateThresholdReached(true);
+				} else if( scrollY < innerHeight && thresholdReached ){
+					updateThresholdReached(false)
 				}
 
-				prevScrollY = scrollY;
-				scrollDirection.current = 0;
+				if( thresholdReached ) {
 
-			}
+
+					if( scrollY >= prevScrollY ) scrollDirection.current = 1;
+					if( scrollY <= prevScrollY ) scrollDirection.current = -1;
+
+					if( scrollDirection.current === -1 && navHidden.current ) {
+						animateNavBar('in', navBar.current );
+						navHidden.current = false;
+					} else if( scrollDirection.current === 1 && !navHidden.current ) {
+						animateNavBar('out', navBar.current );
+						navHidden.current = true;
+					}
+
+					prevScrollY = scrollY;
+					scrollDirection.current = 0;
+
+				}
 
 
 		})
+
+		}
+
+		if( currentPage.current === '/work' ) {
+		}
 
 	}, [ thresholdReached ]);
 
 	return (
 
-		<nav ref={ navBar } className={ `${navStyles.navWrapper} ${thresholdReached ? navStyles.fixed : '' }` }>
+		<nav ref={ navBar } className={ `${currentPage.current === '/' ? navStyles.navWrapper : currentPage.current ==='/work' ? navStyles.workNavWrapper : '' } ${thresholdReached ? navStyles.fixed : '' }` }>
 
 			<p>JM</p>
 

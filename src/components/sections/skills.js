@@ -17,6 +17,8 @@ export default function Skills() {
 
 	useEffect(() => {
 
+		console.log('test');
+
 		window.addEventListener('scroll', () => {
 
 			headerPos.current = header.current.getBoundingClientRect();
@@ -32,10 +34,6 @@ export default function Skills() {
 			if( bottom >= (innerHeight - offset) && scrollTargetHit ) {
 				updateScrollTargetHit(false);
 			}
-
-			// console.log(headerPos.offsetTop);
-			// console.log(headerPos.getBoundingClientRect().top);
-			// console.log(`window -> ${window.scrollY}\nskills header:\n--->bottom:${bottom}\n---->top:${top}\n---->y:${y}\n---->height:${height}`);
 
 		})
 

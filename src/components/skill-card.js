@@ -24,7 +24,7 @@ export default function SkillCard( props ) {
 				opacity:1,
 			}
 		], {
-			duration:1250,
+			duration:1000,
 			iterations:1,
 			delay: delay,
 			fill:'forwards',
@@ -72,8 +72,8 @@ export default function SkillCard( props ) {
 
 		if( elementsAnimated.current ) {
 			element.animate([
-				{ transform:'translate(0, 0)'},
-				{ transform:'translate(-8px, -8px)'}
+				{ transform:'translate(-8px, -8px)'},
+				{ transform:'translate(0, 0)'}
 			], {
 				duration: 200,
 				iterations:1,
