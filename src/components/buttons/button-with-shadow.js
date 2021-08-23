@@ -4,9 +4,11 @@ import styles from '../../styles/buttons/button-with-shadow.module.scss';
 
 export default function ButtonWithDropShadow( props ) {
 
+	let { target } = props;
+
 	return (
 
-		<Link href="/work">
+		<Link href={`${target}`}>
 			<a style={ props.style } className={ styles.btn }>{ props.btnText }</a>
 		</Link>
 

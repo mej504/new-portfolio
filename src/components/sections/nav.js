@@ -2,83 +2,83 @@ import { useRef, useState, useEffect } from 'react';
 
 import navStyles from '../../styles/components/nav.module.scss';
 
-export default function Nav({ test }) {
+export default function Nav({ location }) {
 
 	const [ thresholdReached, updateThresholdReached ] = useState( false );
 	const scrollDirection = useRef(0);
 	const navBar = useRef(null);
 	const navHidden = useRef(false);
-	const currentPage = useRef('');
+	const prevScrollY = useRef(0);
+
+	const animateNavBar = ( direction, element ) => {
+
+		let yStart = direction === 'out' ? 'translateY(0)' : 'translateY(-100%)';
+		let yShift = direction === 'out' ? 'translateY(-100%)' : 'translateY(0)';
+
+		element.animate([
+			{ transform: yStart },
+			{ transform: yShift }
+		], {
+			duration:300,
+			iterations:1,
+			fill:'forwards'
+		})
+
+		return;
+
+	}
+
+	const handleScroll = () => {
+
+		let { scrollY, innerHeight } = window;
+
+		if( scrollY > innerHeight && !thresholdReached ) {
+			updateThresholdReached(true);
+		} else if( scrollY < innerHeight && thresholdReached ){
+			updateThresholdReached(false)
+		}
+
+		if( thresholdReached ) {
+
+			if( scrollY >= prevScrollY.current ) scrollDirection.current = 1;
+			if( scrollY <= prevScrollY.current ) scrollDirection.current = -1;
+
+			if( scrollDirection.current === -1 && navHidden.current ) {
+				animateNavBar('in', navBar.current );
+				navHidden.current = false;
+			} else if( scrollDirection.current === 1 && !navHidden.current ) {
+				animateNavBar('out', navBar.current );
+				navHidden.current = true;
+			}
+
+			prevScrollY.current = scrollY;
+			scrollDirection.current = 0;
+
+		}
+
+		return;
+
+	}
 
 	useEffect(() => {
 
-		currentPage.current = window.location.pathname;
+		prevScrollY.current = window.scrollY;
 
+		if( location === '/' ) {
 
-		if( currentPage.current === '/' ) {
+			window.addEventListener('scroll', handleScroll );
 
-			let prevScrollY = window.scrollY;
-
-			const animateNavBar = ( direction, element ) => {
-
-				let yStart = direction === 'out' ? 'translateY(0)' : 'translateY(-100%)';
-				let yShift = direction === 'out' ? 'translateY(-100%)' : 'translateY(0)';
-
-				element.animate([
-					{ transform: yStart },
-					{ transform: yShift }
-				], {
-					duration:300,
-					iterations:1,
-					fill:'forwards'
-				})
-
-				return;
-
+			return () => {
+				window.removeEventListener('scroll', handleScroll);
 			}
 
-			window.addEventListener('scroll', (e) => {
-
-				let { scrollY, innerHeight } = window;
-
-				if( scrollY > innerHeight && !thresholdReached ) {
-					updateThresholdReached(true);
-				} else if( scrollY < innerHeight && thresholdReached ){
-					updateThresholdReached(false)
-				}
-
-				if( thresholdReached ) {
-
-
-					if( scrollY >= prevScrollY ) scrollDirection.current = 1;
-					if( scrollY <= prevScrollY ) scrollDirection.current = -1;
-
-					if( scrollDirection.current === -1 && navHidden.current ) {
-						animateNavBar('in', navBar.current );
-						navHidden.current = false;
-					} else if( scrollDirection.current === 1 && !navHidden.current ) {
-						animateNavBar('out', navBar.current );
-						navHidden.current = true;
-					}
-
-					prevScrollY = scrollY;
-					scrollDirection.current = 0;
-
-				}
-
-
-		})
-
 		}
 
-		if( currentPage.current === '/work' ) {
-		}
-
-	}, [ thresholdReached ]);
+	}, [ thresholdReached, location ]);
 
 	return (
 
-		<nav ref={ navBar } className={ `${currentPage.current === '/' ? navStyles.navWrapper : currentPage.current ==='/work' ? navStyles.workNavWrapper : '' } ${thresholdReached ? navStyles.fixed : '' }` }>
+		<nav ref={ navBar } className={ `${location === '/' ? navStyles.navWrapper : location === '/work' ? navStyles.workNavWrapper : null } ${thresholdReached ? navStyles.fixed : '' }` }>
 
 			<p>JM</p>
 

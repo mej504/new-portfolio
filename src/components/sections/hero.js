@@ -11,19 +11,56 @@ import Image from 'next/image';
 
 export default function Hero(props) {
 
+	const { location } = props;
 	const heroTitle = useRef( null );
 	const heroPosition = useRef( null );
-
-	const prevVidY = useRef(0);
+	const heroScroll = useRef(0);
 
 	const video = useRef( null );
+	const videoScroll = useRef(0);
+	const prevVidY = useRef(0);
 
 	const scrollToPercent = ( scrollY, viewportHeight ) => {
 		return scrollY / viewportHeight * 100;
 	}
 
+	const handleScroll = () => {
+
+		let { current } = heroTitle;
+		let vid = video.current;
+		let { scrollY, innerHeight } = window;
+
+		let heroRect = current.getBoundingClientRect();
+		heroPosition.current = heroRect;
+
+		if( scrollY >= heroPosition.current ) {
+			return;
+		} else {
+			heroScroll.current = scrollY * 0.5;
+			videoScroll.current = scrollToPercent( scrollY, innerHeight );
+			
+			current.style.transform = `translateY(-${ heroScroll.current }px)`;
+			current.style.opacity = 1 - ( heroScroll.current * 0.005 );
+
+			vid.style.transform = `translateY(${ videoScroll.current }%)`;
+
+		}
+
+	}
+
 	useEffect(() => {
 
+		if( location === '/' ) {
+
+			window.addEventListener('scroll', handleScroll);
+
+			return () => {
+				window.removeEventListener('scroll', handleScroll);
+			}
+
+		}
+
+		/*
 		let { current } = heroTitle;
 		let vid = video.current;
 		let heroScroll = 0;
@@ -52,13 +89,14 @@ export default function Hero(props) {
 
 
 		})
+		*/
 
-	}, [])
+	}, [location])
 
 	return (
 		<section ref={ props.innerRef } className={ heroStyles.wrapper }>
 
-			<Nav />
+			<Nav location={ location } />
 
 			<div className={ heroStyles.videoWrap }>
 				<video ref={ video } className={ heroStyles.videoWrap} src="/mov/bg-video.m4v" loop autoPlay muted/>

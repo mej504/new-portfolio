@@ -17,12 +17,28 @@ import Contact from '../components/sections/contact';
 import Footer from '../components/sections/footer';
 import BackToTopArrow from '../components/back-to-top';
 
+export async function getStaticProps({ params }) {
+
+	let props = {};
+	props.key = 'home';
+
+	return {
+		props: props
+	}
+}
+
 export default function Home() {
 
+	const [ location, updateLocation ] = useState(null);
+
+	// Refs
 	const bottomLimit = useRef(0);
 	const formBtnPosition = useRef(null);
 	const heroSection = useRef(null);
 
+	useEffect(() => {
+		updateLocation( window.location.pathname );
+	})
 
 	return (
 		<>
@@ -31,7 +47,7 @@ export default function Home() {
 				<title>Justin Minyard | Full-Stack Developer</title>
 			</Head>
 
-			<Hero innerRef={ heroSection } />
+			<Hero innerRef={ heroSection } location={ location } />
 
 			<section className={ sectionStyles.section2 }>
 				<div className={ sectionStyles.honeycomb1 }>
@@ -42,10 +58,10 @@ export default function Home() {
 					<Image src='/img/honeycomb_2.svg' width={ 600 } height={ 600 } />
 				</div>
 				<About />
-				<Skills />
+				<Skills location={ location }/>
 			</section>
 
-			<Work />
+			<Work btnTarget='/work' />
 
 			<Clients />
 
@@ -55,7 +71,7 @@ export default function Home() {
 
 			<Footer />
 
-			<BackToTopArrow heroSectionRef={ heroSection } bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
+			<BackToTopArrow location={ location } heroSectionRef={ heroSection } bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
 
 		</>
 

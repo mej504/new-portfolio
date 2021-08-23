@@ -18,8 +18,6 @@ export default function StandardBtn({ text = 'Click here', isForm = false, isDis
 
 	useEffect(() => {
 
-		console.log(renderCount.current);
-
 		let buttonHeight = Math.floor(thisBtn.current.getBoundingClientRect().height);
 		let currentOffset = thisBtn.current.offsetTop;
 		let buttonBottom = currentOffset + buttonHeight;

@@ -8,7 +8,7 @@ import ButtonWithDropShadow from '../buttons/button-with-shadow';
 
 import workDetails from '../../../lib/work-cards';
 
-export default function Work() {
+export default function Work({ btnTarget }) {
 
 	const btnText = 'More work';
 
@@ -30,7 +30,7 @@ export default function Work() {
 
 			</div>
 
-			<ButtonWithDropShadow onClick={ () => window.location = '/work' } style={{ marginTop: '5em' }} btnText={ btnText } />
+			<ButtonWithDropShadow target={ btnTarget } style={{ marginTop: '5em' }} btnText={ btnText } />
 
 		</section>
 

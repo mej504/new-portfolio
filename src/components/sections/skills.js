@@ -5,7 +5,7 @@ import SkillCard from '../skill-card';
 import skills from '../../../lib/skills';
 import styles from '../../styles/sections/skills.module.scss';
 
-export default function Skills() {
+export default function Skills({ location }) {
 
 	const [scrollTargetHit, updateScrollTargetHit] = useState(false);
 	const elementsAnimated = useRef(false);
@@ -15,11 +15,7 @@ export default function Skills() {
 	const header = useRef( null );
 	const headerPos = useRef({});
 
-	useEffect(() => {
-
-		console.log('test');
-
-		window.addEventListener('scroll', () => {
+	const handleHeaderUpdate = () => {
 
 			headerPos.current = header.current.getBoundingClientRect();
 			let pos = headerPos.current;
@@ -35,7 +31,16 @@ export default function Skills() {
 				updateScrollTargetHit(false);
 			}
 
-		})
+	}
+
+	useEffect(() => {
+
+		window.addEventListener('scroll', handleHeaderUpdate);
+
+		return () => {
+			window.removeEventListener('scroll', handleHeaderUpdate);
+		}
+
 
 	}, [ scrollTargetHit ])
 
