@@ -1,0 +1,34 @@
+.clientNavContainer {
+	border:3px solid var(--purple);
+	height:100%;
+}
+
+.header {
+	padding:0.5em 0.7em;
+	font-size:2.7rem;
+	font-weight:var(--main500);
+	color:var(--purple);
+	background:white;
+}
+
+.clientListContainer {
+
+	width:100%;
+	padding:2em;
+	background:var(--purple);
+
+}
+
+.clientList {
+
+	list-style-type:none;
+
+	li {
+		margin:1.5em 0;
+		max-width:70%;
+		color:white;
+		font-family:var(--lightFont);
+		font-weight:var(--light500);
+	}
+
+}

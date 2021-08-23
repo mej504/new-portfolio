@@ -1,17 +1,16 @@
+// Modules
 import { useEffect, useState } from 'react';
+import Head from 'next/head';
 
+// Components
+import ClientNav from '../../components/work/client-nav';
+import ProjectViewer from '../../components/work/project-viewer';
 import Nav from '../../components/sections/nav';
+import Layout from '../../components/work/layout';
 
-export async function getStaticProps({ params }) {
+// Styles
+import styles from '../../styles/work/sections/ui.module.scss';
 
-	let props = {};
-
-	props.key = '/work';
-
-	return {
-		props: props
-	}
-}
 
 export default function WorkPage (props) {
 
@@ -22,7 +21,24 @@ export default function WorkPage (props) {
 	})
 
 	return (
-		<Nav location={ location }/>
+		<Layout>
+
+			<Head>
+				<title>Work | Justin Minyard</title>
+				<meta name="description" content="A history of professional and personal projects. Justin Minyard is a Louisville-based full-stack developer." />
+			</Head>
+
+			<Nav location={ location }/>
+
+			<div className={ styles.uiContainer }>
+
+				<ClientNav />
+				<ProjectViewer />
+
+			</div>
+
+
+		</Layout>
 	)
 
 }
