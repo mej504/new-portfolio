@@ -1,7 +1,11 @@
+import styles from '../../styles/work/components/project-viewer.module.scss';
+
 export default function ProjectViewer() {
 
 	return (
-		<h1>ProjectViewer</h1>
+		<div className={ styles.projectViewer }>
+			<h2>Test</h2>
+		</div>
 	)
 
 }

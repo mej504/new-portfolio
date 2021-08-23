@@ -16,8 +16,8 @@ export default function ClientNav() {
 			<div className={ styles.clientListContainer }>
 
 				<ul className={ styles.clientList }>
-					{ clients.map((client) => {
-						return <li>{ client }</li>
+					{ clients.map((client, i) => {
+						return <li key={ i }>{ client }</li>
 					})}
 				</ul>
 

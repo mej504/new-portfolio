@@ -1,6 +1,8 @@
 .clientNavContainer {
+	display:flex;
+	flex-direction:column;
 	border:3px solid var(--purple);
-	height:100%;
+	min-height:60%;
 }
 
 .header {
@@ -13,6 +15,7 @@
 
 .clientListContainer {
 
+	flex:1 1 auto;
 	width:100%;
 	padding:2em;
 	background:var(--purple);
