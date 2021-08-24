@@ -1,6 +1,16 @@
+// Modules
+import { useEffect, useRef, useState } from 'react';
+
+// Components
+import Marker from '../work/marker';
+
+// Styles
 import styles from '../../styles/work/components/client-nav.module.scss';
 
 export default function ClientNav() {
+
+	const list = useRef(null);
+	const 
 
 	const clients = [
 		'HealthEconomics.Com',
@@ -15,7 +25,9 @@ export default function ClientNav() {
 
 			<div className={ styles.clientListContainer }>
 
-				<ul className={ styles.clientList }>
+				<Marker />
+
+				<ul ref={ list } className={ styles.clientList }>
 					{ clients.map((client, i) => {
 						return <li key={ i }>{ client }</li>
 					})}
