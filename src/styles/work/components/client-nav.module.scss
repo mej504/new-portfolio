@@ -33,6 +33,13 @@
 		color:white;
 		font-family:var(--lightFont);
 		font-weight:var(--light500);
+		cursor:pointer;
+		transition:all 150ms ease;
+
+		&:hover {
+			transform:translateX(10px);
+		}
+
 	}
 
 }

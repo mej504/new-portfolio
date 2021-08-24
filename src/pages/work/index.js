@@ -15,9 +15,12 @@ import styles from '../../styles/work/sections/ui.module.scss';
 export default function WorkPage (props) {
 
 	const [ location, updateLocation ] = useState();
+	const [ currentlyViewing, updateCurrentlyViewing ] = useState('hecom');
 
 	useEffect(() => {
+
 		updateLocation( window.location.pathname );
+
 	})
 
 	return (
@@ -32,8 +35,8 @@ export default function WorkPage (props) {
 
 			<div className={ styles.uiContainer }>
 
-				<ClientNav />
-				<ProjectViewer />
+				<ClientNav currentlyViewing={ currentlyViewing } updateViewing={ updateCurrentlyViewing } />
+				<ProjectViewer currentlyViewing={ currentlyViewing } />
 
 			</div>
 

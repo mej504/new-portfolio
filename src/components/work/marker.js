@@ -1,9 +1,9 @@
 import styles from '../../styles/work/components/marker.module.scss';
 
-export default function Marker() {
+export default function Marker({ innerRef }) {
 
 	return (
-		<span className={ styles.marker }></span>
+		<span ref={ innerRef } className={ styles.marker }></span>
 	)
 
 }
