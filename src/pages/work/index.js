@@ -19,9 +19,10 @@ export default function WorkPage (props) {
 
 	useEffect(() => {
 
+		console.log(currentlyViewing);
 		updateLocation( window.location.pathname );
 
-	})
+	}, [ currentlyViewing ])
 
 	return (
 		<Layout>

@@ -1,6 +1,9 @@
 .projectViewer {
 	padding:1em;
 	background:white;
-	min-height:60%;
+	min-height:70%;
 	min-width:60%;
+	border-top:3px solid var(--purple);
+	border-bottom:3px solid var(--purple);
+	border-right:3px solid var(--purple);
 }
