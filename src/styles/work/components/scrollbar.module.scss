@@ -1,0 +1,25 @@
+.scrollBarWrap {
+	position:relative;
+	height:100%;
+	background:red;
+	margin-right:1em;
+}
+
+.scrollLine {
+	position:absolute;
+	height:100%;
+	width:1px;
+	left:50%;
+	background:var(--purple);
+	transform:translateX(-50%);
+}
+
+.scrollIndicator {
+	position:absolute;
+	height:50px;
+	width:15px;
+	left:50%;
+	border-radius:20px;
+	background:var(--purple);
+	transform:translateX(-50%);
+}

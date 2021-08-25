@@ -40,6 +40,8 @@ export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSecti
 
 		scrollLimitReached.current = scrollYPos.current - offset >= formBtnPosition.current ? true : false;
 
+		console.log(scrollLimitReached.current);
+
 		if( scrollLimitReached.current ) {
 			elPositionProp.current = 'top';
 			updateElPosition('absolute');
@@ -105,7 +107,7 @@ export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSecti
 
 		}
 
-	}, []);
+	}, [ location ]);
 
 
 	return (

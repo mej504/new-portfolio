@@ -35,6 +35,7 @@
 		font-weight:var(--light500);
 		cursor:pointer;
 		transition:all 150ms ease;
+		user-select:none;
 
 		&:hover {
 			transform:translateX(10px);

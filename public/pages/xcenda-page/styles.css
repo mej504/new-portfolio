@@ -1,0 +1,254 @@
+.zz_main-wrap {
+  max-width: 1070px;
+  margin: 0 auto;
+}
+.zz_main-wrap * {
+  padding: 0;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.zz_main-wrap p {
+  font-size: 1rem;
+}
+.zz_main-wrap #laptop-svg, .zz_main-wrap #scales-svg, .zz_main-wrap #tech-svg {
+  width: 120px;
+  padding: 1em;
+}
+.zz_main-wrap #laptop-svg .st0 {
+  fill: #FFFFFF;
+}
+.zz_main-wrap #laptop-svg .st1 {
+  fill: #127EC3;
+}
+.zz_main-wrap #laptop-svg .st2 {
+  fill: #13477C;
+}
+.zz_main-wrap #scales-svg .st0 {
+  fill: #FFFFFF;
+}
+.zz_main-wrap #scales-svg .st1 {
+  fill: #127EC3;
+}
+.zz_main-wrap #scales-svg .st2 {
+  fill: #13477C;
+}
+.zz_main-wrap #tech-svg .st0 {
+  fill: #FFFFFF;
+}
+.zz_main-wrap #tech-svg .st1 {
+  fill: #127EC3;
+}
+.zz_main-wrap #tech-svg .st2 {
+  fill: #13477C;
+}
+.zz_main-wrap .strip-logo {
+  width: 400px;
+  margin-bottom: 1em;
+}
+.zz_main-wrap .header-wrap {
+  display: flex;
+  flex-direction: column;
+  background-image: url("https://www.healtheconomics.com/precision_xtract_page/img/Header_Img.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 6em 0;
+}
+.zz_main-wrap .header-wrap h1, .zz_main-wrap .header-wrap h2 {
+  color: white;
+}
+.zz_main-wrap .header-wrap h1 {
+  font-size: 2.75rem;
+}
+.zz_main-wrap .header-wrap h2 {
+  font-size: 1.75rem;
+  font-weight: 300;
+  margin-top: 0.25em;
+}
+.zz_main-wrap .header-wrap .header-copy-wrap {
+  padding: 2em 5em;
+}
+.zz_main-wrap .header-wrap .header-copy-wrap span {
+  color: white;
+}
+.zz_main-wrap .header-wrap .sponsored-wrap {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 2em 8em;
+  font-weight: 200;
+  margin-top: 1em;
+}
+.zz_main-wrap .header-wrap .sponsored-wrap img {
+  margin-left: 1em;
+  width: 175px;
+}
+.zz_main-wrap .main-section-wrap {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  padding: 2em;
+}
+.zz_main-wrap .copy-wrap {
+  width: 50%;
+  padding: 0 4em;
+}
+.zz_main-wrap .copy-wrap p {
+  line-height: 1.75;
+  font-weight: 400;
+  color: #262626;
+}
+.zz_main-wrap .copy-wrap p:nth-of-type(n+2) {
+  margin: 1.5em 0;
+}
+.zz_main-wrap .factoid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.zz_main-wrap .factoid svg {
+  min-width: 120px;
+}
+.zz_main-wrap .form-panel {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #003366;
+  height: 100%;
+  flex: 1 1 auto;
+}
+.zz_main-wrap .form-panel .form-header {
+  margin-left: 1.25em;
+  padding: 1em;
+  background: #003366;
+  text-align: center;
+  color: white;
+}
+.zz_main-wrap .form-panel .form-header h3 {
+  font-weight: 300;
+}
+.zz_main-wrap .form-panel iframe {
+  padding: 0 1em;
+}
+.zz_main-wrap .banner-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3em 2em;
+  text-align: center;
+  background: #003366;
+  color: white;
+}
+.zz_main-wrap .banner-wrap p {
+  font-weight: 300;
+}
+.zz_main-wrap .banner-wrap p strong {
+  font-weight: 700;
+}
+.zz_main-wrap .contact-us-wrap {
+  display: flex;
+  flex-direction: column;
+  padding: 4em 3em;
+  background: #f7f7f7;
+}
+.zz_main-wrap .contact-us-wrap * {
+  color: #262626;
+}
+.zz_main-wrap .contact-us-wrap .contact-copy {
+  margin: 1em 0;
+}
+.zz_main-wrap .staff-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.zz_main-wrap .staff-member {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 45%;
+  margin-top: 2em;
+}
+.zz_main-wrap .staff-member .copy {
+  padding: 0 1em;
+}
+.zz_main-wrap .staff-member img {
+  width: 100px;
+}
+
+@media only screen and (max-width: 950px) {
+  .zz_main-wrap .main-section-wrap {
+    padding: 2em;
+  }
+  .zz_main-wrap .copy-wrap {
+    padding: 0 2em;
+  }
+}
+@media only screen and (max-width: 860px) {
+  .zz_main-wrap .main-section-wrap {
+    flex-direction: column;
+  }
+  .zz_main-wrap .copy-wrap {
+    width: 100%;
+    padding: 0;
+  }
+  .zz_main-wrap .form-panel {
+    margin-top: 2em;
+    border: none;
+  }
+  .zz_main-wrap .form-panel .form-header {
+    margin-left: 0;
+  }
+  .zz_main-wrap .form-panel iframe {
+    padding: 0 0;
+  }
+  .zz_main-wrap .contact-us-wrap {
+    padding: 2em 3em;
+  }
+  .zz_main-wrap .staff-member {
+    flex-direction: column;
+    text-align: center;
+  }
+  .zz_main-wrap .staff-member .copy {
+    margin-top: 1em;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .zz_main-wrap .strip-logo {
+    width: 300px;
+  }
+  .zz_main-wrap .header-wrap {
+    padding: 2em 0;
+  }
+  .zz_main-wrap .header-wrap h1 {
+    font-size: 2rem;
+  }
+  .zz_main-wrap .header-wrap h2 {
+    font-size: 1.25rem;
+  }
+  .zz_main-wrap .header-wrap .sponsored-wrap {
+    padding: 2em 4em;
+  }
+  .zz_main-wrap .header-wrap .sponsored-wrap img {
+    width: 100px;
+  }
+  .zz_main-wrap .form-panel .form-header h3 {
+    font-size: 1.1rem;
+    padding: 1em 1.5em;
+  }
+  .zz_main-wrap .contact-us-wrap {
+    text-align: center;
+  }
+  .zz_main-wrap .staff-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .zz_main-wrap .staff-member {
+    width: 100%;
+  }
+  .zz_main-wrap .staff-member .copy {
+    padding: 0;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

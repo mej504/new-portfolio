@@ -1,28 +1,43 @@
 // Modules
-import { useEffect, useState } from 'react';
-import Head from 'next/head';
+import { useEffect, useState, useRef } from 'react';
 
 // Components
 import ClientNav from '../../components/work/client-nav';
 import ProjectViewer from '../../components/work/project-viewer';
 import Nav from '../../components/sections/nav';
 import Layout from '../../components/work/layout';
+import Head from 'next/head';
 
 // Styles
 import styles from '../../styles/work/sections/ui.module.scss';
-
 
 export default function WorkPage (props) {
 
 	const [ location, updateLocation ] = useState();
 	const [ currentlyViewing, updateCurrentlyViewing ] = useState('hecom');
+	const [ breakPointReached, updateBreakPointReached ] = useState(false);
+	const windowSize = useRef(0);
+
+	const handleResize = () => {
+		windowSize.current = window.innerWidth;
+		windowSize.current <= 835 ? updateBreakPointReached(true) : updateBreakPointReached(false);
+	}
 
 	useEffect(() => {
 
-		console.log(currentlyViewing);
+		// Sets initial state once rendered
 		updateLocation( window.location.pathname );
+		windowSize.current = window.innerWidth;
+		windowSize.current <= 835 ? updateBreakPointReached(true) : updateBreakPointReached(false);
 
-	}, [ currentlyViewing ])
+		window.addEventListener('resize', handleResize);
+
+		// Remove listener upon unmount
+		return () => {
+			window.removeEventListener('resize', handleResize );
+		}
+
+	}, [ currentlyViewing, breakPointReached ])
 
 	return (
 		<Layout>
@@ -36,8 +51,8 @@ export default function WorkPage (props) {
 
 			<div className={ styles.uiContainer }>
 
-				<ClientNav currentlyViewing={ currentlyViewing } updateViewing={ updateCurrentlyViewing } />
-				<ProjectViewer currentlyViewing={ currentlyViewing } />
+				<ClientNav windowSize={ windowSize.current } currentlyViewing={ currentlyViewing } updateViewing={ updateCurrentlyViewing } />
+				<ProjectViewer windowSize={ windowSize.current } currentlyViewing={ currentlyViewing } />
 
 			</div>
 

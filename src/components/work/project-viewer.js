@@ -1,3 +1,5 @@
+import ScrollBar from '../work/scrollbar';
+
 import styles from '../../styles/work/components/project-viewer.module.scss';
 
 export default function ProjectViewer({ currentlyViewing }) {
@@ -21,7 +23,10 @@ export default function ProjectViewer({ currentlyViewing }) {
 
 	return (
 		<div className={ styles.projectViewer }>
-			<h2>{ text }</h2>
+			<div className={ styles.innerContainer }>
+				<h2>{ text }</h2>
+				<ScrollBar />
+			</div>
 		</div>
 	)
 
