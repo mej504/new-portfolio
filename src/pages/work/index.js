@@ -32,7 +32,6 @@ export default function WorkPage (props) {
 
 	useEffect(() => {
 
-		console.log(projects);
 		// Sets initial state once rendered
 		updateLocation( window.location.pathname );
 		windowSize.current = window.innerWidth;

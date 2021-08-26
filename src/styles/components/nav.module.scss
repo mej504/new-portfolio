@@ -22,11 +22,17 @@
 
 }
 
+.logoMark {
+	cursor:pointer;
+}
+
 .workNavWrapper {
 
 	display:flex;
 	padding:0.8em 4em;
 	width:100%;
+	min-height:66px;
+	height:5%;
 	justify-content:space-between;
 	background:var(--purpleBoxShadow);
 

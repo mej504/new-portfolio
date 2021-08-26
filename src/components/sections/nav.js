@@ -80,7 +80,7 @@ export default function Nav({ location }) {
 
 		<nav ref={ navBar } className={ `${location === '/' ? navStyles.navWrapper : location === '/work' ? navStyles.workNavWrapper : null } ${thresholdReached ? navStyles.fixed : '' }` }>
 
-			<p>JM</p>
+			<p onClick={() => window.location = '/' } className={ navStyles.logoMark }>JM</p>
 
 			<ul className={ navStyles.nav }>
 

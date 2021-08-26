@@ -1,0 +1,59 @@
+.projectCardContainer {
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	border:1px solid var(--purple);
+	box-shadow:2px 2px 16px 4px rgba(20, 20, 20, 0.1);
+	transition:all 150ms ease-in-out;
+	max-height:100%;
+	cursor:pointer;
+	overflow-y:scroll;
+
+	p, h2, span {
+		transition:all 150ms ease-in-out;
+	}
+
+	&:hover {
+		background:var(--purple);
+
+		p, h2 {
+			color:white;
+		}
+
+		.type {
+			color:var(--turquoise);
+		}
+
+		.builtWith {
+			color:white;
+		}
+
+	}
+
+}
+
+.projectDetailsContainer {
+
+	min-width:90%;
+	max-width:90%;
+	padding:1.5em 1em;
+
+	h2 {
+		font-weight:var(--roboto700);
+	}
+
+}
+
+.projectMeta {
+	margin-bottom:1em;
+}
+
+.imageContainer {
+	width:100%;
+	border-bottom:4px solid var(--purple);
+}
+
+.type {
+	color:var(--purple);
+	font-weight:var(--roboto700);
+}

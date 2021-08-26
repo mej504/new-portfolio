@@ -60,37 +60,6 @@ export default function Hero(props) {
 
 		}
 
-		/*
-		let { current } = heroTitle;
-		let vid = video.current;
-		let heroScroll = 0;
-		let vidScroll = 0;
-
-		// Update heroPosition
-		let heroRect = heroTitle.current.getBoundingClientRect();
-		heroPosition.current = heroRect;
-
-		window.addEventListener('scroll', () => {
-
-			let { scrollY, innerHeight } = window;
-
-			if( scrollY >= heroPosition.current.height ) {
-				return;
-			} else {
-				heroScroll = scrollY * 0.5;
-				vidScroll = scrollToPercent( scrollY, innerHeight );
-
-				current.style.transform = `translateY(-${ heroScroll }px)`;
-				current.style.opacity = 1 - ( heroScroll * 0.005 );
-
-				vid.style.transform = `translateY(${ vidScroll }%)`;
-
-			}
-
-
-		})
-		*/
-
 	}, [location])
 
 	return (
@@ -110,7 +79,9 @@ export default function Hero(props) {
 				</div>
 				<h2>full-stack web developer</h2>
 
-				<a className={ heroStyles.btn } href="#work">View work</a>
+				<Link href="/work">
+					<a className={ heroStyles.btn }>View work</a>
+				</Link>
 
 			</div>
 

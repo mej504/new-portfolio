@@ -1,11 +1,13 @@
 .projectViewer {
-	padding:1em;
-	background:white;
+	display:grid;
+	grid-template-columns:repeat(auto-fit, minmax(400px, 450px));
+	gap:2em;
+	padding:2em 4em;
+	min-height:381.19px;
 	height:70%;
 	min-width:60%;
-	border-top:3px solid var(--purple);
-	border-bottom:3px solid var(--purple);
-	border-right:3px solid var(--purple);
+	max-width:60%;
+	background:white;
 	overflow-y:scroll;
 }
 

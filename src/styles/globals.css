@@ -16,6 +16,10 @@
 	--lightFont: 'upgrade-lights';
 	--light500: 500;
 
+	--roboto: 'Roboto Condensed', sans-serif;
+	--roboto700: 700;
+	--roboto300: 300;
+
 	/* Header */
 	--sectionHeaderSize:2rem;
 	--sectionHeaderWeight:300;
@@ -41,6 +45,7 @@ font would be used until the main font is loaded.
 
 ****************************************/
 
+/*** ADOBE | Upgrades ***/
 @import url("https://p.typekit.net/p.css?s=1&k=mdg4ivp&ht=tk&f=38093.38095.38103&a=8089373&app=typekit&e=css");
 
 @font-face {
@@ -61,9 +66,8 @@ src:url("https://use.typekit.net/af/d2acc5/00000000000000007735c005/30/l?primer=
 font-display:swap;font-style:normal;font-weight:500;
 }
 
-.tk-upgrade { font-family: "upgrade",sans-serif; }
-.tk-upgrade-lights { font-family: "upgrade-lights",sans-serif; }
-
+/*** GOOGLE | Roboto Condensed ***/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&display=swap');
 
 * {
 	margin:0;

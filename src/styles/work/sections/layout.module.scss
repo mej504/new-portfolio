@@ -4,4 +4,13 @@
 	display:flex;
 	flex-direction:column;
 	overflow:hidden;
+
+	p, span, h1, h2, h3, h4 {
+		font-family:var(--roboto);
+	}
+
+	h1, h2, h3, h4 {
+		font-weight:var(--roboto700);
+	}
+
 }
