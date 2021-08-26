@@ -1,32 +1,18 @@
 import ScrollBar from '../work/scrollbar';
+import ProjectCard from '../work/project-card';
 
 import styles from '../../styles/work/components/project-viewer.module.scss';
 
-export default function ProjectViewer({ currentlyViewing }) {
+export default function ProjectViewer({ currentlyViewing, client }) {
 
 	let text;
-
-	switch (currentlyViewing) {
-		case 'hecom':
-			text = 'HealthEconomics.Com';
-			break;
-		case 'wpctn':
-			text = 'Women\'s Political Collaborative of Tennessee';
-			break;
-		case 'personal':
-			text = 'Personal Projects';
-			break;
-		default:
-			text = 'Projects';
-			break;
-	}
+	let { projects } = client;
 
 	return (
 		<div className={ styles.projectViewer }>
-			<div className={ styles.innerContainer }>
-				<h2>{ text }</h2>
-				<ScrollBar />
-			</div>
+			{projects.map((project) => {
+				return <ProjectCard project={ project } />
+			})}
 		</div>
 	)
 

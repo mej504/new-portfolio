@@ -1,9 +1,12 @@
-export default function ProjectCard() {
+import Image from 'next/image';
+
+export default function ProjectCard({ project }) {
 
 	return (
 		<div>
-			<h2>Project Card Title</h2>
-			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, quam.</p>
+			<Image src={ project.images[0] } height={200} width={200}/>
+			<h2>{ project.title }</h2>
+			<p>{ project.problem || project.description }</p>
 		</div>
 	)
 

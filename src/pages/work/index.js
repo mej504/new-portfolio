@@ -1,6 +1,9 @@
 // Modules
 import { useEffect, useState, useRef } from 'react';
 
+// Data
+import projects from '../../../lib/projects';
+
 // Components
 import ClientNav from '../../components/work/client-nav';
 import ProjectViewer from '../../components/work/project-viewer';
@@ -12,7 +15,7 @@ import Head from 'next/head';
 import styles from '../../styles/work/sections/ui.module.scss';
 
 export default function WorkPage (props) {
-
+	
 	const [ location, updateLocation ] = useState();
 	const [ currentlyViewing, updateCurrentlyViewing ] = useState('hecom');
 	const [ breakPointReached, updateBreakPointReached ] = useState(false);
@@ -23,8 +26,13 @@ export default function WorkPage (props) {
 		windowSize.current <= 835 ? updateBreakPointReached(true) : updateBreakPointReached(false);
 	}
 
+	const getProjects = () => {
+		return projects.find((projects) => projects.clientSlug === currentlyViewing );
+	}
+
 	useEffect(() => {
 
+		console.log(projects);
 		// Sets initial state once rendered
 		updateLocation( window.location.pathname );
 		windowSize.current = window.innerWidth;
@@ -52,7 +60,7 @@ export default function WorkPage (props) {
 			<div className={ styles.uiContainer }>
 
 				<ClientNav windowSize={ windowSize.current } currentlyViewing={ currentlyViewing } updateViewing={ updateCurrentlyViewing } />
-				<ProjectViewer windowSize={ windowSize.current } currentlyViewing={ currentlyViewing } />
+				<ProjectViewer client={ getProjects() } windowSize={ windowSize.current } currentlyViewing={ currentlyViewing } />
 
 			</div>
 
