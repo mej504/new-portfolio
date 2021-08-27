@@ -4,9 +4,10 @@ import styles from '../../styles/work/components/project.module.scss';
 
 import Image from 'next/image';
 
-export default function ProjectCard({ project, lastElement }) {
+export default function ProjectCard({ project, index }) {
 
 	const container = useRef(null);
+	const offsetFromTop = useRef(null);
 
 	const printDetails = () => {
 
@@ -27,12 +28,51 @@ export default function ProjectCard({ project, lastElement }) {
 
 	}
 
+	const flushAnimations = ( animations ) => {
+
+		if( animations.length <= 0 ) {
+			return;
+		}
+
+		animations.forEach( (animation) => {
+			if( !animation.transitionProperty ) {
+				animation.cancel();
+			}
+		})
+
+		return;
+
+	}
+
+	const animateIn = (container) => {
+
+		container.animate([
+			{transform: 'translateY(0)', opacity:1}
+		], {
+			duration:300,
+			easing:'ease-in-out',
+			iterations:1,
+			delay: index * 75 
+		})
+
+		let animations = container.getAnimations();
+		let targetAnimation = animations.find( animation => !animation.transitionProperty );
+
+		targetAnimation.onfinish = function() {
+			container.style.transform = 'translateY(0)';
+			container.style.opacity = 1;
+		}
+
+		return;
+
+	}
+
 	const animateOnHover = () => {
 
 		container.current.animate([
 			{ transform: 'translateY(-10px)'}
 		], {
-			duration:200,
+			duration:300,
 			easing:'ease-in-out',
 			iterations:1,
 			fill:'forwards',
@@ -44,12 +84,32 @@ export default function ProjectCard({ project, lastElement }) {
 	}
 
 	const animateOut = () => {
-		let animations = container.current.getAnimations()
+
+		let animations = container.current.getAnimations();
+
+		if( animations.length > 0 ) {
+
+			let targetAnimation = animations.find((animation) => !animation.transitionProperty );
+
+			if( targetAnimation ) {
+				targetAnimation.reverse();
+			}
+
+			return;
+		}
+
+		flushAnimations( animations );
+
+		return;
 	}
+
+	useEffect(() => {
+		animateIn(container.current);
+	}, []);
 
 	return (
 
-		<div ref={ container } onMouseEnter={ animateOnHover } onMouseExit={ animateOut } className={ styles.projectCardContainer }>
+		<div ref={ container } onMouseEnter={ animateOnHover } onMouseLeave={ animateOut } className={ styles.projectCardContainer }>
 
 			<div className={ styles.imageContainer }>
 				<Image src={ project.images[0] } loading='eager' height={230} width={400} layout='responsive' objectFit='cover' objectPosition='top'/>

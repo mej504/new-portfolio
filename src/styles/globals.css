@@ -101,3 +101,8 @@ div#__next,
 div#__next > div {
 	height:100%;
 }
+
+.simplebar-scrollbar:before {
+	background:var(--purple) !important;
+	opacity:1 !important;
+}

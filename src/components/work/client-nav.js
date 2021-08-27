@@ -50,9 +50,6 @@ export default function ClientNav({ currentlyViewing, updateViewing }) {
 		let targetCenter = targetElementPosition.y + ( targetElementPosition.height / 2 );
 		let markerCenter = markerPosition.y + ( markerPosition.height / 2 );
 
-		console.log('target->' + targetCenter);
-		console.log('marker->' + markerCenter);
-
 		// If null, we will always initially animate downward
 		if( prevOffset.current === 0 ) {
 			return (markerCenter - targetCenter) * -1;

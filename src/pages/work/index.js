@@ -1,5 +1,6 @@
 // Modules
 import { useEffect, useState, useRef } from 'react';
+import SimpleBar from 'simplebar';
 
 // Data
 import projects from '../../../lib/projects';
@@ -13,12 +14,14 @@ import Head from 'next/head';
 
 // Styles
 import styles from '../../styles/work/sections/ui.module.scss';
+import 'simplebar/dist/simplebar.css';
 
 export default function WorkPage (props) {
 	
 	const [ location, updateLocation ] = useState();
 	const [ currentlyViewing, updateCurrentlyViewing ] = useState('hecom');
 	const [ breakPointReached, updateBreakPointReached ] = useState(false);
+	const projectViewerContainer = useRef(null);
 	const windowSize = useRef(0);
 
 	const handleResize = () => {
@@ -37,7 +40,9 @@ export default function WorkPage (props) {
 
 	useEffect(() => {
 
-		getNumberOfProjects();
+		let scrollBar = new SimpleBar( projectViewerContainer.current, {
+			autoHide: false
+		});
 
 		// Sets initial state once rendered
 		updateLocation( window.location.pathname );
@@ -58,15 +63,17 @@ export default function WorkPage (props) {
 
 			<Head>
 				<title>Work | Justin Minyard</title>
-				<meta name="description" content="A history of professional and personal projects. Justin Minyard is a Louisville-based full-stack developer." />
+				<meta name="description" content="A history of professional and personal projects by Justin Minyard. Justin is a Louisville-based full-stack developer." />
 			</Head>
 
 			<Nav location={ location }/>
 
 			<div className={ styles.uiContainer }>
 
-				<ClientNav windowSize={ windowSize.current } currentlyViewing={ currentlyViewing } updateViewing={ updateCurrentlyViewing } />
-				<ProjectViewer numberOfProjects={ getNumberOfProjects() } client={ getProjects() } windowSize={ windowSize.current } currentlyViewing={ currentlyViewing } />
+				<div className={ styles.ui }>
+					<ClientNav windowSize={ windowSize.current } currentlyViewing={ currentlyViewing } updateViewing={ updateCurrentlyViewing } />
+					<ProjectViewer innerRef={ projectViewerContainer } numberOfProjects={ getNumberOfProjects() } client={ getProjects() } windowSize={ windowSize.current } currentlyViewing={ currentlyViewing } />
+				</div>
 
 			</div>
 

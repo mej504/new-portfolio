@@ -1,14 +1,17 @@
 .projectViewerContainer {
-	min-height:381.19px;
-	height:70%;
-	min-width:60%;
-	max-width:60%;
-	padding:2em 4em 0 4em;
-	overflow-y:scroll;
+	height:100%;
+	flex-grow:1;
+	padding:2em 4em 2em 4em;
 	background:white;
 }
 
 .projectViewer {
+	display:grid;
+	grid-template-columns:repeat(auto-fit, minmax(400px, auto));
+	gap:2em;
+}
+
+.projectViewerSingle {
 	display:grid;
 	grid-template-columns:repeat(auto-fit, minmax(400px, 450px));
 	gap:2em;
