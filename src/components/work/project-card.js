@@ -4,7 +4,9 @@ import styles from '../../styles/work/components/project.module.scss';
 
 import Image from 'next/image';
 
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ project, lastElement }) {
+
+	const container = useRef(null);
 
 	const printDetails = () => {
 
@@ -25,11 +27,32 @@ export default function ProjectCard({ project }) {
 
 	}
 
+	const animateOnHover = () => {
+
+		container.current.animate([
+			{ transform: 'translateY(-10px)'}
+		], {
+			duration:200,
+			easing:'ease-in-out',
+			iterations:1,
+			fill:'forwards',
+			delay:0
+		})
+
+		return;
+
+	}
+
+	const animateOut = () => {
+		let animations = container.current.getAnimations()
+	}
+
 	return (
-		<div className={ styles.projectCardContainer }>
+
+		<div ref={ container } onMouseEnter={ animateOnHover } onMouseExit={ animateOut } className={ styles.projectCardContainer }>
 
 			<div className={ styles.imageContainer }>
-				<Image src={ project.images[0] } height={230} width={400} layout='responsive' objectFit='cover' objectPosition='top'/>
+				<Image src={ project.images[0] } loading='eager' height={230} width={400} layout='responsive' objectFit='cover' objectPosition='top'/>
 			</div>
 
 			<div className={ styles.projectDetailsContainer }>
@@ -45,6 +68,7 @@ export default function ProjectCard({ project }) {
 			</div>
 
 		</div>
+
 	)
 
 }

@@ -30,7 +30,14 @@ export default function WorkPage (props) {
 		return projects.find((projects) => projects.clientSlug === currentlyViewing );
 	}
 
+	const getNumberOfProjects = () => {
+		let client = getProjects()
+		return client.projects.length;
+	}
+
 	useEffect(() => {
+
+		getNumberOfProjects();
 
 		// Sets initial state once rendered
 		updateLocation( window.location.pathname );
@@ -59,7 +66,7 @@ export default function WorkPage (props) {
 			<div className={ styles.uiContainer }>
 
 				<ClientNav windowSize={ windowSize.current } currentlyViewing={ currentlyViewing } updateViewing={ updateCurrentlyViewing } />
-				<ProjectViewer client={ getProjects() } windowSize={ windowSize.current } currentlyViewing={ currentlyViewing } />
+				<ProjectViewer numberOfProjects={ getNumberOfProjects() } client={ getProjects() } windowSize={ windowSize.current } currentlyViewing={ currentlyViewing } />
 
 			</div>
 
