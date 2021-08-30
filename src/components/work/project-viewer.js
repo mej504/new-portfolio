@@ -1,12 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 
+import React from 'react';
+
 import ProjectCard from '../work/project-card';
 
 import styles from '../../styles/work/components/project-viewer.module.scss';
 
-export default function ProjectViewer({ currentlyViewing, client, numberOfProjects, innerRef }) {
+export default function ProjectViewer({ currentlyViewing, client, numberOfProjects, cardsAnimated, innerRef }) {
 
 	let { projects } = client;
+
+	// Refs
 	let viewerContainer = useRef(null);
 	let mainContainer = useRef(null);
 
@@ -25,7 +29,12 @@ export default function ProjectViewer({ currentlyViewing, client, numberOfProjec
 			<div ref={ viewerContainer } className={ projects.length > 1 ? styles.projectViewer : styles.projectViewerSingle }>
 
 				{projects.map((project, index) => {
-					return <ProjectCard project={ project } index={ index } key={ generateKey() } />
+					return <ProjectCard
+						project={ project }
+						numberOfProjects={ projects.length } 
+						index={ index }
+						cardsAnimated={ cardsAnimated }
+						key={ generateKey() } />
 				})}
 
 			</div>

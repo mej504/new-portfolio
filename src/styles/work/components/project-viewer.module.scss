@@ -7,13 +7,13 @@
 
 .projectViewer {
 	display:grid;
-	grid-template-columns:repeat(auto-fit, minmax(400px, auto));
+	grid-template-columns:repeat(auto-fit, minmax(350px, auto));
 	gap:2em;
 }
 
 .projectViewerSingle {
 	display:grid;
-	grid-template-columns:repeat(auto-fit, minmax(400px, 450px));
+	grid-template-columns:repeat(auto-fit, minmax(300px, 450px));
 	gap:2em;
 }
 

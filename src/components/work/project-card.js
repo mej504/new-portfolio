@@ -1,10 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 
 import styles from '../../styles/work/components/project.module.scss';
 
 import Image from 'next/image';
 
-export default function ProjectCard({ project, index }) {
+export default function ProjectCard({ project, currentlyViewing, cardsAnimated, numberOfProjects, index }) {
 
 	const container = useRef(null);
 	const offsetFromTop = useRef(null);
@@ -12,8 +12,7 @@ export default function ProjectCard({ project, index }) {
 	const printDetails = () => {
 
 		if( project.description ) {
-
-			return (
+			return ( 
 				<p>{ project.description }</p>
 			)
 
@@ -61,6 +60,9 @@ export default function ProjectCard({ project, index }) {
 		targetAnimation.onfinish = function() {
 			container.style.transform = 'translateY(0)';
 			container.style.opacity = 1;
+			if( index === (numberOfProjects - 1) ) {
+				cardsAnimated.current = true;
+			}
 		}
 
 		return;
@@ -104,7 +106,9 @@ export default function ProjectCard({ project, index }) {
 	}
 
 	useEffect(() => {
+
 		animateIn(container.current);
+
 	}, []);
 
 	return (

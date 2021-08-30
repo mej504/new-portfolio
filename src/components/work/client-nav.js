@@ -8,7 +8,7 @@ import Marker from '../work/marker';
 // Styles
 import styles from '../../styles/work/components/client-nav.module.scss';
 
-export default function ClientNav({ currentlyViewing, updateViewing }) {
+export default function ClientNav({ currentlyViewing, updateCurrentlyViewing, cardsAnimated }) {
 
 	// List data
 	const listElement = useRef(null);
@@ -85,16 +85,16 @@ export default function ClientNav({ currentlyViewing, updateViewing }) {
 
 		animations[0].onfinish = function() {
 
-				animationsComplete.current = true;
+			animationsComplete.current = true;
 
-				if( prevOffset.current === 0 ) {
-					marker.current.style.top = `${shift}px`;
-					res();
-				} else {
-					marker.current.style.top = `${ prevOffset.current + shift }px`;
-					prevOffset.current += shift;
-					res();
-				}
+			if( prevOffset.current === 0 ) {
+				marker.current.style.top = `${shift}px`;
+				res();
+			} else {
+				marker.current.style.top = `${ prevOffset.current + shift }px`;
+				prevOffset.current += shift;
+				res();
+			}
 
 		}
 
@@ -104,9 +104,7 @@ export default function ClientNav({ currentlyViewing, updateViewing }) {
 
 	const handleClick = (e) => {
 
-		if( animationsComplete.current === false ) {
-			return;
-		}
+		if( animationsComplete.current === false ) return;
 
 		let listChildren = Array.from(listElement.current.children);
 
@@ -115,7 +113,7 @@ export default function ClientNav({ currentlyViewing, updateViewing }) {
 
 		if( currentlyViewing === slug ) return;
 
-		updateViewing(slug);
+		updateCurrentlyViewing(slug);
 
 		animateMarker( markerPos.current, targetElement.getBoundingClientRect() ).then((msg) => {
 			updateMarkerPosition( marker.current );

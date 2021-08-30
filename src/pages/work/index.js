@@ -18,15 +18,30 @@ import 'simplebar/dist/simplebar.css';
 
 export default function WorkPage (props) {
 	
-	const [ location, updateLocation ] = useState();
+	// State
 	const [ currentlyViewing, updateCurrentlyViewing ] = useState('hecom');
 	const [ breakPointReached, updateBreakPointReached ] = useState(false);
+	const cardsAnimated = useRef(false);
+
+	// Refs
 	const projectViewerContainer = useRef(null);
 	const windowSize = useRef(0);
 
+	const printRef = ({ current }) => {
+		console.log(current);
+	}
+
 	const handleResize = () => {
 		windowSize.current = window.innerWidth;
-		windowSize.current <= 835 ? updateBreakPointReached(true) : updateBreakPointReached(false);
+
+		if( windowSize.current <= 835 && breakPointReached === false ) {
+			updateBreakPointReached( true );
+		}
+
+		if( windowSize.current >= 836 && breakPointReached === true ) {
+			updateBreakPointReached( false );
+		}
+
 	}
 
 	const getProjects = () => {
@@ -45,9 +60,8 @@ export default function WorkPage (props) {
 		});
 
 		// Sets initial state once rendered
-		updateLocation( window.location.pathname );
 		windowSize.current = window.innerWidth;
-		windowSize.current <= 835 ? updateBreakPointReached(true) : updateBreakPointReached(false);
+		windowSize.current <= 835 && updateBreakPointReached(true);
 
 		window.addEventListener('resize', handleResize);
 
@@ -56,7 +70,7 @@ export default function WorkPage (props) {
 			window.removeEventListener('resize', handleResize );
 		}
 
-	}, [ currentlyViewing, breakPointReached ])
+	}, [])
 
 	return (
 		<Layout>
@@ -66,17 +80,30 @@ export default function WorkPage (props) {
 				<meta name="description" content="A history of professional and personal projects by Justin Minyard. Justin is a Louisville-based full-stack developer." />
 			</Head>
 
-			<Nav location={ location }/>
+			<Nav location='/work'/>
 
 			<div className={ styles.uiContainer }>
 
 				<div className={ styles.ui }>
-					<ClientNav windowSize={ windowSize.current } currentlyViewing={ currentlyViewing } updateViewing={ updateCurrentlyViewing } />
-					<ProjectViewer innerRef={ projectViewerContainer } numberOfProjects={ getNumberOfProjects() } client={ getProjects() } windowSize={ windowSize.current } currentlyViewing={ currentlyViewing } />
+
+					<ClientNav
+						windowSize={ windowSize.current }
+						currentlyViewing={ currentlyViewing } 
+						updateCurrentlyViewing={ updateCurrentlyViewing }
+						cardsAnimated={ cardsAnimated }
+					/>
+
+					<ProjectViewer
+						innerRef={ projectViewerContainer }
+						cardsAnimated={ cardsAnimated }
+						numberOfProjects={ getNumberOfProjects() }
+						client={ getProjects() } windowSize={ windowSize.current }
+						currentlyViewing={ currentlyViewing }
+					/>
+
 				</div>
 
 			</div>
-
 
 		</Layout>
 	)
