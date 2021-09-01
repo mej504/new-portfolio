@@ -14,6 +14,8 @@ export default function MobileProjectViewer() {
 
 		<section className={ styles.mobileProjectViewerContainer }>
 
+			<h1>Projects</h1>
+
 			{ projects.map( (client, index) => <ProjectSection client={ client } key={ index } /> )}
 
 		</section>

@@ -1,7 +1,6 @@
 // Modules
 import { useEffect, useState, useRef } from 'react';
 import SimpleBar from 'simplebar';
-
 // Data
 import projects from '../../../lib/projects';
 
@@ -12,6 +11,7 @@ import Nav from '../../components/sections/nav';
 import Layout from '../../components/work/layout';
 import Head from 'next/head';
 import MobileProjectViewer from '../../components/work/mobile-project-viewer';
+import SideMenu from '../../components/work/SideMenu/SideMenu';
 
 // Styles
 import styles from '../../styles/work/sections/ui.module.scss';
@@ -23,6 +23,12 @@ export default function WorkPage (props) {
 	const [ currentlyViewing, updateCurrentlyViewing ] = useState('hecom');
 	const [ screenType, setScreenType ] = useState(null);
 	const [ breakPointReached, updateBreakPointReached ] = useState(false);
+
+	// This must initially be null to avoid any complications with the side menu
+	// on the Work page. An intitial state of 'false' will trigger an animation
+	// on the menu once the page loads
+	const [ menuOpen, setMenuOpen ] = useState(null);
+
 	const cardsAnimated = useRef(false);
 
 	// Refs
@@ -108,7 +114,7 @@ export default function WorkPage (props) {
 				<meta name="description" content="A history of professional and personal projects by Justin Minyard. Justin is a Louisville-based full-stack developer." />
 			</Head>
 
-			<Nav location='/work' screenType={ screenType } />
+			<Nav menuOpen={ menuOpen } setMenuOpen={ setMenuOpen } location='/work' screenType={ screenType } />
 
 			<div className={ styles.uiContainer }>
 
@@ -136,7 +142,10 @@ export default function WorkPage (props) {
 
 				}
 
+				<SideMenu open={ menuOpen } />
+
 			</div>
+
 
 		</Layout>
 	)

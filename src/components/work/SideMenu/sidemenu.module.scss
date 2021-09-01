@@ -1,0 +1,76 @@
+.menuContainer {
+	position:absolute;
+	display:flex;
+	justify-content:flex-end;
+	align-items:center;
+	right:0;
+	top:50%;
+	width:40%;
+	height:50%;
+	padding:2em;
+	background:var(--sideMenuColor);
+	transform:translate(100%, -80%);
+	z-index:1000
+}
+
+.menuList {
+	list-style-type: none;
+
+	a {
+		text-decoration:none;
+		font-size:1.4rem;
+		color:white;
+		font-family:var(--roboto);
+		font-weight:var(--roboto300);
+
+		&:active {
+			color:var(--turquoise);
+		}
+
+	}
+	
+	li {
+		margin:2em 0;
+	}
+
+}
+
+.animateIn {
+	animation-name: animate-in;
+	animation-duration:300ms;
+	animation-fill-mode: forwards;
+	animation-timing-function:ease-in-out;
+	animation-delay:0;
+}
+
+.animateOut {
+	animation-name: animate-out;
+	animation-duration:300ms;
+	animation-fill-mode: forwards;
+	animation-timing-function:ease-in-out;
+	animation-delay:0;
+}
+
+@keyframes animate-in {
+
+	from {
+		transform:translate(100%, -80%)
+	}
+
+	to {
+		transform:translate(0, -80%)
+	}
+
+}
+
+@keyframes animate-out {
+
+	from {
+		transform:translate(0, -80%);
+	}
+
+	to {
+		transform:translate(100%, -80%)
+	}
+
+}

@@ -46,7 +46,7 @@ export default function Skills({ location }) {
 
 	return (
 
-		<section className={ styles.skillsSectionContainer }>
+		<section id='skills' className={ styles.skillsSectionContainer }>
 
 			<h2 ref={ header } className={ styles.skillsHeader }>Skills</h2>
 

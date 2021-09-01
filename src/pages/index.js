@@ -29,6 +29,7 @@ export async function getStaticProps({ params }) {
 
 export default function Home() {
 
+	// State
 	const [ location, updateLocation ] = useState(null);
 
 	// Refs

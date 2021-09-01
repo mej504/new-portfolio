@@ -1,3 +1,13 @@
 .mobileProjectViewerContainer {
 	width:100%;
+
+	h1 {
+		padding:1em 0 0.5em 0;
+		font-weight:var(--roboto700);
+		font-size:4rem;
+		text-align:center;
+		color:var(--purpleBoxShadow);
+		text-transform:uppercase;
+	}
+
 }

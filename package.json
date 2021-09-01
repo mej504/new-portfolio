@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "hamburger-react": "^2.4.1",
     "next": "11.0.1",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",

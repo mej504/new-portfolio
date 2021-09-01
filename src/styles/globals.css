@@ -8,6 +8,7 @@
 	--purpleBoxShadow: hsl(257, 59%, 40%);
 	--purpleBoxShadowTransparent: hsla(257, 59%, 40%, 0.9);
 	--disabledGray: hsl(0, 0%, 74%);
+	--sideMenuColor: hsla(257, 59%, 40%, 0.9);
 
 	/* Fonts */
 	--mainFont: 'upgrade';

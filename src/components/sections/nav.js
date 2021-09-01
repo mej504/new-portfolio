@@ -1,8 +1,12 @@
 import { useRef, useState, useEffect } from 'react';
+import Link from 'next/link';
 
 import navStyles from '../../styles/components/nav.module.scss';
 
-export default function Nav({ location, screenType }) {
+// import HamburgerIcon from '../buttons/HamburgerMenu/HamburgerIcon';
+import { Squeeze as Hamburger } from 'hamburger-react';
+
+export default function Nav({ location, screenType, menuOpen, setMenuOpen }) {
 
 	const [ thresholdReached, updateThresholdReached ] = useState( false );
 	const scrollDirection = useRef(0);
@@ -28,16 +32,6 @@ export default function Nav({ location, screenType }) {
 
 	}
 
-	const HamburgerMenu = ( props ) => {
-		console.log(props);
-		return (
-			<div className={ navStyles.hamburgerContainer }>
-				<span className={ navStyles.top }></span>
-				<span className={ navStyles.middle }></span>
-				<span className={ navStyles.bottom }></span>
-			</div>
-		)
-	}
 
 	const handleScroll = () => {
 
@@ -93,7 +87,7 @@ export default function Nav({ location, screenType }) {
 
 			<p onClick={() => window.location = '/' } className={ navStyles.logoMark }>JM</p>
 
-			{ screenType === 'small-desktop' || screenType === 'mid-desktop' ? 
+			{ location === '/' &&
 
 				<ul className={ navStyles.nav }>
 
@@ -102,8 +96,45 @@ export default function Nav({ location, screenType }) {
 					<li><a href="#contact">Contact</a></li>
 
 				</ul>
-				:
-				<HamburgerMenu />
+
+			}
+
+			{ ( location === '/work' && (screenType === 'small-desktop' || screenType === 'mid-desktop')) &&
+
+				<ul className={ navStyles.nav }>
+
+					<li>
+						<Link href="/#about">
+							<a>About</a>
+						</Link>
+					</li>
+
+					<li>
+						<Link href="/#skills">
+							<a>Skills</a>
+						</Link>
+					</li>
+
+					<li>
+						<Link href="/#contact">
+							<a>Contact</a>
+						</Link>
+					</li>
+
+				</ul>
+
+			}
+
+			{ (location === '/work' && (!(screenType === 'mid-desktop' || screenType === 'small-desktop') ) ) &&
+
+				<Hamburger onToggle={toggled => {
+					if( toggled ) {
+						setMenuOpen(true);
+					} else {
+						setMenuOpen(false);
+					}
+				}} color='white' label="Show menu" rounded={true} />
+
 			}
 
 		</nav>
