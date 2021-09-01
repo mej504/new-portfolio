@@ -1,5 +1,4 @@
 .uiContainer {
-
 	display:flex;
 	justify-content:center;
 	align-items:center;
@@ -7,6 +6,12 @@
 	height:100%;
 	padding:1em;
 	overflow:hidden;
+
+	@media screen and (max-width:1055px) {
+		align-items:flex-start;
+		overflow-y:scroll;
+	}
+
 }
 
 .ui {

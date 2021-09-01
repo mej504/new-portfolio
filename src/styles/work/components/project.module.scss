@@ -6,8 +6,6 @@
 	box-shadow:2px 2px 16px 4px rgba(20, 20, 20, 0.1);
 	transition:all 150ms ease-in-out;
 	cursor:pointer;
-	opacity:0;
-	transform:translateY(100px);
 
 	p, h2, span {
 		transition:all 150ms ease-in-out;
@@ -15,6 +13,7 @@
 
 	&:hover {
 		background:var(--purple);
+		transform:translateY(-10px);
 
 		p, h2 {
 			color:white;
@@ -56,4 +55,14 @@
 .type {
 	color:var(--purple);
 	font-weight:var(--roboto700);
+}
+
+@media screen and (max-width:1056px) {
+
+	.projectCardContainer {
+
+		min-width:300px;
+
+	}
+
 }

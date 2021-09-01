@@ -6,9 +6,10 @@ import ProjectCard from '../work/project-card';
 
 import styles from '../../styles/work/components/project-viewer.module.scss';
 
-export default function ProjectViewer({ currentlyViewing, client, numberOfProjects, cardsAnimated, innerRef }) {
+export default function ProjectViewer({ currentlyViewing, client, numberOfProjects, cardsAnimated, innerRef, screenType }) {
 
 	let { projects } = client;
+	console.log(screenType);
 
 	// Refs
 	let viewerContainer = useRef(null);

@@ -22,6 +22,47 @@
 
 }
 
+.hamburgerContainer {
+
+	width:40px;
+	height:40px;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	cursor:pointer;
+
+	span {
+		display:block;
+		height:2px;
+		background:white;
+		width:100%;
+		transition:all 150ms ease-in-out;
+	}
+
+	.middle {
+		margin:0.5em 0;
+		width:50%;
+	}
+
+	.bottom {
+		width:80%;
+	}
+
+	&:hover {
+
+		.middle {
+			width:100%;
+		}
+
+		.bottom {
+			width:100%;
+		}
+
+	}
+
+}
+
+
 .logoMark {
 	cursor:pointer;
 }

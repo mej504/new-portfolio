@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 
 import navStyles from '../../styles/components/nav.module.scss';
 
-export default function Nav({ location }) {
+export default function Nav({ location, screenType }) {
 
 	const [ thresholdReached, updateThresholdReached ] = useState( false );
 	const scrollDirection = useRef(0);
@@ -26,6 +26,17 @@ export default function Nav({ location }) {
 
 		return;
 
+	}
+
+	const HamburgerMenu = ( props ) => {
+		console.log(props);
+		return (
+			<div className={ navStyles.hamburgerContainer }>
+				<span className={ navStyles.top }></span>
+				<span className={ navStyles.middle }></span>
+				<span className={ navStyles.bottom }></span>
+			</div>
+		)
 	}
 
 	const handleScroll = () => {
@@ -82,13 +93,18 @@ export default function Nav({ location }) {
 
 			<p onClick={() => window.location = '/' } className={ navStyles.logoMark }>JM</p>
 
-			<ul className={ navStyles.nav }>
+			{ screenType === 'small-desktop' || screenType === 'mid-desktop' ? 
 
-				<li><a href="#about">About</a></li>
-				<li><a href="#work">Work</a></li>
-				<li><a href="#contact">Contact</a></li>
+				<ul className={ navStyles.nav }>
 
-			</ul>
+					<li><a href="#about">About</a></li>
+					<li><a href="#work">Work</a></li>
+					<li><a href="#contact">Contact</a></li>
+
+				</ul>
+				:
+				<HamburgerMenu />
+			}
 
 		</nav>
 

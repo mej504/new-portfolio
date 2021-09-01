@@ -1,0 +1,33 @@
+.mobileProjectCard {
+	display:flex;
+	flex-direction:column;
+	min-width:350px;
+	max-width:350px;
+	background:white;
+	border:1px solid var(--purple);
+	box-shadow:5px 5px 8px 2px rgba(0, 0, 0, 0.2);
+}
+
+.projectDetails {
+	padding:1em;
+
+	h3, span {
+		text-align:center;
+	}
+
+	h3 {
+		font-size:1.4rem;
+		letter-spacing:-0.5px;
+	}
+
+	p {
+		margin-top:2em;
+		text-align:center;
+	}
+
+	span {
+		width:100%;
+		display:block;
+	}
+
+}

@@ -11,6 +11,7 @@ import ProjectViewer from '../../components/work/project-viewer';
 import Nav from '../../components/sections/nav';
 import Layout from '../../components/work/layout';
 import Head from 'next/head';
+import MobileProjectViewer from '../../components/work/mobile-project-viewer';
 
 // Styles
 import styles from '../../styles/work/sections/ui.module.scss';
@@ -20,6 +21,7 @@ export default function WorkPage (props) {
 	
 	// State
 	const [ currentlyViewing, updateCurrentlyViewing ] = useState('hecom');
+	const [ screenType, setScreenType ] = useState(null);
 	const [ breakPointReached, updateBreakPointReached ] = useState(false);
 	const cardsAnimated = useRef(false);
 
@@ -32,16 +34,12 @@ export default function WorkPage (props) {
 	}
 
 	const handleResize = () => {
+
 		windowSize.current = window.innerWidth;
+		updateScreenSize( windowSize.current );
 
-		if( windowSize.current <= 835 && breakPointReached === false ) {
-			updateBreakPointReached( true );
-		}
 
-		if( windowSize.current >= 836 && breakPointReached === true ) {
-			updateBreakPointReached( false );
-		}
-
+		return;
 	}
 
 	const getProjects = () => {
@@ -53,15 +51,45 @@ export default function WorkPage (props) {
 		return client.projects.length;
 	}
 
-	useEffect(() => {
+	const updateScreenSize = ( innerWidth ) => {
 
-		let scrollBar = new SimpleBar( projectViewerContainer.current, {
-			autoHide: false
-		});
+		if( innerWidth >= 1201 ) {
+			setScreenType('mid-desktop');
+			return;
+		}
+
+		if( innerWidth >= 1056 && innerWidth <= 1200 ) {
+			setScreenType('small-desktop');
+			return;
+		}
+
+		if( innerWidth >= 481 && innerWidth <= 1054 ) {
+			setScreenType('tablet');
+			return;
+		}
+
+		if( innerWidth >= 0  && innerWidth <= 480 ) {
+			setScreenType('mobile');
+			return;
+		}
+
+		return;
+
+	}
+
+	useEffect(() => {
 
 		// Sets initial state once rendered
 		windowSize.current = window.innerWidth;
-		windowSize.current <= 835 && updateBreakPointReached(true);
+		updateScreenSize( windowSize.current );
+
+		if( screenType === 'small-desktop' || screenType === 'mid-desktop' ) {
+
+			new SimpleBar( projectViewerContainer.current, {
+				autoHide: false
+			});
+
+		}
 
 		window.addEventListener('resize', handleResize);
 
@@ -70,7 +98,7 @@ export default function WorkPage (props) {
 			window.removeEventListener('resize', handleResize );
 		}
 
-	}, [])
+	}, [ screenType ])
 
 	return (
 		<Layout>
@@ -80,20 +108,21 @@ export default function WorkPage (props) {
 				<meta name="description" content="A history of professional and personal projects by Justin Minyard. Justin is a Louisville-based full-stack developer." />
 			</Head>
 
-			<Nav location='/work'/>
+			<Nav location='/work' screenType={ screenType } />
 
 			<div className={ styles.uiContainer }>
 
-				<div className={ styles.ui }>
+				{ (screenType === 'small-desktop' || screenType === 'mid-desktop') ? <div className={ styles.ui }>
 
-					<ClientNav
+					{ (screenType === 'mid-desktop' || screenType === 'small-desktop') && <ClientNav
 						windowSize={ windowSize.current }
 						currentlyViewing={ currentlyViewing } 
 						updateCurrentlyViewing={ updateCurrentlyViewing }
 						cardsAnimated={ cardsAnimated }
-					/>
+					/> }
 
 					<ProjectViewer
+						screenType={ screenType }
 						innerRef={ projectViewerContainer }
 						cardsAnimated={ cardsAnimated }
 						numberOfProjects={ getNumberOfProjects() }
@@ -101,7 +130,11 @@ export default function WorkPage (props) {
 						currentlyViewing={ currentlyViewing }
 					/>
 
-				</div>
+				</div> :
+
+				<MobileProjectViewer />
+
+				}
 
 			</div>
 
