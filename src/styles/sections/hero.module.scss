@@ -31,6 +31,7 @@
 	height:100%;
 	object-fit: cover;
 	z-index:-1;
+	transform-origin:center;
 }
 
 .heroTitleWrap {
@@ -54,6 +55,13 @@
 		text-transform:lowercase;
 		font-size:1.7rem;
 		font-weight:200;
+	}
+
+	@media screen and ( max-width:725px ) {
+		h1 {
+			font-size:4.5rem;
+			text-align:center;
+		}
 	}
 
 }

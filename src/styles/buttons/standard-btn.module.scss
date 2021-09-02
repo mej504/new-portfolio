@@ -8,14 +8,18 @@
 	font-weight:var(--light500);
 	text-decoration:none;
 	transition:all 150ms ease;
+	background:white;
+	cursor:pointer;
 
 	&:hover, &:focus {
-		background:white;
+		background:var(--purple);
+		color:white;
 	}
 }
 
 .btn[disabled] {
-
 	background:var(--disabledGray);
-
+	&:hover {
+		background:var(--disabledGray);
+	}
 }

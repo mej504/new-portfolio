@@ -7,6 +7,8 @@
 	margin-top:10em;
 	min-height:900px;
 	padding:1em;
+
+
 }
 
 .header {
@@ -38,6 +40,12 @@
 	min-width:100%;
 	justify-content:center;
 	margin-top:5em;
+	padding:4em 0;
+
+	@media screen and (max-width: 1024px) {
+		flex-direction:column;
+	}
+
 }
 
 .bg {

@@ -9,6 +9,13 @@ export default function ProjectCard({ project, currentlyViewing, cardsAnimated, 
 	const container = useRef(null);
 	const offsetFromTop = useRef(null);
 
+	const setLocation = ( location ) => {
+
+		if( location === null ) return;
+		return window.location = location;
+
+	}
+
 	const printDetails = () => {
 
 		if( project.description ) {
@@ -29,7 +36,7 @@ export default function ProjectCard({ project, currentlyViewing, cardsAnimated, 
 
 	return (
 
-		<div ref={ container } className={ styles.projectCardContainer }>
+		<div onClick={() => setLocation(project.link) } ref={ container } className={ styles.projectCardContainer }>
 
 			<div className={ styles.imageContainer }>
 				<Image src={ project.images[0] } loading='eager' height={230} width={400} layout='responsive' objectFit='cover' objectPosition='top'/>

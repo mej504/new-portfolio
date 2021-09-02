@@ -1,6 +1,7 @@
 :root {
 	--turquoise:hsl(187, 94%, 59%);
 	--purple: hsl(257, 74%, 55%);
+	--lightPurple: hsl(257, 74%, 60%);
 	--purpleTransparent: hsla(257, 74%, 55%, 0.8);
 	--richBlack: hsl(240, 93%, 5%);
 	--lightGray: hsl(0, 0%, 95%);

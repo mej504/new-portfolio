@@ -4,10 +4,17 @@ import Image from 'next/image';
 // Styles
 import styles from '../../styles/work/components/mobile-project-card.module.scss';
 
+// Components
+import StandardBtn from '../buttons/standard-btn';
+
 export default function MobileProjectCard({ project, single }) {
 
 	const imageStyles = {
 		borderBottom: '2px solid var(--purple)',
+	}
+
+	const setLocation = ( location ) => {
+		return window.location = location;
 	}
 
 	return (
@@ -26,11 +33,17 @@ export default function MobileProjectCard({ project, single }) {
 				</div>
 
 				<div className={ styles.projectDetails }>
-					<h3>{ project.title }</h3>
-					<span>{ project.type } | { project.builtWith }</span>
 
-					<p>{ project.description || project.problem }</p>
+					<div className={ styles.projectDetailsText }>
+						<h3>{ project.title }</h3>
+						<span>{ project.type } | { project.builtWith }</span>
+
+						<p>{ project.description || project.problem }</p>
+					</div>
+
+					<StandardBtn onClick={ setLocation } targetLocation={ project.link } text={project.title === 'Membership Manager' ? 'No preview availabile' : 'See project' } />
 				</div>
+
 
 			</li>
 		</>

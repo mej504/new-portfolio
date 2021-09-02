@@ -5,18 +5,19 @@ import styles from '../styles/components/back-to-top.module.scss';
 
 export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSectionRef, location }) {
 
-	const elPositionProp = useRef('');
-	const [position, updatePosition] = useState({
-		x:15,
-		y:15
-	})
-
-	const [elPosition, updateElPosition] = useState(null);
+	// State
+	const [ bottomLimitReached, setBottomLimitReached ] = useState(null);
+	const [ heroThresholdReached, setHeroThresholdReached ] = useState(null);
+	
+	// Refs
+	const positionY = useRef(null);
+	const elPosition = useRef(null);
+	const elPositionProp = useRef(null);
 	const scrollLimitReached = useRef(null);
 	const scrollYPos = useRef(null);
 	const thisBtn = useRef(null);
 	const thisBtnPos = useRef(null);
-	const isVisible = useRef(null);
+	const isVisible = useRef(false);
 
 	const handleScroll = () => {
 
@@ -40,24 +41,30 @@ export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSecti
 
 		scrollLimitReached.current = scrollYPos.current - offset >= formBtnPosition.current ? true : false;
 
-		console.log(scrollLimitReached.current);
-
 		if( scrollLimitReached.current ) {
 			elPositionProp.current = 'top';
 			updateElPosition('absolute');
-			updatePosition({
-				...position,
-				y: formBtnPosition.current
-			});
+			position.currrent = formBtnPosition.current;
 		} else {
 			elPositionProp.current = 'bottom';
 			updateElPosition('fixed');
-			updatePosition({
-				...position,
-				y: 15
-			})
 		}
 
+	}
+
+	const handleBottomLimitReached = () => {
+		elPosition.current = 'fixed';
+		positionY.current = formBtnPosition.current;
+		setBottomLimitReached(true);
+		return;
+	}
+
+	const handleHeroThresholdReached = () => {
+		elPosition.current = 'absolute'
+		positionY.current = 15;
+		isVisible.current = true;
+		setHeroThresholdReached(true);
+		return;
 	}
 
 	// Update current y scroll position once mounted
@@ -65,10 +72,10 @@ export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSecti
 
 		if( location === '/' ) {
 
+			if( !heroSectionRef ) return;
+
 			// Immediately updates scrollYPos ref
 			scrollYPos.current = window.scrollY + window.innerHeight;
-
-			if( !heroSectionRef ) return;
 
 			// Sets visibility of button based off initial scrollY value
 			if( window.scrollY >= (heroSectionRef.current.clientHeight / 2) ) {
@@ -77,26 +84,20 @@ export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSecti
 				isVisible.current = false;
 			}
 
-			// Check whether scroll limit is reached given the current scroll position on page load
-			scrollLimitReached.current = scrollYPos.current >= formBtnPosition.current ? true : false;
+			// If we're at the bottom position, update state
+			if( scrollYPos.current >= formBtnPosition.current ) {
+				handleBottomLimitReached();
+			}
 
 			// If we've already reached the scroll limit, update button's position state
-			if( scrollLimitReached.current ) {
 
-				elPositionProp.current = 'top';
+			if( scrollLimitReached.current ) {
 				updateElPosition('absolute');
-				updatePosition({
-					...position,
-					y: formBtnPosition.current
-				})
+				position.current = formBtnPosition.current;
 
 			} else {
-				elPositionProp.current = 'bottom';
 				updateElPosition('fixed');
-				updatePosition({
-					x:15,
-					y:15
-				})
+				position.current = 15;
 			}
 
 			window.addEventListener('scroll', handleScroll);
@@ -129,8 +130,8 @@ export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSecti
 
 				.button-wrap {
 					position:${ elPosition };
-					right:${position.x}px;
-					${elPositionProp.current}:${position.y}px;
+					right:15px;
+					${elPositionProp.current}:${position.current}px;
 					margin:3em;
 					border-radius:50%;
 					max-height:75px;

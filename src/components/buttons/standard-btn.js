@@ -7,10 +7,9 @@ import styles from '../../styles/buttons/standard-btn.module.scss';
 // isForm defaults to false
 */
 
-export default function StandardBtn({ text = 'Click here', isForm = false, isDisabled = false, trackYPos = false, bottomLimit, formBtnPosition } ) {
+export default function StandardBtn({ text = 'Click here', isForm = false, isDisabled = false, trackYPos = false, bottomLimit, formBtnPosition, onClick, targetLocation } ) {
 
 	const thisBtn = useRef();
-	const renderCount = useRef(1);
 
 	const getButtonPosition = () => {
 		return thisBtn.current.getBoundingClientRect();
@@ -18,13 +17,14 @@ export default function StandardBtn({ text = 'Click here', isForm = false, isDis
 
 	useEffect(() => {
 
-		let buttonHeight = Math.floor(thisBtn.current.getBoundingClientRect().height);
-		let currentOffset = thisBtn.current.offsetTop;
-		let buttonBottom = currentOffset + buttonHeight;
+		if( window.location.pathname === '/' ) {
+			let buttonHeight = Math.floor(thisBtn.current.getBoundingClientRect().height);
+			let currentOffset = thisBtn.current.offsetTop;
+			let buttonBottom = currentOffset + buttonHeight;
 
-		bottomLimit.current = buttonBottom;
-		formBtnPosition.current = currentOffset;
-
+			bottomLimit.current = buttonBottom;
+			formBtnPosition.current = currentOffset;
+		}
 
 	}, [] )
 
@@ -32,7 +32,10 @@ export default function StandardBtn({ text = 'Click here', isForm = false, isDis
 		isForm ? (
 			<button ref={ thisBtn } className={ styles.btn } disabled={ isDisabled } type='submit'>{ text }</button>
 		) : (
-			<button ref={ thisBtn } className={ styles.btn } type='click'>{ text }</button>
+			<button onClick={ () => {
+				if( targetLocation === null ) return;
+				onClick(targetLocation);
+			} }ref={ thisBtn } className={ styles.btn } type='click'>{ text }</button>
 		)
 	)
 

@@ -19,6 +19,7 @@ export default function Hero(props) {
 	const video = useRef( null );
 	const videoScroll = useRef(0);
 	const prevVidY = useRef(0);
+	const videoOrientation = useRef(null);
 
 	const scrollToPercent = ( scrollY, viewportHeight ) => {
 		return scrollY / viewportHeight * 100;
@@ -48,14 +49,45 @@ export default function Hero(props) {
 
 	}
 
-	useEffect(() => {
+	const handleResize = () => {
+
+		let { current } = videoOrientation;
+
+		if( window.innerWidth <= 1055 && current === 'landscape' ) {
+			video.current.setAttribute('src', '/mov/bg-video-portrait.m4v');
+			videoOrientation.current = 'portrait';
+		}
+
+		if( window.innerWidth > 1055 && current === 'portrait' ) {
+			video.current.setAttribute('src', '/mov/bg-video.m4v');
+			videoOrientation.current = 'landscape';
+		}
+
+		return;
+
+	}
+
+	useEffect(async () => {
+
+		if( window.innerWidth <= 1055 ) {
+			video.current.setAttribute('src', '/mov/bg-video-portrait.m4v');
+			videoOrientation.current = 'portrait';
+		}
+
+		if( window.innerWidth > 1055 ) {
+			video.current.setAttribute('src', '/mov/bg-video.m4v');
+			videoOrientation.current = 'landscape';
+		}
+
 
 		if( location === '/' ) {
 
 			window.addEventListener('scroll', handleScroll);
+			window.addEventListener('resize', handleResize);
 
 			return () => {
 				window.removeEventListener('scroll', handleScroll);
+				window.removeEventListener('resize', handleResize);
 			}
 
 		}

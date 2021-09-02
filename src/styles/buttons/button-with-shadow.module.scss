@@ -11,7 +11,7 @@
 	transition:box-shadow 200ms ease, transform 200ms ease;
 	transform-origin:center;
 
-	&:hover {
+	&:hover, &:focus, &:active {
 		box-shadow:16px 16px 0 0 var(--purpleBoxShadow);
 		transform:translate(-6px, -6px);
 	}

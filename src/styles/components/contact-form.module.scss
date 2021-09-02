@@ -9,4 +9,12 @@
 		align-self:center;
 	}
 
+	@media screen and (max-width:1500px) {
+		width:70%;
+	}
+
+	@media screen and (max-width:925px) {
+		width:90%;
+	}
+
 }

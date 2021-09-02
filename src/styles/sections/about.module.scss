@@ -3,6 +3,12 @@
 	justify-content:center;
 	padding:10em 2em;
 	width:100%;
+	transition:all 1000ms ease;
+
+	@media screen and (max-width:1160px) {
+		padding:7em 2em;
+	}
+
 }
 
 .aboutContentContainer {
@@ -10,6 +16,12 @@
 	align-items:center;
 	justify-content:center;
 	width:100%;
+	transition:all 1000ms ease;
+
+	@media screen and (max-width:1160px) {
+		flex-direction:column;
+	}
+
 }
 
 .picContainer {
@@ -20,12 +32,14 @@
 	border:5px solid var(--purple);
 	overflow:hidden;
 	max-width:300px;
+	transition:all 1000ms ease;
 }
 
 .aboutCopyContainer {
 
 	margin-left:2em;
 	max-width:700px;
+	transition:all 1000ms ease;
 
 	h2 {
 		font-weight:300;
@@ -37,6 +51,20 @@
 		font-family:upgrade-lights;
 		font-weight:200;
 		font-size:1.2rem;
+	}
+
+	@media screen and (max-width:1160px) {
+
+		margin-left:0;
+		margin:1em 0;
+
+		h2 {
+			margin-top:1.5em;
+		}
+
+		h2, p {
+			text-align:center;
+		}
 	}
 
 }

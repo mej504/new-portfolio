@@ -21,6 +21,10 @@
 		box-shadow:20px 20px 0 0 var(--purpleBoxShadow);
 	}
 
+	@media screen and ( max-width:575px ) {
+		max-width:135px;
+	}
+
 }
 
 .imgContainer {
