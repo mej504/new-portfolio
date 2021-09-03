@@ -26,7 +26,6 @@ export default function WorkCard( props ) {
 		updateOverlayY( startingYPos );
 	}
 
-
 	return (
 
 		deviceSize === 'desktop' ? (

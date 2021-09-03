@@ -70,8 +70,6 @@ export default function Home() {
 
 			<Contact bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
 
-			<Footer />
-
 			<BackToTopArrow location={ location } heroSectionRef={ heroSection } bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
 
 		</>

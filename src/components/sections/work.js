@@ -37,7 +37,6 @@ export default function Work({ btnTarget }) {
 			setDeviceSize('desktop');
 		}
 
-
 		window.addEventListener('resize', handleResize );
 
 		return () => {

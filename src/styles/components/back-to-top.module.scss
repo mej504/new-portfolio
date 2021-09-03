@@ -1,6 +1,10 @@
 .backToTopArrow {
 	width:75px;
 	height:75px;
+	@media screen and (max-width:760px) {
+		width:50px;
+		height:50px;
+	}
 }
 
 .buttonEllipse {
@@ -19,13 +23,18 @@
 }
 
 .animateIn {
-	animation:0.7s ease-in forwards pop-in;
+	animation-name: pop-in;
+	animation-duration: 0.3s;
+	animation-timing-function: cubic-bezier(0.390, 0.575, 0.565, 1.000);
+	animation-fill-mode: forwards;
 }
 
 .animateOut {
-	animation:0.7s ease-out forwards pop-out;
+	animation-name: pop-out;
+	animation-duration: 0.3s;
+	animation-timing-function: cubic-bezier(0.600, -0.280, 0.735, 0.045);
+	animation-fill-mode: forwards;
 }
-
 
 @keyframes pop-in {
 
@@ -50,6 +59,7 @@
 	}
 
 }
+
 
 @keyframes pulse {
 

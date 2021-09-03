@@ -1,114 +1,82 @@
 // Modules;
 import { useRef, useState, useEffect } from 'react';
-
 import styles from '../styles/components/back-to-top.module.scss';
 
 export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSectionRef, location }) {
 
+	// Constants
+	const STARTING_Y = 15;
+
 	// State
-	const [ bottomLimitReached, setBottomLimitReached ] = useState(null);
-	const [ heroThresholdReached, setHeroThresholdReached ] = useState(null);
+	const [ buttonState, setButtonState ] = useState({
+		visible: null,
+		positionProp: '',
+		location: null,
+		yPosition: STARTING_Y
+	});
 	
 	// Refs
-	const positionY = useRef(null);
-	const elPosition = useRef(null);
+	const bottomLimitReached = useRef(null);
+	const heroThresholdReached = useRef(null);
+
+	const heroCutoff = useRef(null);
+	const bottomCutoff = useRef(null);
+
 	const elPositionProp = useRef(null);
-	const scrollLimitReached = useRef(null);
 	const scrollYPos = useRef(null);
 	const thisBtn = useRef(null);
-	const thisBtnPos = useRef(null);
 	const isVisible = useRef(false);
 
 	const handleScroll = () => {
 
-		let { scrollY, innerHeight } = window
+		let { scrollY } = window
+		let heroPoint = heroCutoff.current;
+		let bottomPoint = bottomCutoff.current;
+		scrollYPos.current = scrollY;
 
-		if( scrollY >= (heroSectionRef.current.clientHeight / 2) ) {
-			isVisible.current = true;
-		} else {
-			isVisible.current = false;
+		// Update button if in top region
+		if( scrollYPos.current < heroPoint && ( buttonState.visible || buttonState.visible === null ) ) {
+			
+			setButtonState({
+				...buttonState,
+				visible:false
+			})
+
+			return;
 		}
 
+		// Update button if in middle region
+		if( ( scrollYPos.current >= heroPoint && scrollYPos.current < bottomPoint ) && ( !buttonState.visible || buttonState.positionProp === 'absolute' ) ) {
 
-		let scrollPlusViewportHeight = scrollY + innerHeight;
-		let offset = 100;
+			setButtonState({
+				visible:true,
+				positionProp:'fixed',
+				location:'bottom',
+				yPosition:STARTING_Y
+			})
 
-		scrollYPos.current = scrollPlusViewportHeight;
+			return;
 
-		if( scrollYPos.current >= formBtnPosition.current ) {
-			scrollLimitReached.current = true;
 		}
 
-		scrollLimitReached.current = scrollYPos.current - offset >= formBtnPosition.current ? true : false;
-
-		if( scrollLimitReached.current ) {
-			elPositionProp.current = 'top';
-			updateElPosition('absolute');
-			position.currrent = formBtnPosition.current;
-		} else {
-			elPositionProp.current = 'bottom';
-			updateElPosition('fixed');
-		}
-
-	}
-
-	const handleBottomLimitReached = () => {
-		elPosition.current = 'fixed';
-		positionY.current = formBtnPosition.current;
-		setBottomLimitReached(true);
-		return;
-	}
-
-	const handleHeroThresholdReached = () => {
-		elPosition.current = 'absolute'
-		positionY.current = 15;
-		isVisible.current = true;
-		setHeroThresholdReached(true);
-		return;
 	}
 
 	// Update current y scroll position once mounted
 	useEffect(() => {
 
-		if( location === '/' ) {
+		heroCutoff.current = heroSectionRef.current.clientHeight / 2;
+		bottomCutoff.current = formBtnPosition.current;
 
-			if( !heroSectionRef ) return;
+		// Kind of a misnomer for the function name  in this context, but oh well
+		handleScroll();
 
-			// Immediately updates scrollYPos ref
-			scrollYPos.current = window.scrollY + window.innerHeight;
+		window.addEventListener('scroll', handleScroll);
 
-			// Sets visibility of button based off initial scrollY value
-			if( window.scrollY >= (heroSectionRef.current.clientHeight / 2) ) {
-				isVisible.current = true;
-			} else {
-				isVisible.current = false;
-			}
-
-			// If we're at the bottom position, update state
-			if( scrollYPos.current >= formBtnPosition.current ) {
-				handleBottomLimitReached();
-			}
-
-			// If we've already reached the scroll limit, update button's position state
-
-			if( scrollLimitReached.current ) {
-				updateElPosition('absolute');
-				position.current = formBtnPosition.current;
-
-			} else {
-				updateElPosition('fixed');
-				position.current = 15;
-			}
-
-			window.addEventListener('scroll', handleScroll);
-
-			return () => {
-				window.removeEventListener('scroll', handleScroll);
-			}
-
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
 		}
 
-	}, [ location ]);
+	}, [ buttonState ]);
 
 
 	return (
@@ -116,7 +84,7 @@ export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSecti
 			<div
 				onClick={ () => window.scrollTo({top:0}) }
 				ref={thisBtn}
-				className={`button-wrap ${ isVisible.current ? 'animate-in' : 'animate-out' }` }>
+				className={`button-wrap ${ buttonState.visible === true ? styles.animateIn : styles.animateOut }` }>
 
 				<svg className={ styles.backToTopArrow } viewBox="0 0 75.04 75.04">
 					<circle className={ styles.buttonEllipse } cx="37.52" cy="37.52" r="37.52"/>
@@ -129,9 +97,9 @@ export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSecti
 			<style jsx>{`
 
 				.button-wrap {
-					position:${ elPosition };
+					position:${ buttonState.positionProp };
 					right:15px;
-					${elPositionProp.current}:${position.current}px;
+					${ buttonState.location }:${ buttonState.yPosition }px;
 					margin:3em;
 					border-radius:50%;
 					max-height:75px;
@@ -143,37 +111,12 @@ export default function BackToTopArrow({ bottomLimit, formBtnPosition, heroSecti
 					transform-origin:center;
 				}
 
-				.animate-in {
-					animation:0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards pop-in;
-				}
-
-				.animate-out {
-					animation:0.3s cubic-bezier(0.600, -0.280, 0.735, 0.045) forwards pop-out;
-				}
-
-
-				@keyframes pop-in {
-
-					from {
-						transform:scale(0);
+				@media screen and (max-width:760px) {
+					.button-wrap {
+						max-height:50px;
+						max-width:50px;
+						right:-20px;
 					}
-
-					to {
-						transform:scale(1);
-					}
-
-				}
-
-				@keyframes pop-out {
-
-					from {
-						transform:scale(1);
-					}
-
-					to {
-						transform:scale(0);
-					}
-
 				}
 
 			`}</style>

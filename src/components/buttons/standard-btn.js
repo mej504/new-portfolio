@@ -26,7 +26,7 @@ export default function StandardBtn({ text = 'Click here', isForm = false, isDis
 			formBtnPosition.current = currentOffset;
 		}
 
-	}, [] )
+	})
 
 	return (
 		isForm ? (
