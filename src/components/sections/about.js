@@ -1,7 +1,5 @@
 import aboutStyles from '../../styles/sections/about.module.scss';
 
-import Image from 'next/image';
-
 export default function About() {
 
 	return (
@@ -11,7 +9,15 @@ export default function About() {
 			<div className={ aboutStyles.aboutContentContainer }>
 
 				<div className={ aboutStyles.picContainer }>
-					<Image src="/img/CC2.png" width={ 600 } height={ 600 } objectFit='cover' />
+
+					<img src="/img/Justin_Pic_MEDIUM.JPG" />
+
+					{
+					/*
+						<Image src="/img/CC2.png" width={ 600 } height={ 600 } objectFit='cover' />
+					*/
+					}
+
 				</div>
 
 				<div className={ aboutStyles.aboutCopyContainer }>

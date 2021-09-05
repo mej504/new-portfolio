@@ -6,7 +6,6 @@ import sectionStyles from '../src/styles/components/sections.module.scss';
 
 // Components
 import Head from 'next/head'
-import Image from 'next/image';
 import Hero from '../src/components/sections/hero';
 import About from '../src/components/sections/about';
 import Skills from '../src/components/sections/skills';
@@ -41,13 +40,29 @@ export default function Home() {
 			<Hero innerRef={ heroSection } location={ location } />
 
 			<section className={ sectionStyles.section2 }>
+
 				<div className={ sectionStyles.honeycomb1 }>
-					<Image src='/img/honeycomb_1.svg' width={ 600 } height={ 600 } alt='' />
+					<img src='/img/honeycomb_1.svg' width={ 600 } height={ 600 } alt='' />
+
+					{
+					/*
+						<Image src='/img/honeycomb_1.svg' width={ 600 } height={ 600 } alt='' />
+					*/
+					}
+
 				</div>
 
 				<div className={ sectionStyles.honeycomb2 }>
-					<Image src='/img/honeycomb_2.svg' width={ 600 } height={ 600 } alt='' />
+
+					<img src='/img/honeycomb_2.svg' width={ 600 } height={ 600 } alt='' />
+
+					{
+					/*
+						<Image src='/img/honeycomb_2.svg' width={ 600 } height={ 600 } alt='' />
+					*/
+					}
 				</div>
+
 				<About />
 				<Skills location={ location }/>
 			</section>

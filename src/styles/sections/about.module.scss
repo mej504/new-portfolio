@@ -25,14 +25,22 @@
 }
 
 .picContainer {
+
 	display:flex;
-	align-items:center;
-	justify-content:center;
 	border-radius:50%;
 	border:5px solid var(--purple);
 	overflow:hidden;
 	max-width:300px;
+	max-height:300px;
 	transition:all 1000ms ease;
+
+	img {
+		width:100%;
+		height:auto;
+		object-fit:cover;
+		object-position:top;
+	}
+
 }
 
 .aboutCopyContainer {

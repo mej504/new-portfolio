@@ -2,8 +2,6 @@ import { useContext, useEffect, useRef } from 'react';
 
 import styles from '../../styles/work/components/project.module.scss';
 
-import Image from 'next/image';
-
 export default function ProjectCard({ project, currentlyViewing, cardsAnimated, numberOfProjects, index }) {
 
 	const container = useRef(null);
@@ -39,7 +37,15 @@ export default function ProjectCard({ project, currentlyViewing, cardsAnimated, 
 		<div onClick={() => setLocation(project.link) } ref={ container } className={ styles.projectCardContainer }>
 
 			<div className={ styles.imageContainer }>
-				<Image src={ project.images[0] } priority={ true } height={230} width={400} layout='responsive' objectFit='cover' objectPosition='top' alt='' />
+
+				<img src={ project.images[0] } height={230} width={400} layout='responsive' objectFit='cover' objectPosition='top' alt='' />
+
+				{
+				/*
+					<Image src={ project.images[0] } priority={ true } height={230} width={400} layout='responsive' objectFit='cover' objectPosition='top' alt='' />
+				*/
+				}
+
 			</div>
 
 			<div className={ styles.projectDetailsContainer }>

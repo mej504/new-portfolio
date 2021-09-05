@@ -7,7 +7,6 @@ import heroStyles from '../../styles/sections/hero.module.scss';
 // Components
 import Nav from './nav';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function Hero(props) {
 
@@ -107,7 +106,15 @@ export default function Hero(props) {
 
 				<h1>Justin Minyard</h1>
 				<div className={ heroStyles.titleAccentWrap }>
-					<Image src='/img/hero-accent.svg' width={ 1000 } height={ 50 } alt='' />
+
+					<img src='/img/hero-accent.svg' width={ 1000 } height={ 50 } alt='' />
+
+					{
+					/*
+						<Image src='/img/hero-accent.svg' width={ 1000 } height={ 50 } alt='' />
+					*/
+					}
+
 				</div>
 				<h2>full-stack web developer</h2>
 
@@ -119,7 +126,13 @@ export default function Hero(props) {
 
 			<div onClick={ () => window.location = '#about' }  className={ heroStyles.scrollArrowWrap }>
 
-				<Image src='/img/scroll-arrow.svg' width={ 10 } height={ 71 } alt='' />
+				<img src='/img/scroll-arrow.svg' width={ 10 } height={ 71 } alt='' />
+
+				{
+				/*
+					<Image src='/img/scroll-arrow.svg' width={ 10 } height={ 71 } alt='' />
+				*/
+				}
 
 			</div>
 

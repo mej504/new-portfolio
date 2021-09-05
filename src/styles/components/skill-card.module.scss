@@ -29,6 +29,13 @@
 
 .imgContainer {
 	padding:2em;
+
+	img {
+		object-fit: contain;
+		width:90px;
+		height:auto;
+	}
+
 }
 
 .skillName {

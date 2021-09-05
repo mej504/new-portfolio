@@ -3,8 +3,6 @@ import { useState, useRef, useEffect } from 'react';
 
 import cardStyles from '../styles/components/skill-card.module.scss';
 
-import Image from 'next/image';
-
 export default function SkillCard( props ) {
 
 	let { scrollTargetHit, cardCount, i } = props;
@@ -108,8 +106,17 @@ export default function SkillCard( props ) {
 		<div ref={ container } onMouseEnter={ () => handleHoverIn(container.current ) } onMouseLeave={ () => handleHoverOut(container.current) } className={ cardStyles.cardContainer }>
 
 			<div className={ cardStyles.imgContainer }>
-				<Image src={ props.imgPath } width={ 90 } height={ 90 } objectFit='contain' loading='eager'/>
+
+				<img src={ props.imgPath } width={ 90 } height={ 90 } objectFit='contain' loading='eager'/>
+
+				{
+				/*
+					<Image src={ props.imgPath } width={ 90 } height={ 90 } objectFit='contain' loading='eager'/>
+				*/
+				}
+
 			</div>
+
 			<p className={ cardStyles.skillName }>{ props.skillName }</p>
 
 			<style jsx>{`

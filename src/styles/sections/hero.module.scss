@@ -58,10 +58,25 @@
 	}
 
 	@media screen and ( max-width:725px ) {
+
 		h1 {
-			font-size:4.5rem;
+			font-size:3.5rem;
 			text-align:center;
 		}
+
+		h2 {
+			font-size:1.3rem;
+		}
+
+	}
+
+}
+
+.titleAccentWrap {
+	max-width:70%;
+
+	img {
+		max-width:100%;
 	}
 
 }
@@ -81,7 +96,7 @@
 		animation-duration:1s;
 		animation-timing-function: ease-in-out;
 		animation-iteration-count:infinite;
-		animation-iteration-count:alternate;
+		animation-direction:alternate;
 	}
 
 }
@@ -97,52 +112,3 @@
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

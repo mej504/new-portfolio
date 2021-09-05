@@ -8,7 +8,13 @@ export default function ClientCard( { imgPath } ) {
 
 		<div className={ styles.clientCard }>
 
-			<Image src={ imgPath } width={ 150 } height={ 150 } objectFit='contain' />
+			<img src={ imgPath } alt=''/>
+
+			{
+			/*
+				<Image src={ imgPath } width={ 150 } height={ 150 } objectFit='contain' />
+			*/
+			}
 
 		</div>
 
