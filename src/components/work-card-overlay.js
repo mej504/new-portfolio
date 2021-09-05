@@ -18,12 +18,15 @@ export default function WorkCardOverlay( { overlayY, hovered, data } ) {
 				<p>{ data.builtWith }</p>
 			</div>
 
-			<a className={ workCardStyles.link } target='_blank' href={ data.url } rel='external'>{ data.category === 'Personal' ? 'Try app' : 'Preview unavailable' }</a>
+			<a className={ workCardStyles.link } target='_blank' href={ data.url } rel='noreferrer'>{ data.category === 'Personal' ? 'Try app' : 'Preview unavailable' }</a>
 
 			<style jsx>{`
 
 				.cardAnimateOut {
-					animation: animate-out 300ms ease-in-out forwards;
+					animation-name: animate-out;
+					animation-duration:300ms;
+					animation-timing-function: ease-in-out;
+					animation-fill-mode: forwards;
 				}
 
 				@keyframes animate-out {

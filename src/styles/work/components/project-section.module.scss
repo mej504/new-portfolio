@@ -3,6 +3,10 @@
 	flex-direction:column;
 	padding:3em 1em;
 	overflow-x:auto;
+
+	@media screen and (max-width:1055px) {
+		padding:3em 0;
+	}
 }
 
 .projectsContainer {
@@ -15,6 +19,10 @@
 
 .centered {
 	justify-content:center;
+}
+
+.spacer {
+	min-width:20px;
 }
 
 .clientName {

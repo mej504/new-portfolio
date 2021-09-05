@@ -39,7 +39,7 @@ export default function ProjectCard({ project, currentlyViewing, cardsAnimated, 
 		<div onClick={() => setLocation(project.link) } ref={ container } className={ styles.projectCardContainer }>
 
 			<div className={ styles.imageContainer }>
-				<Image src={ project.images[0] } loading='eager' height={230} width={400} layout='responsive' objectFit='cover' objectPosition='top'/>
+				<Image src={ project.images[0] } priority={ true } height={230} width={400} layout='responsive' objectFit='cover' objectPosition='top' alt='' />
 			</div>
 
 			<div className={ styles.projectDetailsContainer }>

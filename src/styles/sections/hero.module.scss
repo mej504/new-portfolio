@@ -77,7 +77,11 @@
 
 	img {
 		cursor:pointer;
-		animation:position-pulse 1s ease-in-out infinite alternate;
+		animation-name: position-pulse;
+		animation-duration:1s;
+		animation-timing-function: ease-in-out;
+		animation-iteration-count:infinite;
+		animation-iteration-count:alternate;
 	}
 
 }

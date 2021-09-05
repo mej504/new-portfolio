@@ -9,7 +9,6 @@ import styles from '../../styles/work/components/project-viewer.module.scss';
 export default function ProjectViewer({ currentlyViewing, client, numberOfProjects, cardsAnimated, innerRef, screenType }) {
 
 	let { projects } = client;
-	console.log(screenType);
 
 	// Refs
 	let viewerContainer = useRef(null);
@@ -19,9 +18,6 @@ export default function ProjectViewer({ currentlyViewing, client, numberOfProjec
 	const generateKey = () => {
 		return Math.floor( Math.random() * (100000-1) + 1 );
 	}
-
-	useEffect(() => {
-	}, [])
 
 	return (
 

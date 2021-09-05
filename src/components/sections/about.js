@@ -11,7 +11,7 @@ export default function About() {
 			<div className={ aboutStyles.aboutContentContainer }>
 
 				<div className={ aboutStyles.picContainer }>
-					<Image loading='eager' src="/img/Justin_Pic_MEDIUM.jpg" width={ 600 } height={ 600 } objectFit='cover'></Image>
+					<Image src="/img/CC2.png" width={ 600 } height={ 600 } objectFit='cover' />
 				</div>
 
 				<div className={ aboutStyles.aboutCopyContainer }>

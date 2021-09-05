@@ -114,10 +114,17 @@
 }
 
 .hideNav {
-	animation:1s ease-out forwards hide-nav;
+	animation-name:hide-nav;
+	animation-duration:1s;
+	animation-timing-function: ease-out;
+	animation-fill-mode:forwards;
 }
+
 .revealNav {
-	animation:1s ease-in forwards reveal-nav;
+	animation-name:reveal-nav;
+	animation-duration:1s;
+	animation-timing-function: ease-in;
+	animation-fill-mode:forwards;
 }
 
 @keyframes hide-nav {

@@ -67,7 +67,7 @@ export default function Hero(props) {
 
 	}
 
-	useEffect(async () => {
+	useEffect(() => {
 
 		if( window.innerWidth <= 1055 ) {
 			video.current.setAttribute('src', '/mov/bg-video-portrait.m4v');
@@ -107,7 +107,7 @@ export default function Hero(props) {
 
 				<h1>Justin Minyard</h1>
 				<div className={ heroStyles.titleAccentWrap }>
-					<Image src='/img/hero-accent.svg' width={ 1000 } height={ 50 } />
+					<Image src='/img/hero-accent.svg' width={ 1000 } height={ 50 } alt='' />
 				</div>
 				<h2>full-stack web developer</h2>
 
@@ -119,7 +119,7 @@ export default function Hero(props) {
 
 			<div onClick={ () => window.location = '#about' }  className={ heroStyles.scrollArrowWrap }>
 
-				<Image src='/img/scroll-arrow.svg' width={ 10 } height={ 71 } />
+				<Image src='/img/scroll-arrow.svg' width={ 10 } height={ 71 } alt='' />
 
 			</div>
 

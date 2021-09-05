@@ -115,7 +115,11 @@ export default function SkillCard( props ) {
 			<style jsx>{`
 
 				.animate-in {
-					animation:1250ms ${delay}ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards shift-in;
+					animation-name: shift-in;
+					animation-duration:1250ms;
+					animation-delay:${delay}ms;
+					animation-timing-function:cubic-bezier(0.34, 1.56, 0.64, 1);
+					animation-fill-mode:forward;
 				}
 
 				@keyframes shift-in {

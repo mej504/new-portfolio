@@ -9,10 +9,6 @@ export default function ProjectSection( { client } ) {
 
 	const container = useRef(null);
 
-	const printScroll = (e) => {
-		console.log(e);
-	}
-
 	useEffect(() => {
 		new SimpleBar( container.current );
 	}, [])
@@ -24,11 +20,15 @@ export default function ProjectSection( { client } ) {
 
 			<div ref={ container }>
 
-				<ul onWheel={ printScroll } className={`${styles.projectsContainer} ${client.projects.length === 1 && styles.centered}`}>
+				<ul className={`${styles.projectsContainer} ${client.projects.length === 1 && styles.centered}`}>
+
+					<li className={ styles.spacer }></li>
 
 					{ client.projects.map( (project, i) => (
 						<MobileProjectCard project={ project } key={ i } />
 					))}
+
+					<li className={ styles.spacer }></li>
 
 				</ul>
 
