@@ -20,6 +20,15 @@
 		font-weight:300;
 	}
 
+	@media screen and (max-width:650px) {
+
+		padding:1.5rem;
+
+		p {
+			font-size:2rem;
+		}
+	}
+
 
 }
 
@@ -67,7 +76,6 @@
 		font-family:upgrade-lights;
 		color:white;
 
-
 		&:after {
 			content:'';
 			position:absolute;
@@ -104,13 +112,26 @@
 		}
 	}
 
+	@media screen and (max-width:620px) {
+
+		li {
+			font-size:1rem;
+		}
+
+	}
+
 }
 
 .fixed {
 	position:fixed;
 	background:var(--richBlack);
 	padding:0.5em 4em;
-	z-index:100;
+	z-index:10000;
+
+	@media screen and (max-width:650px) {
+		padding:0.5em 1.5em;
+	}
+
 }
 
 .hideNav {

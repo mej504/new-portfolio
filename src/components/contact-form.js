@@ -1,3 +1,4 @@
+const axios = require('axios');
 import { useState, useRef, useEffect } from 'react';
 
 import styles from '../styles/components/contact-form.module.scss';
@@ -10,22 +11,63 @@ export default function ContactForm( props ) {
 	const [ btnDisabled, updateBtnStatus ] = useState( true );
 	const { bottomLimit, formBtnPosition } = props;
 
-	const handleSubmit = ( e ) => {
-		e.preventDefault();
+	const requiredFieldsEntered = useRef([]);
+
+	const handleInput = (e) => {
+
+		/**
+		 * 
+		 * TODO
+		 * Make this better
+		 * 
+		 */
+
+		if( e.target.name === 'name' && e.target.value !== '' && requiredFieldsEntered.current.indexOf('name') < 0 ) {
+			requiredFieldsEntered.current.push('name');
+		} else if (e.target.name === 'name' && e.target.value === '' && requiredFieldsEntered.current.indexOf('name') >= 0 ) {
+			let index = requiredFieldsEntered.current.indexOf('name');
+			requiredFieldsEntered.current.splice(index, 1);
+		}
+
+		if( e.target.name === 'email' && e.target.value !== '' && requiredFieldsEntered.current.indexOf('email') < 0 ) {
+			requiredFieldsEntered.current.push('email');
+		} else if (e.target.name === 'email' && e.target.value === '' && requiredFieldsEntered.current.indexOf('email') >= 0 ) {
+			let index = requiredFieldsEntered.current.indexOf('email');
+			requiredFieldsEntered.current.splice(index, 1);
+		}
+
+		if( e.target.name === 'message' && e.target.value !== '' && requiredFieldsEntered.current.indexOf('message') < 0 ) {
+			requiredFieldsEntered.current.push('message');
+		} else if (e.target.name === 'message' && e.target.value === '' && requiredFieldsEntered.current.indexOf('message') >= 0 ) {
+			let index = requiredFieldsEntered.current.indexOf('message');
+			requiredFieldsEntered.current.splice(index, 1);
+		}
+
+		if( requiredFieldsEntered.current.length === 3 ) {
+			updateBtnStatus(false);
+		} else {
+			if( !btnDisabled ) {
+				updateBtnStatus(true);
+			}
+		}
+
 	}
 
-	const handleInput = () => {
-		updateBtnStatus( true );
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		axios.post('')
+
 	}
 
 	return (
 
-		<form className={ styles.contactForm } autoComplete='off' method="POST" onSubmit={ handleSubmit } encType='application/x-www-form-url-encoded'>
+		<form className={ styles.contactForm } autoComplete='off' method="POST" onInput={ handleInput } onSubmit={ handleSubmit } encType='application/x-www-form-url-encoded'>
 
-			<InputField label='Name' type='text' name='name' />
-			<InputField label='Email' type='text' name='email' />
-			<InputField label='Organization' type='text' name='organization' />
-			<InputField textarea={ true } label='How can I help?' type='textarea' name='organization' />
+			<InputField required={ true } label='Name' type='text' name='name' />
+			<InputField required={ true } label='Email' type='email' name='email' />
+			<InputField required={ false } label='Organization' type='text' name='organization' />
+			<InputField required={ true } textarea={ true } label='How can I help?' type='textarea' name='message' />
 			<StandardBtn bottomLimit={ bottomLimit } text='Send message' isForm={ true } isDisabled={ btnDisabled } formBtnPosition={ formBtnPosition }/>
 
 		</form>

@@ -6,6 +6,7 @@ import sectionStyles from '../src/styles/components/sections.module.scss';
 
 // Components
 import Head from 'next/head'
+import Nav from '../src/components/sections/nav';
 import Hero from '../src/components/sections/hero';
 import About from '../src/components/sections/about';
 import Skills from '../src/components/sections/skills';
@@ -24,6 +25,15 @@ export default function Home() {
 	const bottomLimit = useRef(0);
 	const formBtnPosition = useRef(null);
 	const heroSection = useRef(null);
+	
+	const spacerStyles = {
+		minHeight:'100vh',
+		width:'100%',
+	}
+
+	const test = {
+		transform:'translateY(100vh)'
+	}
 
 	useEffect(() => {
 		updateLocation( window.location.pathname );
@@ -37,43 +47,46 @@ export default function Home() {
 				<meta name="description" content="Justin Minyard is a Louisville-based full-stack web developer. He specializes in NodeJS applications." />
 			</Head>
 
+			<Nav location={ location } />
+
 			<Hero innerRef={ heroSection } location={ location } />
 
-			<section className={ sectionStyles.section2 }>
+			<div style={ test }>
 
-				<div className={ sectionStyles.honeycomb1 }>
-					<img src='/img/honeycomb_1.svg' width={ 600 } height={ 600 } alt='' />
+				{
+				/*
+					<section className={ sectionStyles.section2 }>
 
-					{
-					/*
-						<Image src='/img/honeycomb_1.svg' width={ 600 } height={ 600 } alt='' />
-					*/
-					}
+						<div className={ sectionStyles.honeycomb1 }>
+							<img src='/img/honeycomb_1.svg' width={ 600 } height={ 600 } alt='' />
 
-				</div>
+								<Image src='/img/honeycomb_1.svg' width={ 600 } height={ 600 } alt='' />
 
-				<div className={ sectionStyles.honeycomb2 }>
+						</div>
 
-					<img src='/img/honeycomb_2.svg' width={ 600 } height={ 600 } alt='' />
+						<div className={ sectionStyles.honeycomb2 }>
 
-					{
-					/*
-						<Image src='/img/honeycomb_2.svg' width={ 600 } height={ 600 } alt='' />
-					*/
-					}
-				</div>
+							<img src='/img/honeycomb_2.svg' width={ 600 } height={ 600 } alt='' />
+
+								<Image src='/img/honeycomb_2.svg' width={ 600 } height={ 600 } alt='' />
+						</div>
+				*/
+				}
 
 				<About />
+
 				<Skills location={ location }/>
-			</section>
 
-			<Work btnTarget='/work' />
+				<Work btnTarget='/work' />
 
-			<Clients />
+				<Clients />
 
-			<Testimonials />
+				<Testimonials />
 
-			<Contact bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
+				<Contact bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
+
+			</div>
+
 
 			<BackToTopArrow location={ location } heroSectionRef={ heroSection } bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
 

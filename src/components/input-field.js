@@ -1,6 +1,6 @@
 import styles from '../styles/components/input-field.module.scss';
 
-export default function InputField({ textarea, label, type, name }) {
+export default function InputField({ required, textarea, label, type, name }) {
 
 	return (
 
@@ -9,9 +9,9 @@ export default function InputField({ textarea, label, type, name }) {
 			<div className={ styles.formField }>
 
 				<label className='field-label' htmlFor={ name }>
-					<span className={ styles.required }>*</span>{ label }
+					{ required && <span className={ styles.required }>*</span> }{ label }
 				</label>
-				<input className='field-input' type={ type } />
+				<input required={ required } name={ name } className='field-input' type={ type } />
 
 			</div>
 
@@ -20,7 +20,7 @@ export default function InputField({ textarea, label, type, name }) {
 
 			<div className={ styles.formField }>
 
-				<textarea placeholder='How can I help?' className='field-input' name={ name } />
+				<textarea placeholder='How can I help? (required)' className='field-input' name={ name } />
 
 			</div>
 

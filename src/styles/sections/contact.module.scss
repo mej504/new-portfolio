@@ -14,7 +14,7 @@
 	h2 {
 
 		position:relative;
-		color:var(--richBlack);
+		color:var(--sectionHeaderColor);
 		font-size:var(--sectionHeaderSize);
 		font-weight:var(--sectionHeaderWeight);
 		text-align:center;
@@ -39,6 +39,7 @@
 		margin-top:2em;
 		font-size:1.4rem;
 		font-family:upgrade-lights;
+		color:white;
 	}
 
 }

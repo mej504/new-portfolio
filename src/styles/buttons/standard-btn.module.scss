@@ -18,8 +18,14 @@
 }
 
 .btn[disabled] {
+
 	background:var(--disabledGray);
+	color:var(--richBlack);
+	cursor:default;
+
 	&:hover {
 		background:var(--disabledGray);
+		color:var(--richBlack);
 	}
+
 }

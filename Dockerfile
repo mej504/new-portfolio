@@ -1,13 +1,14 @@
 FROM node:alpine
 
-RUN mkdir /var/www/app
+RUN mkdir /app
 RUN npm install -g pm2
-WORKDIR /var/www/app
+WORKDIR /app
 
-COPY ./package*.json /var/www/app
+COPY package.json /app
+COPY package-lock.json /app
 
 RUN npm install --production
-COPY . /var/www/app
+COPY . /app
 
 RUN npm run build
 

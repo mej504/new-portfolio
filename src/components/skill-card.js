@@ -107,7 +107,7 @@ export default function SkillCard( props ) {
 
 			<div className={ cardStyles.imgContainer }>
 
-				<img src={ props.imgPath } width={ 90 } height={ 90 } objectFit='contain' loading='eager'/>
+				<img src={ props.imgPath } width={ 90 } height={ 90 } />
 
 				{
 				/*

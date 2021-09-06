@@ -15,19 +15,19 @@ export default function Hero(props) {
 	const heroPosition = useRef( null );
 	const heroScroll = useRef(0);
 
+	const arrowWrap = useRef(null);
+
+	const container = props.innerRef;
+
 	const video = useRef( null );
 	const videoScroll = useRef(0);
 	const prevVidY = useRef(0);
 	const videoOrientation = useRef(null);
 
-	const scrollToPercent = ( scrollY, viewportHeight ) => {
-		return scrollY / viewportHeight * 100;
-	}
-
 	const handleScroll = () => {
 
 		let { current } = heroTitle;
-		let vid = video.current;
+		let container = props.innerRef;
 		let { scrollY, innerHeight } = window;
 
 		let heroRect = current.getBoundingClientRect();
@@ -36,14 +36,11 @@ export default function Hero(props) {
 		if( scrollY >= heroPosition.current ) {
 			return;
 		} else {
-			heroScroll.current = scrollY * 0.5;
-			videoScroll.current = scrollToPercent( scrollY, innerHeight );
-			
+			heroScroll.current = scrollY * 0.6;
 			current.style.transform = `translateY(-${ heroScroll.current }px)`;
-			current.style.opacity = 1 - ( heroScroll.current * 0.005 );
-
-			vid.style.transform = `translateY(${ videoScroll.current }%)`;
-
+			arrowWrap.current.style.transform = `translateY(-${ heroScroll.current }px)`;
+			arrowWrap.current.style.opacity = 1 - ( heroScroll.current * 0.005 );
+			current.style.opacity = 1 - ( heroScroll.current * 0.0025 );
 		}
 
 	}
@@ -96,8 +93,6 @@ export default function Hero(props) {
 	return (
 		<section ref={ props.innerRef } className={ heroStyles.wrapper }>
 
-			<Nav location={ location } />
-
 			<div className={ heroStyles.videoWrap }>
 				<video ref={ video } className={ heroStyles.videoWrap} src="/mov/bg-video.m4v" loop autoPlay muted/>
 			</div>
@@ -124,7 +119,7 @@ export default function Hero(props) {
 
 			</div>
 
-			<div onClick={ () => window.location = '#about' }  className={ heroStyles.scrollArrowWrap }>
+			<div ref={ arrowWrap } onClick={ () => window.location = '#about' }  className={ heroStyles.scrollArrowWrap }>
 
 				<img src='/img/scroll-arrow.svg' width={ 10 } height={ 71 } alt='' />
 

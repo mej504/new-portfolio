@@ -71,7 +71,7 @@ export default function Work({ btnTarget }) {
 
 			</div>
 
-			<ButtonWithDropShadow target={ btnTarget } style={{ marginTop: '5em' }} btnText={ btnText } />
+			<ButtonWithDropShadow target={ btnTarget } style={{ marginTop: '1em' }} btnText={ btnText } />
 
 		</section>
 
