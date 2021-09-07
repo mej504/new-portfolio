@@ -41,6 +41,11 @@
 		object-position:top;
 	}
 
+	@media screen and (max-width:400px) {
+		width:225px;
+		height:225px;
+	}
+
 }
 
 .aboutCopyContainer {

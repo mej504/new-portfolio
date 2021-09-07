@@ -58,6 +58,16 @@
 		font-weight:200;
 	}
 
+	@media screen and ( max-width:1125px) {
+		h1 {
+			font-size:4.25rem;
+			text-align:center;
+		}
+		h2 {
+			font-size:2rem;
+		}
+	}
+
 	@media screen and ( max-width:725px ) {
 
 		h1 {

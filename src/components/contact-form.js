@@ -5,11 +5,24 @@ import styles from '../styles/components/contact-form.module.scss';
 
 import InputField from './input-field';
 import StandardBtn from './buttons/standard-btn';
+import Notification from './notification';
 
 export default function ContactForm( props ) {
 
+	/**
+	 * 
+	 * TODO
+	 * 
+	 * btnDisabled might not need to be a state object.
+	 * When the contact form is submitted and a response is received,
+	 * I want the button to revert back to disabled without causing a second
+	 * re-render.
+	 * 
+	 */
+
 	const [ btnDisabled, updateBtnStatus ] = useState( true );
 	const { bottomLimit, formBtnPosition } = props;
+	const [ notification, updateNotification ] = useState(null);
 
 	const requiredFieldsEntered = useRef([]);
 
@@ -54,21 +67,67 @@ export default function ContactForm( props ) {
 	}
 
 	const handleSubmit = (e) => {
+
 		e.preventDefault();
 
-		axios.post('')
+		let body = {
+			name: e.target[0].value,
+			email: e.target[1].value,
+			organization: e.target[2].value,
+			message: e.target[3].value
+		}
+
+		axios.post('/pm', body ).then((res) => {
+
+			if( res.status === 200 ) {
+
+				requiredFieldsEntered.current = [];
+				e.target.reset();
+				updateNotification({
+					error:false,
+					message:'Message sent!'
+				})
+				return;
+			}
+
+			if( res.status > 400 ) {
+				requiredFieldsEntered.current = [];
+				e.target.reset();
+				updateNotification({
+					error: true,
+					message: res.data.message,
+				})
+				return;
+			}
+
+		}).catch((err) => {
+
+			if(err) {
+
+				requiredFieldsEntered.current = [];
+				e.target.reset();
+				updateNotification({
+					error:true,
+					message:err
+				})
+				return;
+			}
+
+		});
 
 	}
 
 	return (
 
-		<form className={ styles.contactForm } autoComplete='off' method="POST" onInput={ handleInput } onSubmit={ handleSubmit } encType='application/x-www-form-url-encoded'>
+		<form className={ styles.contactForm } autoComplete='off' onInput={ handleInput } onSubmit={ handleSubmit } encType='application/x-www-form-url-encoded'>
 
 			<InputField required={ true } label='Name' type='text' name='name' />
 			<InputField required={ true } label='Email' type='email' name='email' />
 			<InputField required={ false } label='Organization' type='text' name='organization' />
 			<InputField required={ true } textarea={ true } label='How can I help?' type='textarea' name='message' />
 			<StandardBtn bottomLimit={ bottomLimit } text='Send message' isForm={ true } isDisabled={ btnDisabled } formBtnPosition={ formBtnPosition }/>
+
+			{ notification && <Notification message={ notification.message } error={ notification.error } /> }
 
 		</form>
 
