@@ -63,6 +63,7 @@ export default function Hero(props) {
 
 	}
 
+	/*
 	const handleOrientationChange = () => {
 
 		if( window.innerWidth <= 1055 && !(window.innerWidth > window.innerHeight) ) {
@@ -77,6 +78,7 @@ export default function Hero(props) {
 
 		return;
 	}
+	*/
 
 	useEffect(() => {
 
@@ -95,12 +97,12 @@ export default function Hero(props) {
 
 			window.addEventListener('scroll', handleScroll);
 			window.addEventListener('resize', handleResize);
-			window.addEventListener('deviceorientation', handleOrientationChange )
+			// window.addEventListener('deviceorientation', handleOrientationChange )
 
 			return () => {
 				window.removeEventListener('scroll', handleScroll);
 				window.removeEventListener('resize', handleResize);
-				window.removeEventListener('deviceorientation', handleOrientationChange);
+				// window.removeEventListener('deviceorientation', handleOrientationChange);
 			}
 
 		}
