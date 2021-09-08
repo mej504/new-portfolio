@@ -65,7 +65,7 @@ export default function Hero(props) {
 
 	useEffect(() => {
 
-		if( window.innerWidth <= 1055 ) {
+		if( window.innerWidth <= 1055 && !(window.innerWidth > window.innerHeight) ) {
 			video.current.setAttribute('src', '/mov/bg-video-portrait.m4v');
 			videoOrientation.current = 'portrait';
 		}

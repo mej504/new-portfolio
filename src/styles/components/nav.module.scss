@@ -29,6 +29,11 @@
 		}
 	}
 
+	@media screen and (max-width:700px) and (max-height:400px) {
+		padding:1em 2em;
+		display:none;
+	}
+
 
 }
 
