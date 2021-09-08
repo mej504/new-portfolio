@@ -36,10 +36,6 @@ export default function Home() {
 	}
 
 	useEffect(() => {
-
-		let body = document.querySelector('body');
-		body.style.height = window.innerHeight;
-
 		updateLocation( window.location.pathname );
 	})
 
