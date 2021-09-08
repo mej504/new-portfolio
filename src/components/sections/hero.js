@@ -28,7 +28,7 @@ export default function Hero(props) {
 
 		let { current } = heroTitle;
 		let container = props.innerRef;
-		let { scrollY, innerHeight } = window;
+		let { scrollY, innerHeight, innerWidth } = window;
 
 		let heroRect = current.getBoundingClientRect();
 		heroPosition.current = heroRect;
@@ -36,7 +36,7 @@ export default function Hero(props) {
 		if( scrollY >= heroPosition.current ) {
 			return;
 		} else {
-			heroScroll.current = scrollY * 0.6;
+			heroScroll.current = innerWidth > innerHeight ? scrollY * 0.7 : scrollY * 0.65;
 			current.style.transform = `translateY(-${ heroScroll.current }px)`;
 			arrowWrap.current.style.transform = `translateY(-${ heroScroll.current }px)`;
 			arrowWrap.current.style.opacity = 1 - ( heroScroll.current * 0.005 );
@@ -63,7 +63,7 @@ export default function Hero(props) {
 
 	}
 
-	useEffect(() => {
+	const handleOrientationChange = () => {
 
 		if( window.innerWidth <= 1055 && !(window.innerWidth > window.innerHeight) ) {
 			video.current.setAttribute('src', '/mov/bg-video-portrait.m4v');
@@ -75,15 +75,32 @@ export default function Hero(props) {
 			videoOrientation.current = 'landscape';
 		}
 
+		return;
+	}
+
+	useEffect(() => {
+
+		if( window.innerWidth <= 1055 && !(window.innerWidth > window.innerHeight) ) {
+			video.current.setAttribute('src', '/mov/bg-video-portrait.m4v');
+			videoOrientation.current = 'portrait';
+		}
+
+		if( window.innerWidth > 1055 && (window.innerWidth > window.innerHeight) ) {
+			video.current.setAttribute('src', '/mov/bg-video.m4v');
+			videoOrientation.current = 'landscape';
+		}
+
 
 		if( location === '/' ) {
 
 			window.addEventListener('scroll', handleScroll);
 			window.addEventListener('resize', handleResize);
+			window.addEventListener('deviceorientation', handleOrientationChange )
 
 			return () => {
 				window.removeEventListener('scroll', handleScroll);
 				window.removeEventListener('resize', handleResize);
+				window.removeEventListener('deviceorientation', handleOrientationChange);
 			}
 
 		}
@@ -94,7 +111,7 @@ export default function Hero(props) {
 		<section ref={ props.innerRef } className={ heroStyles.wrapper }>
 
 			<div className={ heroStyles.videoWrap }>
-				<video ref={ video } className={ heroStyles.videoWrap} src="/mov/bg-video.m4v" loop autoPlay muted/>
+				<video ref={ video } className={ heroStyles.videoWrap} src="/mov/bg-video.m4v" playsInline loop autoPlay muted/>
 			</div>
 
 			<div ref={ heroTitle } className={ heroStyles.heroTitleWrap }>

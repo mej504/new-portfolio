@@ -10,45 +10,48 @@ export default function SkillCard( props ) {
 	let container = useRef( null );
 	let delay = i * 75;
 
-	const animateCardsIn = ( element ) => new Promise((res, rej) => {
+	const animateCardsIn = ( element ) => {
 
-		element.animate([
-			{
-				transform:'translate(0, 100px)',
-				opacity:0,
-			},
-			{
-				transform:'translate(0, 0)',
-				opacity:1,
-			}
-		], {
-			duration:1000,
-			iterations:1,
-			delay: delay,
-			fill:'forwards',
-			easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-		})
+		return new Promise((res, rej) => {
 
-		if( i === ( cardCount -1 ) ) {
+			element.animate([
+				{
+					transform:'translate(0, 100px)',
+					opacity:0,
+				},
+				{
+					transform:'translate(0, 0)',
+					opacity:1,
+				}
+			], {
+				duration:1000,
+				iterations:1,
+				delay: delay,
+				fill:'forwards',
+				easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+			})
 
-			let animations = element.getAnimations();
+			if( i === ( cardCount - 1 ) ) {
 
-			if( animations.length > 0 ) {
-				animations[0].onfinish = function() {
-					res({
-						completed:1
+				let animations = element.getAnimations();
+
+				if( animations.length > 0 ) {
+					animations[0].onfinish = function() {
+						res({
+							completed:1
+						})
+					}
+				} else {
+					rej({
+						completed:0
 					})
 				}
-			} else {
-				rej({
-					completed:0
-				})
+
 			}
 
-		}
+		})
 
-
-	})
+	}
 
 	const handleHoverIn = ( element ) => {
 

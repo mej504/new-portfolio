@@ -7,6 +7,10 @@
 	margin-top:10em;
 	min-height:900px;
 	padding:1em;
+
+	@media screen and ( max-width: 830px ) {
+		margin-top:5em;
+	}
 }
 
 .header {
