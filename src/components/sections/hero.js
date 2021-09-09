@@ -38,7 +38,7 @@ export default function Hero(props) {
 		} else {
 			heroScroll.current = innerWidth > innerHeight ? scrollY * 0.7 : scrollY * 0.65;
 			current.style.transform = `translateY(-${ heroScroll.current }px)`;
-			arrowWrap.current.style.transform = `translateY(-${ heroScroll.current }px)`;
+			arrowWrap.current.style.transform = `translate(-50%, -${ heroScroll.current }px)`;
 			arrowWrap.current.style.opacity = 1 - ( heroScroll.current * 0.005 );
 			current.style.opacity = 1 - ( heroScroll.current * 0.0025 );
 		}
