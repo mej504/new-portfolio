@@ -10,7 +10,7 @@ export default function About() {
 
 				<div className={ aboutStyles.picContainer }>
 
-					<img src="/img/Justin_Pic_MEDIUM.JPG" />
+					<img src="/img/Justin_Pic_Medium.jpg" />
 
 					{
 					/*
@@ -21,8 +21,8 @@ export default function About() {
 				</div>
 
 				<div className={ aboutStyles.aboutCopyContainer }>
-					<h2>Developer. Problem solver. Nerd slayer.</h2>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias quaerat assumenda ut culpa corporis nam tenetur perferendis dolore. Ab deserunt officia assumenda vero fugit libero omnis repudiandae debitis eum architecto?</p>
+					<h2>Developer. Problem solver. Minimalist.</h2>
+					<p>Hey there! I'm Justin, a freelance full-stack developer based out of Louisville, Kentucky. I specialize in building scalable back-end infrastructures, and I love the challenge of creating, intuitive front-end experiences.</p>
 				</div>
 
 			</div>

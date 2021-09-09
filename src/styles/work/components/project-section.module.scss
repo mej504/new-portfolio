@@ -17,6 +17,14 @@
 	min-width:100%;
 }
 
+.singleProjectsContainer {
+	display:flex;
+	padding:4em 0 2.5em 0;
+	list-style-type:none;
+	min-width:100%;
+	overflow:hidden;
+}
+
 .centered {
 	justify-content:center;
 }
@@ -29,6 +37,7 @@
 	position:relative;
 	font-size:2rem;
 	text-align:center;
+	padding:0 0.5em;
 
 	&:after {
 		content: '';

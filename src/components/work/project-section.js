@@ -9,8 +9,18 @@ export default function ProjectSection( { client } ) {
 
 	const container = useRef(null);
 
+	const singleContainerStyles = {
+		display:'flex',
+		gap:0,
+		padding:'4em 0 2.5em 0',
+		listStyleType:'none',
+		minWidth:'100%'
+	}
+
 	useEffect(() => {
-		new SimpleBar( container.current );
+		if( client.projects.length > 1 ) {
+			new SimpleBar( container.current );
+		} 
 	}, [])
 
 	return (
@@ -20,7 +30,7 @@ export default function ProjectSection( { client } ) {
 
 			<div ref={ container }>
 
-				<ul className={`${styles.projectsContainer} ${client.projects.length === 1 && styles.centered}`}>
+				<ul className={`${client.projects.length > 1 ? styles.projectsContainer : styles.singleProjectsContainer } ${client.projects.length === 1 && styles.centered}`}>
 
 					<li className={ styles.spacer }></li>
 
