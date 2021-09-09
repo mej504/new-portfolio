@@ -10,7 +10,7 @@ export default function About() {
 
 				<div className={ aboutStyles.picContainer }>
 
-					<img src="/img/Justin_Pic_Medium.jpg" />
+					<img src="/img/Justin_Medium.jpg" />
 
 					{
 					/*
