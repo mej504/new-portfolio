@@ -1,4 +1,9 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+const path = require('path');
+
+require('dotenv').config({
+	path: path.join(__dirname, '../.env')
+});
 
 class MyDocument extends Document {
 	render() {
@@ -16,7 +21,7 @@ class MyDocument extends Document {
 							}
 							gtag('js', new Date());
 
-							gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS});
+							gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
 						`
 					}} />
 
