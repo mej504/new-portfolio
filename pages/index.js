@@ -1,45 +1,43 @@
 // Modules
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
-// Styles
-import sectionStyles from '../src/styles/components/sections.module.scss';
+// Sections
+import Head from 'next/head'
+import Hero from '@/home-sections/Hero';
+import About from '@/home-sections/About';
+import Skills from '@/home-sections/Skills';
+import Work from '@/home-sections/Work';
+import Clients from '@/home-sections/Clients';
+import Testimonials from '@/home-sections/Testimonials';
+import Contact from '@/home-sections/Contact';
 
 // Components
-import Head from 'next/head'
-import Nav from '../src/components/sections/nav';
-import Hero from '../src/components/sections/hero';
-import About from '../src/components/sections/about';
-import Skills from '../src/components/sections/skills';
-import Work from '../src/components/sections/work';
-import Clients from '../src/components/sections/clients';
-import Testimonials from '../src/components/sections/testimonials';
-import Contact from '../src/components/sections/contact';
-import BackToTopArrow from '../src/components/back-to-top';
+import Nav from '@/components/nav/Nav';
+import BackToTopArrow from '@/home-components/BackToTop';
 
-export default function Home() {
+// Just looking to get the resolved path here for use in the Nav component
+export async function getServerSideProps({ resolvedUrl }) {
+	return {
+		props: {
+			path: resolvedUrl
+		}
+	}
+}
 
-	// State
-	const [ location, updateLocation ] = useState(null);
+export default function Home({ path }) {
 
 	// Refs
 	const bottomLimit = useRef(0);
 	const formBtnPosition = useRef(null);
 	const heroSection = useRef(null);
-	
-	const spacerStyles = {
-		minHeight:'100vh',
-		width:'100%',
-	}
+	const location = useRef(path);
 
 	const test = {
 		transform:'translateY(100vh)'
 	}
 
-	useEffect(() => {
-		updateLocation( window.location.pathname );
-	})
-
 	return (
+
 		<>
 
 			<Head>
@@ -52,26 +50,6 @@ export default function Home() {
 			<Hero innerRef={ heroSection } location={ location } />
 
 			<div style={ test }>
-
-				{
-				/*
-					<section className={ sectionStyles.section2 }>
-
-						<div className={ sectionStyles.honeycomb1 }>
-							<img src='/img/honeycomb_1.svg' width={ 600 } height={ 600 } alt='' />
-
-								<Image src='/img/honeycomb_1.svg' width={ 600 } height={ 600 } alt='' />
-
-						</div>
-
-						<div className={ sectionStyles.honeycomb2 }>
-
-							<img src='/img/honeycomb_2.svg' width={ 600 } height={ 600 } alt='' />
-
-								<Image src='/img/honeycomb_2.svg' width={ 600 } height={ 600 } alt='' />
-						</div>
-				*/
-				}
 
 				<About />
 

@@ -2,19 +2,19 @@
 import { useEffect, useState, useRef } from 'react';
 import SimpleBar from 'simplebar';
 // Data
-import projects from '../lib/projects';
+import projects from 'lib/projects';
 
 // Components
-import ClientNav from '../src/components/work/client-nav';
-import ProjectViewer from '../src/components/work/project-viewer';
-import Nav from '../src/components/sections/nav';
-import Layout from '../src/components/work/layout';
 import Head from 'next/head';
-import MobileProjectViewer from '../src/components/work/mobile-project-viewer';
-import SideMenu from '../src/components/work/SideMenu/SideMenu';
+import Nav from '@components/Nav';
+import Layout from '@work-sections/Layout';
+import ClientNav from '@work-components/ClientNav';
+import ProjectViewer from '@work-components/ProjectViewer';
+import MobileProjectViewer from '@work-components/MobileProjectViewer';
+import SideMenu from '@work-components/side-menu/SideMenu';
 
 // Styles
-import styles from '../src/styles/work/sections/ui.module.scss';
+import styles from '@work-components/styles/ui.module.scss';
 import 'simplebar/dist/simplebar.css';
 
 export default function WorkPage (props) {

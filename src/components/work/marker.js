@@ -1,4 +1,4 @@
-import styles from '../../styles/work/components/marker.module.scss';
+import styles from './styles/marker.module.scss';
 
 export default function Marker({ innerRef }) {
 
