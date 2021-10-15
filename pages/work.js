@@ -6,15 +6,15 @@ import projects from 'lib/projects';
 
 // Components
 import Head from 'next/head';
-import Nav from '@components/Nav';
-import Layout from '@work-sections/Layout';
-import ClientNav from '@work-components/ClientNav';
-import ProjectViewer from '@work-components/ProjectViewer';
-import MobileProjectViewer from '@work-components/MobileProjectViewer';
-import SideMenu from '@work-components/side-menu/SideMenu';
+import Nav from '@/components/nav/Nav';
+import Layout from '@/work-sections/Layout';
+import ClientNav from '@/work-components/ClientNav';
+import ProjectViewer from '@/work-components/ProjectViewer';
+import MobileProjectViewer from '@/work-components/MobileProjectViewer';
+import SideMenu from '@/work-components/side-menu/SideMenu';
 
 // Styles
-import styles from '@work-components/styles/ui.module.scss';
+import styles from '@/work-components/styles/ui.module.scss';
 import 'simplebar/dist/simplebar.css';
 
 export default function WorkPage (props) {
