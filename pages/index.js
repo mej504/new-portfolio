@@ -30,7 +30,6 @@ export default function Home({ path }) {
 	const bottomLimit = useRef(0);
 	const formBtnPosition = useRef(null);
 	const heroSection = useRef(null);
-	const location = useRef(path);
 
 	const test = {
 		transform:'translateY(100vh)'
@@ -45,15 +44,15 @@ export default function Home({ path }) {
 				<meta name="description" content="Justin Minyard is a Louisville-based full-stack web developer. He specializes in NodeJS applications." />
 			</Head>
 
-			<Nav location={ location } />
+			<Nav location={ path } />
 
-			<Hero innerRef={ heroSection } location={ location } />
+			<Hero innerRef={ heroSection } location={ path } />
 
 			<div style={ test }>
 
 				<About />
 
-				<Skills location={ location }/>
+				<Skills location={ path }/>
 
 				<Work btnTarget='/work' />
 
@@ -66,7 +65,7 @@ export default function Home({ path }) {
 			</div>
 
 
-			<BackToTopArrow location={ location } heroSectionRef={ heroSection } bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
+			<BackToTopArrow location={ path } heroSectionRef={ heroSection } bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
 
 		</>
 
