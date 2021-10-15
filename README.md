@@ -17,6 +17,10 @@ While I'm always looking to take on new projects and revisit old, I very much am
 
 [ ] Harden responsiveness of work page
 
+[ ] Fix issue where skill cards can restart animation (only once) when a user scrolls up and back down mid-animation
+
+	▶ However, if the animation is complete, this doesn't happen
+
 [ ] Resolve issue where background video doesn't swap on portrait -> landscape
 
 	▶ Failing to do so creates mostly-empty background
