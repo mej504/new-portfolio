@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+
+		"baseUrl": ".",
+
+		"paths": {
+			"@/components/*": ["src/components/*"],
+			"@/home-sections/*": ["src/sections/home/*"],
+			"@/home-components/*": ["src/components/home/*"],
+			"@/work-sections/*": ["src/sections/work/*"],
+			"@/work-components/*": ["src/components/work/*"]
+		}
+
+	}
+}
