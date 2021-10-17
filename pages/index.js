@@ -1,5 +1,8 @@
 // Modules
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
+
+// Layout
+import HomeLayout from '@/home-sections/layout/HomeLayout';
 
 // Sections
 import Head from 'next/head'
@@ -13,6 +16,7 @@ import Contact from '@/home-sections/Contact';
 
 // Components
 import Nav from '@/components/nav/Nav';
+import Background from '@/home-components/Background';
 import BackToTopArrow from '@/home-components/BackToTop';
 
 // Just looking to get the resolved path here for use in the Nav component
@@ -31,13 +35,9 @@ export default function Home({ path }) {
 	const formBtnPosition = useRef(null);
 	const heroSection = useRef(null);
 
-	const test = {
-		transform:'translateY(100vh)'
-	}
-
 	return (
 
-		<>
+		<HomeLayout>
 
 			<Head>
 				<title>Justin Minyard | Full-Stack Developer</title>
@@ -46,9 +46,11 @@ export default function Home({ path }) {
 
 			<Nav location={ path } />
 
+			<Background />
+
 			<Hero innerRef={ heroSection } location={ path } />
 
-			<div style={ test }>
+			<div style={{ transform: 'translateY(100vh)' }}>
 
 				<About />
 
@@ -67,7 +69,7 @@ export default function Home({ path }) {
 
 			<BackToTopArrow location={ path } heroSectionRef={ heroSection } bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
 
-		</>
+		</HomeLayout>
 
 	)
 
