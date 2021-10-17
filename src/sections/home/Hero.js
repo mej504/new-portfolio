@@ -9,90 +9,46 @@ import Link from 'next/link';
 
 export default function Hero(props) {
 
-	const { location } = props;
 	const heroTitle = useRef( null );
 	const heroPosition = useRef( null );
 	const heroScroll = useRef(0);
 
 	const arrowWrap = useRef(null);
 
-	const video = useRef( null );
-	const videoOrientation = useRef(null);
-
-	const handleScroll = () => {
-
-		let { current } = heroTitle;
-		let container = props.innerRef;
-		let { scrollY, innerHeight, innerWidth } = window;
-
-		let heroRect = current.getBoundingClientRect();
-		heroPosition.current = heroRect;
-
-		if( scrollY >= heroPosition.current ) {
-			return;
-		} else {
-			heroScroll.current = innerWidth > innerHeight ? scrollY * 0.7 : scrollY * 0.65;
-			current.style.transform = `translateY(-${ heroScroll.current }px)`;
-			arrowWrap.current.style.transform = `translate(-50%, -${ heroScroll.current }px)`;
-			arrowWrap.current.style.opacity = 1 - ( heroScroll.current * 0.005 );
-			current.style.opacity = 1 - ( heroScroll.current * 0.0025 );
-		}
-
-	}
-
-	const handleResize = () => {
-
-		let { current } = videoOrientation;
-
-		if( window.innerWidth <= 1055 && current === 'landscape' ) {
-			video.current.setAttribute('src', '/mov/bg-video-portrait.m4v');
-			videoOrientation.current = 'portrait';
-		}
-
-		if( window.innerWidth > 1055 && current === 'portrait' ) {
-			video.current.setAttribute('src', '/mov/bg-video.m4v');
-			videoOrientation.current = 'landscape';
-		}
-
-		return;
-
-	}
-
 	useEffect(() => {
 
-		if( window.innerWidth <= 1055 && !(window.innerWidth > window.innerHeight) ) {
-			video.current.setAttribute('src', '/mov/bg-video-portrait.m4v');
-			videoOrientation.current = 'portrait';
-		}
+		const handleScroll = () => {
 
-		if( window.innerWidth > 1055 && (window.innerWidth > window.innerHeight) ) {
-			video.current.setAttribute('src', '/mov/bg-video.m4v');
-			videoOrientation.current = 'landscape';
-		}
+			let { current } = heroTitle;
+			let container = props.innerRef;
+			let { scrollY, innerHeight, innerWidth } = window;
 
+			let heroRect = current.getBoundingClientRect();
+			heroPosition.current = heroRect;
 
-		if( location === '/' ) {
-
-			window.addEventListener('scroll', handleScroll);
-			window.addEventListener('resize', handleResize);
-			// window.addEventListener('deviceorientation', handleOrientationChange )
-
-			return () => {
-				window.removeEventListener('scroll', handleScroll);
-				window.removeEventListener('resize', handleResize);
-				// window.removeEventListener('deviceorientation', handleOrientationChange);
+			if( scrollY >= heroPosition.current ) {
+				return;
+			} else {
+				heroScroll.current = innerWidth > innerHeight ? scrollY * 0.7 : scrollY * 0.65;
+				current.style.transform = `translateY(-${ heroScroll.current }px)`;
+				arrowWrap.current.style.transform = `translate(-50%, -${ heroScroll.current }px)`;
+				arrowWrap.current.style.opacity = 1 - ( heroScroll.current * 0.005 );
+				current.style.opacity = 1 - ( heroScroll.current * 0.0025 );
 			}
 
 		}
 
-	}, [location])
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		}
+
+	})
+
 
 	return (
 		<section ref={ props.innerRef } className={ styles.wrapper }>
-
-			<div className={ styles.videoWrap }>
-				<video ref={ video } className={ styles.videoWrap} src="/mov/bg-video.m4v" playsInline loop autoPlay muted/>
-			</div>
 
 			<div ref={ heroTitle } className={ styles.heroTitleWrap }>
 
