@@ -6,34 +6,64 @@ import styles from './styles/hero.module.scss';
 
 // Components
 import Link from 'next/link';
+import Image from 'next/image';
 
-export default function Hero(props) {
+export default function Hero() {
 
 	const heroTitle = useRef( null );
-	const heroPosition = useRef( null );
-	const heroScroll = useRef(0);
-
 	const arrowWrap = useRef(null);
 
 	useEffect(() => {
 
+		/**
+		 * 
+		 * Manipulates hero title container and scroll arrow with some level of "smoothing"
+		 * 
+		 * @param HTMLElement | title | Hero title container
+		 * @param HTMLElement | arrow | Scroll arrow container
+		 * @param Float | transitionCoefficient | Amount of smoothing for transform
+		 * @param Float | opacityCoefficient | Amount of smoothing for opacity change
+		 * 
+		 * @returns void
+		 * 
+		 */
+
+		const animateHeroElements = ( title, arrow, transitionCoefficient = 0.25, opacityCoefficient = 0.0025 ) => {
+
+			console.log(transitionCoefficient);
+			let { scrollY } = window;
+			title.style.transform = `translateY(-${ transitionCoefficient * (scrollY * 2) }px)`;
+			title.style.opacity = 1 - ( opacityCoefficient * scrollY );
+
+			// I want the arrow to fade out slightly faster than the title elements, so I bump up
+			// the smoothing coefficient to 0.0060
+			arrow.style.transform = `translateY(-${ ( transitionCoefficient + 0.25 ) * ( scrollY * 2 ) }px)`;
+			arrow.style.opacity = 1 - (( opacityCoefficient + 0.0035) * scrollY );
+
+			return;
+
+		}
+		
+		/**
+		 * 
+		 * Scroll handler to determine at what point to continue or stop animating
+		 * elements in the hero section
+		 * 
+		 * @returns void
+		 * 
+		*/
+
 		const handleScroll = () => {
 
-			let { current } = heroTitle;
-			let container = props.innerRef;
-			let { scrollY, innerHeight, innerWidth } = window;
+			let { current: title } = heroTitle;
+			let { current: arrow } = arrowWrap;
+			let { bottom: titleBottom } = title.getBoundingClientRect();
 
-			let heroRect = current.getBoundingClientRect();
-			heroPosition.current = heroRect;
-
-			if( scrollY >= heroPosition.current ) {
+			// Short circuit if bottom of hero title is out of viewport
+			if( titleBottom <= 0 ) {
 				return;
 			} else {
-				heroScroll.current = innerWidth > innerHeight ? scrollY * 0.7 : scrollY * 0.65;
-				current.style.transform = `translateY(-${ heroScroll.current }px)`;
-				arrowWrap.current.style.transform = `translate(-50%, -${ heroScroll.current }px)`;
-				arrowWrap.current.style.opacity = 1 - ( heroScroll.current * 0.005 );
-				current.style.opacity = 1 - ( heroScroll.current * 0.0025 );
+				return animateHeroElements( title, arrow, 0.1 );
 			}
 
 		}
@@ -48,7 +78,7 @@ export default function Hero(props) {
 
 
 	return (
-		<section ref={ props.innerRef } className={ styles.wrapper }>
+		<section className={ styles.wrapper }>
 
 			<div ref={ heroTitle } className={ styles.heroTitleWrap }>
 
@@ -66,7 +96,7 @@ export default function Hero(props) {
 
 			<div ref={ arrowWrap } onClick={ () => window.location = '#about' }  className={ styles.scrollArrowWrap }>
 
-				<img src='/img/scroll-arrow.svg' width={ 10 } height={ 71 } alt='' />
+				<Image role='button' src='/img/scroll-arrow.svg' width={ 10 } height={ 71 } alt='Click here to learn about me' />
 
 			</div>
 
