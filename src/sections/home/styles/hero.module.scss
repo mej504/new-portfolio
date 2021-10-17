@@ -22,32 +22,21 @@
 }
 
 .wrapper {
-	position:fixed;
-	width:100%;
-	// height:100%;
-	height:calc(100% + 60px);
-	overflow:hidden;
-	z-index:0;
-}
-
-.videoWrap {
-	position:absolute;
-	left:0;
-	top:0;
+	display:grid;
+	place-items:center;
 	width:100%;
 	height:100%;
-	object-fit: cover;
-	z-index:-1;
-	transform-origin:center;
+	overflow:hidden;
+	z-index:0;
 }
 
 .heroTitleWrap {
 
 	display:flex;
 	flex-direction:column;
+	max-width:100%;
 	align-items:center;
 	justify-content:center;
-	min-height:100%;
 	will-change: transform;
 
 	h1 {
@@ -113,7 +102,6 @@
 	align-items:center;
 	bottom:60px;
 	left:50%;
-	transform: translateX(-50%);
 	z-index:10000;
 
 	img {
