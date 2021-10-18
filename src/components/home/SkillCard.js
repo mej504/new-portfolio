@@ -1,16 +1,16 @@
 // Modules
 import { useRef, useEffect } from 'react';
+import Image from 'next/image';
 
 import cardStyles from './styles/skill-card.module.scss';
 
-export default function SkillCard( props ) {
+export default function SkillCard({ cardCount, i, imgPath, skillName }) {
 
-	let { scrollTargetHit, cardCount, i } = props;
-	let elementsAnimated = props.elementsAnimated;
 	let container = useRef( null );
 	let delay = i * 75;
 
 	const animateCardsIn = ( element ) => {
+
 
 		return new Promise((res, rej) => {
 
@@ -37,14 +37,11 @@ export default function SkillCard( props ) {
 
 				if( animations.length > 0 ) {
 					animations[0].onfinish = function() {
-						res({
-							completed:1
-						})
+						res({ completed:true })
 					}
 				} else {
-					rej({
-						completed:0
-					})
+					rej({ completed:false })
+
 				}
 
 			}
@@ -55,95 +52,61 @@ export default function SkillCard( props ) {
 
 	const handleHoverIn = ( element ) => {
 
-		if( elementsAnimated.current ) {
-			element.animate([
-				{ transform:'translate(0, 0)'},
-				{ transform:'translate(-8px, -8px)'}
-			], {
-				duration: 200,
-				iterations:1,
-				easing:'ease',
-				fill:'forwards'
-			})
-		}
+		element.animate([
+			{ transform:'translate(0, 0)'},
+			{ transform:'translate(-8px, -8px)'}
+		], {
+			duration: 200,
+			iterations:1,
+			easing:'ease',
+			fill:'forwards'
+		})
+
+		return
 
 	}
 
 	const handleHoverOut = ( element ) => {
 
-		if( elementsAnimated.current ) {
-			element.animate([
-				{ transform:'translate(-8px, -8px)'},
-				{ transform:'translate(0, 0)'}
-			], {
-				duration: 200,
-				iterations:1,
-				easing:'ease',
-				fill:'forwards'
-			})
-		}
+		element.animate([
+			{ transform:'translate(-8px, -8px)'},
+			{ transform:'translate(0, 0)'}
+		], {
+			duration: 200,
+			iterations:1,
+			easing:'ease',
+			fill:'forwards'
+		})
+
+		return
 
 	}
 
 	useEffect(() => {
 
-		if( scrollTargetHit && !elementsAnimated.current ) {
+		animateCardsIn( container.current ).then((status) => {
 
-			animateCardsIn( container.current ).then((status) => {
+			if( status.completed ) {
+				container.current.style.transform = 'translate(0, 0)';
+			}
 
-				if( status.completed === 1 ) {
-					elementsAnimated.current = true;
-					container.current.style.transform = 'translate(0, 0)';
-				}
+		}).catch(() => {
+			return null;
+		})
 
-			}).catch((err) => {
-				console.log(err);
-			})
-
-		}
-
-	}, [ scrollTargetHit ] );
+	});
 
 	return (
 
-		<div ref={ container } onMouseEnter={ () => handleHoverIn(container.current ) } onMouseLeave={ () => handleHoverOut(container.current) } className={ cardStyles.cardContainer }>
+		<div ref={ container } onMouseEnter={ () => handleHoverIn(container.current) } onMouseLeave={ () => handleHoverOut(container.current) } className={ cardStyles.cardContainer }>
 
 			<div className={ cardStyles.imgContainer }>
 
-				<img src={ props.imgPath } width={ 90 } height={ 90 } />
-
-				{
-				/*
-					<Image src={ props.imgPath } width={ 90 } height={ 90 } objectFit='contain' loading='eager'/>
-				*/
-				}
+				<Image src={ imgPath } width={ 90 } height={ 90 } layout='intrinsic' loading='eager'/>
 
 			</div>
 
-			<p className={ cardStyles.skillName }>{ props.skillName }</p>
-
-			<style jsx>{`
-
-				.animate-in {
-					animation-name: shift-in;
-					animation-duration:1250ms;
-					animation-delay:${delay}ms;
-					animation-timing-function:cubic-bezier(0.34, 1.56, 0.64, 1);
-					animation-fill-mode:forward;
-				}
-
-				@keyframes shift-in {
-					from {
-						transform:translate(0, 100px);
-						opacity:0;
-					}
-					to {
-						transform:translate(0, 0);
-						opacity:1;
-					}
-				}
-
-			`}</style>
+			<p className={ cardStyles.skillName }>{ skillName }</p>
 
 		</div>
 
