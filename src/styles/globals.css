@@ -14,7 +14,7 @@
 	--success: hsl(126, 100%, 65%);
 
 	/* Fonts */
-	--mainFont: 'upgrade';
+	--mainFont: 'Roboto Condensed', sans-serif;
 	--main500: 500;
 	--main300: 300;
 	--lightFont: 'upgrade-lights';
@@ -23,6 +23,8 @@
 	--roboto: 'Roboto Condensed', sans-serif;
 	--roboto700: 700;
 	--roboto300: 300;
+
+	--cabin: 'Cabin', sans-serif;
 
 	/* Header */
 	--sectionHeaderColor:white;
@@ -37,42 +39,9 @@
 
 }
 
-/***************************************
-
-Adobe fonts
-
-NOTE:
-originally, I was fetching this by adding the Adobe-provided embed
-code on the custom _document page. However, Adobe sets the font-display
-to 'auto', which was causing moderate layout shift. By importing here,
-I was able to update the font-display to 'swap', ensuring a placeholder
-font would be used until the main font is loaded.
-
-****************************************/
-
-/*** ADOBE | Upgrades ***/
-@import url("https://p.typekit.net/p.css?s=1&k=mdg4ivp&ht=tk&f=38093.38095.38103&a=8089373&app=typekit&e=css");
-
-@font-face {
-font-family:"upgrade";
-src:url("https://use.typekit.net/af/13db32/00000000000000007735c00b/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"),url("https://use.typekit.net/af/13db32/00000000000000007735c00b/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff"),url("https://use.typekit.net/af/13db32/00000000000000007735c00b/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("opentype");
-font-display:swap;font-style:normal;font-weight:500;
-}
-
-@font-face {
-font-family:"upgrade";
-src:url("https://use.typekit.net/af/436d7f/00000000000000007735c011/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff2"),url("https://use.typekit.net/af/436d7f/00000000000000007735c011/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff"),url("https://use.typekit.net/af/436d7f/00000000000000007735c011/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("opentype");
-font-display:swap;font-style:normal;font-weight:300;
-}
-
-@font-face {
-font-family:"upgrade-lights";
-src:url("https://use.typekit.net/af/d2acc5/00000000000000007735c005/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"),url("https://use.typekit.net/af/d2acc5/00000000000000007735c005/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff"),url("https://use.typekit.net/af/d2acc5/00000000000000007735c005/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("opentype");
-font-display:swap;font-style:normal;font-weight:500;
-}
-
-/*** GOOGLE | Roboto Condensed ***/
+/*** GOOGLE | Roboto Condensed & Cabin ***/
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
 
 * {
 	margin:0;
@@ -82,18 +51,15 @@ font-display:swap;font-style:normal;font-weight:500;
 
 html {
 	scroll-behavior:smooth;
+	font-size:16px;
+	min-height:100vh;
 }
 
-html,
 body {
 	position:relative;
-	min-height:100vh;
-	padding: 0;
-	margin: 0;
 	font-family:var(--mainFont), sans-serif;
 	font-display:swap;
 	font-style:normal;
-	font-size:16px;
 }
 
 html,
