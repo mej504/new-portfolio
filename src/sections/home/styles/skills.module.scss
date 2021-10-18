@@ -1,7 +1,11 @@
 .skillsSectionContainer {
+	margin-top:4em;
 	display:flex;
 	flex-direction:column;
 	align-items:center;
+	@media screen and (min-width:1161px) {
+		margin-top:10em;
+	}
 }
 
 .skillsHeader {
