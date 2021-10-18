@@ -30,7 +30,6 @@ export default function Hero() {
 
 		const animateHeroElements = ( title, arrow, transitionCoefficient = 0.25, opacityCoefficient = 0.0025 ) => {
 
-			console.log(transitionCoefficient);
 			let { scrollY } = window;
 			title.style.transform = `translateY(-${ transitionCoefficient * (scrollY * 2) }px)`;
 			title.style.opacity = 1 - ( opacityCoefficient * scrollY );
@@ -68,7 +67,7 @@ export default function Hero() {
 
 		}
 
-		window.addEventListener('scroll', handleScroll);
+		window.addEventListener('scroll', handleScroll );
 
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
@@ -84,7 +83,7 @@ export default function Hero() {
 
 				<h1>Justin Minyard</h1>
 				<div className={ styles.titleAccentWrap }>
-					<img src='/img/hero-accent.svg' width={ 1000 } height={ 50 } alt='' />
+					<Image src='/img/hero-accent.svg' width={ 1000 } height={ 80 } layout='intrinsic' alt='' />
 				</div>
 				<h2>full-stack web developer</h2>
 
