@@ -33,7 +33,6 @@ export default function Home({ path }) {
 	// Refs
 	const bottomLimit = useRef(0);
 	const formBtnPosition = useRef(null);
-	const heroSection = useRef(null);
 
 	return (
 
@@ -48,9 +47,9 @@ export default function Home({ path }) {
 
 			<Background />
 
-			<Hero innerRef={ heroSection } location={ path } />
+			<Hero location={ path } />
 
-			<div style={{ transform: 'translateY(100vh)' }}>
+			<div>
 
 				<About />
 
@@ -66,11 +65,9 @@ export default function Home({ path }) {
 
 			</div>
 
-
-			<BackToTopArrow location={ path } heroSectionRef={ heroSection } bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
-
 		</HomeLayout>
 
 	)
 
 }
+			// <BackToTopArrow location={ path } bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
