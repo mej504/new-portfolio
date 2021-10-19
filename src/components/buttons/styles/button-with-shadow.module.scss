@@ -1,14 +1,17 @@
 .btn {
 
-	padding:1.2em 4em;
+	padding:1.3em 0.5em;
+	width:100%;
+	max-width:225px;
+	align-self:center;
 	background:white;
+	color:var(--richBlack);
+	font-family:var(--roboto);
+	text-decoration:none;
+	text-align:center;
+	transition:box-shadow 200ms ease, transform 200ms ease;
 	border:2px solid var(--purple);
 	box-shadow:8px 8px 0 0 var(--purpleBoxShadow);
-	text-decoration:none;
-	color:var(--richBlack);
-	font-family:var(--lightFont);
-	font-weight:var(--lightFont500);
-	transition:box-shadow 200ms ease, transform 200ms ease;
 	transform-origin:center;
 
 	&:hover, &:focus, &:active {
