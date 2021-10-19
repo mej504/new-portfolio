@@ -38,6 +38,7 @@
 	justify-content:center;
 	will-change: transform;
 	overflow-x:hidden;
+	padding:0 0.5em;
 
 	h1, h2 {
 		text-align:center;
@@ -53,7 +54,7 @@
 
 	h2 {
 		text-transform:lowercase;
-		font-size:2.2rem;
+		font-size:clamp(1.7rem, 5vw, 2.5rem);
 		font-weight:200;
 	}
 
