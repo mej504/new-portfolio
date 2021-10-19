@@ -55,7 +55,7 @@ export default function Home({ path }) {
 
 				<Skills location={ path }/>
 
-				<Work btnTarget='/work' />
+				<Work />
 
 				<Clients />
 
