@@ -1,115 +1,51 @@
-import { useState } from 'react';
+import Image from 'next/image';
 
-import WorkCardOverlay from './WorkCardOverlay';
+import ButtonWithArrow from '@/components/buttons/ButtonWithArrow';
 
 import styles from './styles/work-card.module.scss';
 
-export default function WorkCard( props ) {
-
-	const { imgPath, deviceSize } = props;
-
-	const [containerHovered, setContainerHovered] = useState(false);
-
-
-	/* STATE */
-	const [overlayY, updateOverlayY] = useState(0);
-	const [targetedOverlay, updateTargetedOverlay] = useState(undefined);
-
-	/* Return percentage-based offset of targeted overlay from top of container */
-	const normalizeYPos = ( elementHeight, yPosition ) => {
-		return Math.floor( ( yPosition / elementHeight ) * 100 );
-	}
-
-	const handleHoverOut = ( overlay ) => {
-		let offset = overlay.offsetTop;
-		let startingYPos = normalizeYPos( overlay.getBoundingClientRect().height, offset );
-		updateOverlayY( startingYPos );
-	}
+export default function WorkCard({ builtWith, category, title, url, imgPath, description }) {
 
 	return (
 
-		deviceSize === 'desktop' ? (
+		<div className={ styles.workCardContainer }>
 
-			<div
-			
-			onMouseEnter={(e) => {
-				updateTargetedOverlay( e.target.firstElementChild );
-				setContainerHovered(true)
-			}}
-			
-			onMouseLeave={() => {
-				handleHoverOut( targetedOverlay );
-				setContainerHovered(false)
-				updateTargetedOverlay(null);
-			}}
-			
-			className='workCardContainer'>
+			<div className={ styles.workCardImage } >
 
-				<WorkCardOverlay
-					overlayY={ overlayY }
-					hovered={ containerHovered }
-					data={ props }
+				<Image
+					className={ styles.workImage }
+					src={ imgPath }
+					alt={`Image preview of my ${ title } application`}
+					width={ 200 }
+					height={ 125 } 
+					layout='responsive'
+					objectFit='cover'
+					objectPosition={ title === 'AeroFX' ? 'center' : 'top left' }
 				/>
-
-				<style jsx>{`
-
-					.workCardContainer {
-						position:relative;
-						flex:1 1 575px;
-						max-width:575px;
-						padding:2em;
-						background-image:url(${imgPath});
-						background-position:top;
-						background-size:cover;
-						background-repeat:no-repeat;
-						min-height:325px;
-						border:2px solid var(--richBlack);
-						overflow:hidden;
-					}
-
-					@media screen and (max-width:650px) {
-						.workCardContainer {
-							background-position:center;
-							background-size:cover;
-						}
-					}
-
-
-				`}</style>
 
 			</div>
 
-		) : (
+			<div className={ styles.workDetailsContainer }>
 
-			<div className={ styles.mobileWorkCardContainer }>
+				<div className={ styles.detailsSubgroup }>
 
-				<img src={ imgPath } alt={`Image preview of ${ props.title } project`}/>
+					<h2>{ title }</h2>
 
-				<div className={ styles.mobileWorkCardContainerDetails}>
-
-
-					<div className={ styles.detailsSubgroup }>
-
-						<h2>{ props.title }</h2>
-
-						<div>
-							<span className={ styles.mobileCategory }>{ props.category } | </span>
-							<span className={ styles.mobileBuiltWith }>{ props.builtWith }</span>
-						</div>
-
-						<p>{ props.description }</p>
-
+					<div className={ styles.workMeta }>
+						<span className={ styles.projectType }>{ category }</span>
+						<span className={ styles.projectBuiltWith }>&nbsp;|&nbsp;{ builtWith }</span>
 					</div>
 
-					<button onClick={() => window.location = props.url } aria-label={`Visit ${props.title}`} className={ styles.workCardButton }>View site</button>
-
+					<p>{ description }</p>
 
 				</div>
 
+
 			</div>
 
-		)
+			<ButtonWithArrow url={ url } text='Test drive app' />
 
+		</div>
 
 	)
 
