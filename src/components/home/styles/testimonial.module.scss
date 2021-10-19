@@ -5,7 +5,7 @@
 
 .testimonialText {
 	text-align:center;
-	font-family:upgrade-lights;
+	font-family:var(--roboto);
 	font-weight:200;
 	letter-spacing:1px;
 	font-size:1rem;
@@ -14,11 +14,11 @@
 .testimonialClient {
 	position:relative;
 	text-align:center;
-	margin-top:1em;
+	margin-top:2em;
 	padding:1em;
 
 	p {
-		font-weight:300;
+		font-weight:var(--roboto700);
 	}
 
 	&:before {
