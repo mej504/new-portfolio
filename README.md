@@ -17,24 +17,20 @@ While I'm always looking to take on new projects and revisit old, I very much am
 
 [ ] Harden responsiveness of work page
 
-[ ] Fix issue where skill cards can restart animation (only once) when a user scrolls up and back down mid-animation
+[✔] Fix issue where skill cards can restart animation (only once) when a user scrolls up and back down mid-animation
 
-	▶ However, if the animation is complete, this doesn't happen
+[✔] Resolve issue where background video doesn't swap on portrait -> landscape
 
-[ ] Resolve issue where background video doesn't swap on portrait -> landscape
+	▶ Fixed by picking a new background video =D
 
-	▶ Failing to do so creates mostly-empty background
+[✔] Adjust work cards on landing page for mobile users (they feel too big)
 
-[ ] Adjust work cards on landing page for mobile users (they feel too big)
+[✔] Adjust size of skills cards for mobile users (again, they feel too big)
 
-[ ] Adjust size of skills cards for mobile users (again, they feel too big)
+[✔]Improve notification rendering when user sends a message
 
-[ ] Improve notification rendering when user sends a message
+[✔] Ensure images attached to project cards aren't clipping in bad spots
 
-[ ] Ensure images attached to project cards aren't clipping in bad spots
+[In progress] Replace all images with Next's `<Image>` component
 
-[ ] Replace all images with Next's `<Image>` component
-
-	▶ Due to lack of experience with Next, I encountered frequent issues aligning the component's functionality with my design goals
-
-[ ] Adjust design/layout of project cards for mobile users ( ... too big )
+[✔] Adjust design/layout of project cards for mobile users ( ... too big )
