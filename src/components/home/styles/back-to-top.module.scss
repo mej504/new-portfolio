@@ -1,10 +1,20 @@
+.buttonWrap {
+	position:fixed;
+	right:20px;
+	bottom:30px;
+	border-radius:50%;
+	max-height:75px;
+	max-width:75px;
+	cursor:pointer;
+	overflow:hidden;
+	transform:scale(0);
+	z-index:100;
+	transform-origin:center;
+}
+
 .backToTopArrow {
-	width:75px;
-	height:75px;
-	@media screen and (max-width:760px) {
-		width:50px;
-		height:50px;
-	}
+	width:50px;
+	height:50px;
 }
 
 .buttonEllipse {
@@ -21,6 +31,23 @@
 	transition:all 200ms ease;
 	transform-origin: top;
 }
+
+
+@media screen and (min-width:768px) {
+
+	.buttonWrap {
+		max-height:60px;
+		max-width:60px;
+	}
+
+	.backToTopArrow {
+		width:60px;
+		height:60px;
+	}
+
+}
+
+
 
 .animateIn {
 	animation-name: pop-in;
