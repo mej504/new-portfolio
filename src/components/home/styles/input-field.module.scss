@@ -10,8 +10,8 @@
 		border:2px solid var(--lightPurple);
 		outline:none;
 		color:var(--richBlack);
-		font-family:var(--lightFont);
-		font-weight:var(--light500);
+		font-family:var(--roboto);
+		font-weight:var(--roboto300);
 
 		&:focus {
 			outline:2px solid var(--lightPurple);
@@ -46,8 +46,8 @@
 
 		&::placeholder {
 			color:var(--midGray);
-			font-family:var(--mainFont);
-			font-weight:var(--main300);
+			font-family:var(--roboto);
+			font-weight:var(--roboto300);
 			font-size:0.7rem;
 			user-select:none;
 		}
