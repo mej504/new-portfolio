@@ -1,5 +1,3 @@
-import { useRef, useEffect } from 'react';
-
 import styles from './styles/notification.module.scss';
 
 export default function Notification({ notificationStatus }) {
