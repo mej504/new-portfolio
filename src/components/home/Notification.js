@@ -1,23 +1,23 @@
-export default function Notification({ message, error }) {
+import { useRef, useEffect } from 'react';
 
-	let wrapperStyles = {
-		position:'absolute',
-		width:'100%',
-		bottom:'-15%',
-		left:'50%',
-		padding:'1em 2em',
-		transform:'translateX(-50%)',
-	}
+import styles from './styles/notification.module.scss';
 
-	let notificationStyles = {
-		color: error ? 'var(--error)' : 'var(--success)',
-		fontWeight:300,
-		textAlign:'center'
-	}
+export default function Notification({ notificationStatus }) {
 
 	return (
-		<div style={ wrapperStyles }>
-			<p style={ notificationStyles }>{ message }</p>
+
+		<div className={
+			`${styles.notificationWrapper}
+			 ${notificationStatus.shouldAnimateIn && styles.animateIn}
+			 ${notificationStatus.shouldAnimateOut && styles.animateOut}`
+			}
+		>
+			<p style={{ color: notificationStatus.status === 'success' ? 'var(--success)' : 'var(--error)' }}
+				className={ styles.notificationStyles }
+			>
+				{notificationStatus.message}
+			</p>
+
 		</div>
 	)
 
