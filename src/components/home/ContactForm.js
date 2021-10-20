@@ -1,5 +1,5 @@
 const axios = require('axios');
-import { useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 import styles from './styles/contact-form.module.scss';
 
@@ -7,24 +7,61 @@ import InputField from './InputField';
 import StandardBtn from '@/components/buttons/StandardBtn';
 import Notification from './Notification';
 
-export default function ContactForm( props ) {
+export default function ContactForm({ bottomLimit, formBtnPosition }) {
+
+	const notificationDefaults = {
+		shouldRender: false,
+		shouldAnimateIn: false,
+		shouldAnimateOut: false,
+		shouldPersist: false
+	}
+
+	// STATE
+	const [ notificationStatus, updateNotificationStatus ] = useState(notificationDefaults)
+
+	// REFS
+	const requiredFieldsEntered = useRef([]);
+	const btnEnabled = useRef(false);
+	const notificationContents = useRef({
+		message:'',
+		status:''
+	})
+
 
 	/**
-	 * 
-	 * TODO
-	 * 
-	 * btnDisabled might not need to be a state object.
-	 * When the contact form is submitted and a response is received,
-	 * I want the button to revert back to disabled without causing a second
-	 * re-render.
-	 * 
+	 * Disable the form button and update the btnEnabled ref
+	 * @returns void
 	 */
 
-	const [ btnDisabled, updateBtnStatus ] = useState( true );
-	const { bottomLimit, formBtnPosition } = props;
-	const [ notification, updateNotification ] = useState(null);
+	const disableBtn = () => {
 
-	const requiredFieldsEntered = useRef([]);
+		let btn = document.getElementById('form-submit');
+
+		// Do nothing if the button is already disabled
+		if( btn.hasAttribute('disabled') ) return;
+
+		btn.setAttribute('disabled', '');
+		return btnEnabled.current = false;
+
+	}
+
+	/**
+	 * Activate the form button and update the btnEnabled ref
+	 * @returns void
+	 */
+
+	const activateBtn = () => {
+
+		let btn = document.getElementById('form-submit');
+
+		if( btn.hasAttribute('disabled') ) {
+			btn.removeAttribute('disabled');
+			return btnEnabled.current = true;
+		}
+
+		return;
+
+	}
 
 	const handleInput = (e) => {
 
@@ -57,12 +94,35 @@ export default function ContactForm( props ) {
 		}
 
 		if( requiredFieldsEntered.current.length === 3 ) {
-			updateBtnStatus(false);
+			activateBtn();
 		} else {
-			if( !btnDisabled ) {
-				updateBtnStatus(true);
-			}
+			disableBtn();
 		}
+
+	}
+
+	const renderNotification = ( options ) => {
+
+		if( !options ) return;
+
+		notificationContents.current = {
+			message: options.message,
+			status: options.status,
+		}
+
+		updateNotificationStatus(options);
+
+		if( notificationStatus.shouldPersist ) return;
+
+		setTimeout(() => {
+			updateNotificationStatus({
+				...notificationContents.current,
+				shouldRender:true,
+				shouldPersist:false,
+				shouldAnimateIn:false,
+				shouldAnimateOut:true
+			})
+		}, 2000)
 
 	}
 
@@ -77,26 +137,37 @@ export default function ContactForm( props ) {
 			message: e.target[3].value
 		}
 
-		axios.post('/pm', body ).then((res) => {
+		axios.post('http://localhost:3011/pm', body ).then((res) => {
 
 			if( res.status === 200 ) {
 
 				requiredFieldsEntered.current = [];
 				e.target.reset();
-				updateNotification({
-					error:false,
-					message:'Message sent!'
+				disableBtn();
+				renderNotification({
+					...notificationDefaults,
+					shouldRender:true,
+					shouldAnimateIn:true,
+					status:'success',
+					message:res.data.message
 				})
 				return;
 			}
 
 			if( res.status > 400 ) {
+
 				requiredFieldsEntered.current = [];
 				e.target.reset();
-				updateNotification({
-					error: true,
-					message: res.data.message,
+				disableBtn();
+
+				renderNotification({
+					...notificationDefaults,
+					shouldRender:true,
+					shouldAnimateIn:true,
+					status:'error',
+					message:res.data.message
 				})
+
 				return;
 			}
 
@@ -106,12 +177,24 @@ export default function ContactForm( props ) {
 
 				requiredFieldsEntered.current = [];
 				e.target.reset();
-				updateNotification({
-					error:true,
-					message:err
+				disableBtn();
+
+				renderNotification({
+					...notificationDefaults,
+					shouldRender:true,
+					shouldAnimateIn:true,
+					status:'error',
+					message:err.response.data.msg
 				})
+
 				return;
 			}
+
+			renderNotification({
+				...notificationDefaults,
+				status:'error',
+				message:'Message failed to send due to an unexpected error'
+			})
 
 		});
 
@@ -119,17 +202,38 @@ export default function ContactForm( props ) {
 
 	return (
 
-		<form className={ styles.contactForm } autoComplete='off' onInput={ handleInput } onSubmit={ handleSubmit } encType='application/x-www-form-url-encoded'>
+		<>
 
-			<InputField required={ true } label='Name' type='text' name='name' />
-			<InputField required={ true } label='Email' type='email' name='email' />
-			<InputField required={ false } label='Organization' type='text' name='organization' />
-			<InputField required={ true } textarea={ true } label='How can I help?' type='textarea' name='message' />
-			<StandardBtn bottomLimit={ bottomLimit } text='Send message' isForm={ true } isDisabled={ btnDisabled } formBtnPosition={ formBtnPosition }/>
+			<form
+				className={ styles.contactForm }
+				autoComplete='off'
+				onInput={ handleInput }
+				onSubmit={ handleSubmit }
+				encType='application/x-www-form-url-encoded'
+			>
 
-			{ notification && <Notification message={ notification.message } error={ notification.error } /> }
+				<InputField required={ true } label='Name' type='text' name='name' />
+				<InputField required={ true } label='Email' type='email' name='email' />
+				<InputField required={ false } label='Organization' type='text' name='organization' />
+				<InputField required={ true } textarea={ true } label='How can I help?' type='textarea' name='message' />
 
-		</form>
+				<StandardBtn
+					btnEnabled={ btnEnabled.current }
+					bottomLimit={ bottomLimit }
+					text='Send message'
+					isForm={ true }
+					formBtnPosition={ formBtnPosition }
+				/>
+
+			</form>
+
+			{ notificationStatus.shouldRender ? (
+				<Notification notificationStatus={ notificationStatus }	/>
+			) : (
+				null
+			)}
+
+		</>
 
 	)
 
