@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import styles from './styles/standard-btn.module.scss';
 
-export default function StandardBtn({ text = 'Click here', isForm = false, isDisabled = false, trackYPos = false, bottomLimit, formBtnPosition, onClick, targetLocation } ) {
+export default function StandardBtn({ text = 'Click here', isForm = false, btnEnabled, bottomLimit, formBtnPosition, onClick, targetLocation } ) {
 
 	const thisBtn = useRef();
 
@@ -25,7 +25,7 @@ export default function StandardBtn({ text = 'Click here', isForm = false, isDis
 
 	return (
 		isForm ? (
-			<button ref={ thisBtn } className={ styles.btn } disabled={ isDisabled } type='submit'>{ text }</button>
+			<button id='form-submit' ref={ thisBtn } className={ styles.btn } disabled={ !btnEnabled } type='submit'>{ text }</button>
 		) : (
 			<button onClick={ () => {
 				if( targetLocation === null ) return;
