@@ -8,7 +8,7 @@ import styles from './styles/hero.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function Hero() {
+export default function Hero({ innerRef }) {
 
 	const heroTitle = useRef( null );
 	const arrowWrap = useRef(null);
@@ -77,7 +77,7 @@ export default function Hero() {
 
 
 	return (
-		<section className={ styles.wrapper }>
+		<section ref={ innerRef } className={ styles.wrapper }>
 
 			<div ref={ heroTitle } className={ styles.heroTitleWrap }>
 
