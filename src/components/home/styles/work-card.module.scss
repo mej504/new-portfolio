@@ -7,8 +7,8 @@
 	transition:background 150ms ease;
 
 	img {
-		transform-origin:top left;
-		transition:transform 300ms ease;
+		transform-origin:center;
+		transition:transform 400ms ease;
 	}
 
 	&:hover {
