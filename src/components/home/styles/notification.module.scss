@@ -1,0 +1,45 @@
+.notificationWrapper {
+	position:fixed;
+	width:100%;
+	padding:1em 0;
+	bottom:0;
+	left:0;
+	background:var(--richBlack);
+}
+
+.notificationStyles {
+	font-family:var(--roboto);
+	font-weight:var(--roboto300);
+	text-align:center;
+}
+
+.animateIn {
+	animation: shift-in 1s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+}
+
+.animateOut {
+	animation: shift-out 1s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+}
+
+@keyframes shift-in {
+
+	from {
+		transform:translateY(200px);
+	}
+
+	to {
+		transform:translateY(0);
+	}
+
+}
+
+@keyframes shift-out {
+
+	from {
+		transform:translateY(0);
+	}
+
+	to {
+		transform:translateY(200px);
+	}
+}
