@@ -40,6 +40,7 @@ export default function Home({ path }) {
 	// Refs
 	const bottomLimit = useRef(0);
 	const formBtnPosition = useRef(null);
+	const heroSectionRef = useRef(null);
 
 	return (
 
@@ -54,8 +55,7 @@ export default function Home({ path }) {
 
 			<Background />
 
-			<Hero location={ path } />
-
+			<Hero innerRef={ heroSectionRef } location={ path } />
 
 			<About />
 
@@ -69,10 +69,10 @@ export default function Home({ path }) {
 
 			<Contact bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
 
+			<BackToTopArrow heroSectionRef={ heroSectionRef } location={ path } bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
 
 		</HomeLayout>
 
 	)
 
 }
-			// <BackToTopArrow location={ path } bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
