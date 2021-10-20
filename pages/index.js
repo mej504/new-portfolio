@@ -20,7 +20,14 @@ import Background from '@/home-components/Background';
 import BackToTopArrow from '@/home-components/BackToTop';
 
 // Just looking to get the resolved path here for use in the Nav component
-export async function getServerSideProps({ resolvedUrl }) {
+export async function getServerSideProps(context) {
+
+	const { resolvedUrl, res } = context;
+
+	// Neither my video nor images are caching in my production build, so I'm ensuring
+	// appropriate caching headers
+	res.setHeader('Cache-Control', 'public, max-age=3600000, immutable')
+
 	return {
 		props: {
 			path: resolvedUrl
@@ -49,21 +56,19 @@ export default function Home({ path }) {
 
 			<Hero location={ path } />
 
-			<div>
 
-				<About />
+			<About />
 
-				<Skills location={ path }/>
+			<Skills location={ path }/>
 
-				<Work />
+			<Work />
 
-				<Clients />
+			<Clients />
 
-				<Testimonials />
+			<Testimonials />
 
-				<Contact bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
+			<Contact bottomLimit={ bottomLimit } formBtnPosition={ formBtnPosition } />
 
-			</div>
 
 		</HomeLayout>
 
