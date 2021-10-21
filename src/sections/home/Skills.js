@@ -82,24 +82,3 @@ export default function Skills() {
 	)
 
 }
-/*
-				{ scrollTargetHit ? (
-
-					skills.map( (skill, index) => {
-						return (
-							<SkillCard
-								elementsAnimated={ elementsAnimated }
-								cardCount={ cardCount.current }
-								scrollTargetHit={ scrollTargetHit }
-								imgPath={ skill.imgPath }
-								i={ index }
-								skillName={ skill.skill }
-								key={ index }
-							/>
-						)
-					})
-
-				) : null
-
-				}
-				*/
