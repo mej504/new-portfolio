@@ -130,6 +130,8 @@ export default function ContactForm({ bottomLimit, formBtnPosition }) {
 
 		e.preventDefault();
 
+		const url = process.env.NODE_ENV === 'production' ? 'https://minyard.dev/pm' : 'http://localhost:3011';
+
 		let body = {
 			name: e.target[0].value,
 			email: e.target[1].value,
@@ -137,7 +139,7 @@ export default function ContactForm({ bottomLimit, formBtnPosition }) {
 			message: e.target[3].value
 		}
 
-		axios.post('http://localhost:3011/pm', body ).then((res) => {
+		axios.post(url, body ).then((res) => {
 
 			if( res.status === 200 ) {
 
