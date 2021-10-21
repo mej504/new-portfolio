@@ -116,7 +116,7 @@
 		color:white;
 		transition:all 150ms ease;
 
-		&:hover {
+		&:hover, &:focus {
 			color:var(--turquoise);
 		}
 	}
