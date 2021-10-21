@@ -27,7 +27,7 @@ export default function About() {
 
 					<div className={ styles.aboutCopyContainer }>
 						<h2>Developer. Problem solver. Minimalist.</h2>
-						<p>Hey there! I'm Justin, a freelance full-stack developer based out of Louisville, Kentucky. I specialize in building Node applications and clean, intuitive front-end experiences from the ground up.</p>
+						<p>Hey there! I'm Justin, a full-stack web developer based out of Louisville, Kentucky. I build and deploy Node applications coupled with clean, intuitive front-end experiences from scratch. My philosophy is simple: to develop performant, stress-free experiences. I'm constantly learning new and improved ways to reach those benchmarks, and I'm loving every minute of it!</p>
 					</div>
 
 			</div>

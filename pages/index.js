@@ -48,7 +48,7 @@ export default function Home({ path }) {
 
 			<Head>
 				<title>Justin Minyard | Full-Stack Developer</title>
-				<meta name="description" content="Justin Minyard is a Louisville-based full-stack web developer. He specializes in building Node.js applications, and has deployed front-ends built with React, Vue and Next." />
+				<meta name="description" content="Justin Minyard is a Louisville-based full-stack web developer. He specializes in building Node applications, and has deployed front-ends built with React, Vue and Next." />
 			</Head>
 
 			<Nav location={ path } />
