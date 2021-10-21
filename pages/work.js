@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef } from 'react';
 import SimpleBar from 'simplebar';
 // Data
-import projects from 'lib/projects';
+import projects from '/lib/projects';
 
 // Components
 import Head from 'next/head';
