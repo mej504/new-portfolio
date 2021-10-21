@@ -7,6 +7,7 @@ import styles from './styles/hero.module.scss';
 // Components
 import Link from 'next/link';
 import Image from 'next/image';
+import IconTray from '@/home-components/IconTray';
 
 export default function Hero({ innerRef }) {
 
@@ -82,18 +83,20 @@ export default function Hero({ innerRef }) {
 			<div ref={ heroTitle } className={ styles.heroTitleWrap }>
 
 				<h1>Justin Minyard</h1>
-				<div className={ styles.titleAccentWrap }>
+				<div role="img" aria-label="Decorative turquoise divider with two triangles in the center pointing in opposite directions" className={ styles.titleAccentWrap }>
 					<Image src='/img/hero-accent.svg' width={ 1000 } height={ 80 } layout='intrinsic' alt='' />
 				</div>
 				<h2>full-stack web developer</h2>
 
+				<IconTray />
+
 				<Link href="/work">
-					<a className={ styles.btn }>View work</a>
+					<a className={ styles.btn }>See my work</a>
 				</Link>
 
 			</div>
 
-			<div ref={ arrowWrap } onClick={ () => window.location = '#about' }  className={ styles.scrollArrowWrap }>
+			<div role="button" aria-label="Click here to learn about me" ref={ arrowWrap } onClick={ () => window.location = '#about' }  className={ styles.scrollArrowWrap }>
 
 				<Image role='button' src='/img/scroll-arrow.svg' width={ 10 } height={ 71 } alt='Click here to learn about me' />
 
